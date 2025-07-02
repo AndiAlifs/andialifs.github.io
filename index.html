@@ -701,6 +701,39 @@
             max-width: 100%;
             overflow-x: hidden;
         }
+        
+        /* Add padding for laptop screens on all sections except hero and navbar */
+        @media (min-width: 1024px) {
+            section:not(#home) .max-w-7xl {
+                padding-left: 7rem;
+                padding-right: 7rem;
+            }
+            
+            /* Specific padding for different section containers */
+            section:not(#home) > .max-w-7xl,
+            section:not(#home) .container,
+            section:not(#home) .mx-auto.px-4,
+            section:not(#home) .mx-auto.px-3 {
+                padding-left: 7rem !important;
+                padding-right: 7rem !important;
+            }
+        }
+        
+        /* Extra padding for larger screens */
+        @media (min-width: 1280px) {
+            section:not(#home) .max-w-7xl {
+                padding-left: 9rem;
+                padding-right: 9rem;
+            }
+            
+            section:not(#home) > .max-w-7xl,
+            section:not(#home) .container,
+            section:not(#home) .mx-auto.px-4,
+            section:not(#home) .mx-auto.px-3 {
+                padding-left: 9rem !important;
+                padding-right: 9rem !important;
+            }
+        }
         /* Base responsive styles */
         @media (max-width: 767px) {
             .nav-link {
