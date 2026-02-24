@@ -57,6 +57,9 @@
 <body>
 
 <div class="container" id="welcome-screen">
+    <div style="text-align:center; margin-bottom:10px;">
+        <button onclick="window.location.href='../'" style="background:transparent; color:#b0bec5; border:2px solid #e0e0e0; padding:8px 22px; font-size:0.82em; font-family:'Poppins',sans-serif; font-weight:600; border-radius:50px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.borderColor='#ff5277';this.style.color='#ff5277'" onmouseout="this.style.borderColor='#e0e0e0';this.style.color='#b0bec5'">← Kembali ke halaman utama</button>
+    </div>
     <h1>Halo, Zahra Ashiela! ✨</h1>
     <div class="special-message">
         "Bismillah semoga lulus ujiannyaaa mba mba officer ku yang paling jago paling cantik dan paling imut paling pintar 🥰🥰🥰"
@@ -64,6 +67,7 @@
     <p>Ada <b>150 soal</b> yang siap menemani belajarmu. Ayo kita mulai latihannya, siap-siap jadi officer terkeren!</p>
     <button class="btn-start" onclick="startQuiz()">Mulai Ujian! 🚀</button>
     <p style="margin-top: 25px; font-size: 0.85em; color: #c2185b; opacity: 0.8;">— Dari Cowokmu Sing Paling Lucu Imut Pintar Tampan Penyayang 💕</p>
+</div>
 </div>
 
 <div class="container hide" id="quiz-screen">
@@ -77,6 +81,7 @@
     <div style="text-align:center; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
         <button class="qmap-toggle" onclick="toggleQMap()">📋 Peta Soal</button>
         <button class="qmap-toggle" id="btn-lang-toggle" onclick="toggleLanguage()" style="background:#fff0f8; border-color:#d63384; color:#d63384;">🇮🇩 Bahasa Indonesia</button>
+        <button class="qmap-toggle" onclick="goHome()" style="background:#fff8f0; border-color:#ff9800; color:#e65100;">🏠 Beranda</button>
     </div>
     <div class="qmap-panel hide" id="qmap-panel">
         <div class="qmap-legend">
@@ -3484,6 +3489,13 @@
         quizScreen.classList.remove('hide');
         renderQMap();
         loadQuestion();
+    }
+
+    function goHome() {
+        if (!confirm('Kembali ke beranda? Progress soal saat ini akan tetap tersimpan.')) return;
+        quizScreen.classList.add('hide');
+        resultScreen.classList.add('hide');
+        welcomeScreen.classList.remove('hide');
     }
 
     function loadQuestion() {
