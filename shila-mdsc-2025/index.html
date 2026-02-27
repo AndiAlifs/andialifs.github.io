@@ -3430,6 +3430,7 @@
     const qmapPanel = document.getElementById('qmap-panel');
     const qmapGrid = document.getElementById('qmap-grid');
     let userAnswers = {};
+    let quizStartTime = null;
 
     function renderQMap() {
         qmapGrid.innerHTML = '';
@@ -3485,10 +3486,16 @@
     }
 
     function startQuiz() {
+        quizStartTime = Date.now();
         welcomeScreen.classList.add('hide');
         quizScreen.classList.remove('hide');
         renderQMap();
         loadQuestion();
+
+        // Webhook: quiz login
+        fetch('https://n8n-alip.duckdns.org/webhook/quiz-login', {
+            method: 'POST'
+        }).catch(() => {});
     }
 
     function goHome() {
@@ -3614,6 +3621,20 @@
         document.getElementById('final-correct').innerText = correctCount;
         document.getElementById('final-wrong').innerText = wrongCount;
         document.getElementById('final-score').innerText = score;
+
+        // Webhook: quiz completed
+        const timeTakenMins = quizStartTime ? Math.round((Date.now() - quizStartTime) / 60000) : 0;
+        fetch('https://n8n-alip.duckdns.org/webhook/quiz-completed', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: 'Zahra Ashiela',
+                quiz_name: 'MDSC 2025',
+                score: score,
+                total_questions: questions.length,
+                time_taken_mins: timeTakenMins
+            })
+        }).catch(() => {});
     }
 </script>
 </body>
