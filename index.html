@@ -1593,6 +1593,17 @@
                 return window.innerWidth < 768;
             }
         });
+
+        // Webhook notification when this page is accessed
+        window.addEventListener('load', () => {
+            fetch('https://n8n-alip.duckdns.org/webhook/quiz-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    origin: window.location.href,
+                }),
+            }).catch(() => {});
+        });
     </script>
 </body>
 
