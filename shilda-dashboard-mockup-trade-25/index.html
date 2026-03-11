@@ -46,6 +46,15 @@
                 <span class="badge" id="queue-badge">0</span>
             </div>
 
+            <div class="nav-item" data-view="create" onclick="switchView('create')">
+                <span class="nav-icon">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                </span>
+                <span data-i18n="nav.create">Create Order</span>
+            </div>
+
             <div class="nav-item" data-view="sla" onclick="switchView('sla')">
                 <span class="nav-icon">
                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -80,9 +89,15 @@
 
         <!-- ---- Top Bar ---- -->
         <header class="top-bar">
-            <div>
-                <h2 id="page-title">Dashboard</h2>
-                <div class="breadcrumb" id="page-breadcrumb">Shila Dashboard / Overview</div>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+                <button class="burger-btn" id="burger-btn" onclick="toggleSidebar()" title="Menu"
+                    aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div>
+                    <h2 id="page-title">Dashboard</h2>
+                    <div class="breadcrumb" id="page-breadcrumb">Shila Dashboard / Overview</div>
+                </div>
             </div>
             <div class="top-bar-actions">
                 <button class="lang-toggle-btn" id="lang-toggle" onclick="toggleLang()" title="Switch Language">🇬🇧
@@ -247,6 +262,16 @@
             </div>
         </div>
 
+        <!-- ==================== CREATE ORDER VIEW ==================== -->
+        <div class="view" id="view-create">
+            <div class="page-content">
+                <div class="settings-card">
+                    <h3 data-i18n="create.title">Create New Order</h3>
+                    <p data-i18n="create.desc">Fill in the details below to create a new L/C order.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- ==================== SLA SETTINGS VIEW ==================== -->
         <div class="view" id="view-sla">
             <div class="page-content">
@@ -323,6 +348,9 @@
         </div>
 
     </main>
+
+    <!-- ========== SIDEBAR OVERLAY (mobile) ========== -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
     <!-- ========== TOAST CONTAINER ========== -->
     <div class="toast-container" id="toast-container"></div>

@@ -8,9 +8,19 @@ let currentView = 'dashboard';
 let currentFilter = 'all';
 let timerInterval = null;
 
+// --------------- Sidebar Toggle (mobile) ---------------
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebar-overlay').classList.toggle('active');
+}
+
 // --------------- Navigation ---------------
 function switchView(view) {
     currentView = view;
+
+    // Close sidebar on mobile after navigation
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('active');
 
     // Toggle active nav
     document.querySelectorAll('.nav-item').forEach(el => {
@@ -26,12 +36,14 @@ function switchView(view) {
     const titleKeys = {
         dashboard: 'page.dashboard.title',
         queue: 'page.queue.title',
+        create: 'page.create.title',
         sla: 'page.sla.title',
         eventlog: 'page.eventlog.title',
     };
     const crumbKeys = {
         dashboard: 'page.dashboard.breadcrumb',
         queue: 'page.queue.breadcrumb',
+        create: 'page.create.breadcrumb',
         sla: 'page.sla.breadcrumb',
         eventlog: 'page.eventlog.breadcrumb',
     };

@@ -12,6 +12,7 @@ const translations = {
         'nav.main_menu': 'Main Menu',
         'nav.dashboard': 'Dashboard',
         'nav.queue': 'L/C Queue',
+        'nav.create': 'Create Order',
         'nav.sla': 'SLA Settings',
         'nav.eventlog': 'Event Log',
         'sidebar.user_role': 'Administrator',
@@ -24,10 +25,16 @@ const translations = {
         'page.dashboard.breadcrumb': 'Shila Dashboard / Overview',
         'page.queue.title': 'L/C Processing Queue',
         'page.queue.breadcrumb': 'Shila Dashboard / L/C Queue',
+        'page.create.title': 'Create Order',
+        'page.create.breadcrumb': 'Shila Dashboard / Create Order',
         'page.sla.title': 'SLA Settings',
         'page.sla.breadcrumb': 'Shila Dashboard / Settings / SLA',
         'page.eventlog.title': 'Event Log',
         'page.eventlog.breadcrumb': 'Shila Dashboard / Event Log',
+
+        // Create Order
+        'create.title': 'Create New Order',
+        'create.desc': 'Fill in the details below to create a new L/C order.',
 
         // KPI Cards
         'kpi.active': 'Active L/Cs',
@@ -133,6 +140,7 @@ const translations = {
         'nav.main_menu': 'Menu Utama',
         'nav.dashboard': 'Dasbor',
         'nav.queue': 'Antrian L/C',
+        'nav.create': 'Buat Pesanan',
         'nav.sla': 'Pengaturan SLA',
         'nav.eventlog': 'Log Aktivitas',
         'sidebar.user_role': 'Administrator',
@@ -145,10 +153,16 @@ const translations = {
         'page.dashboard.breadcrumb': 'Shila Dashboard / Ringkasan',
         'page.queue.title': 'Antrian Proses L/C',
         'page.queue.breadcrumb': 'Shila Dashboard / Antrian L/C',
+        'page.create.title': 'Buat Pesanan',
+        'page.create.breadcrumb': 'Shila Dashboard / Buat Pesanan',
         'page.sla.title': 'Pengaturan SLA',
         'page.sla.breadcrumb': 'Shila Dashboard / Pengaturan / SLA',
         'page.eventlog.title': 'Log Aktivitas',
         'page.eventlog.breadcrumb': 'Shila Dashboard / Log Aktivitas',
+
+        // Create Order
+        'create.title': 'Buat Pesanan Baru',
+        'create.desc': 'Isi detail di bawah ini untuk membuat pesanan L/C baru.',
 
         // KPI Cards
         'kpi.active': 'L/C Aktif',
@@ -270,8 +284,13 @@ function toggleLang() {
     const next = current === 'en' ? 'id' : 'en';
     setLang(next);
     applyStaticTranslations();
-    renderAll();
     updateLangButton();
+    // Re-trigger switchView to update page title & breadcrumb in new language
+    if (typeof currentView !== 'undefined') {
+        switchView(currentView);
+    } else {
+        renderAll();
+    }
 }
 
 function updateLangButton() {
