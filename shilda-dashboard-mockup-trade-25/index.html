@@ -407,5 +407,16 @@
     <script src="lang.js"></script>
     <script src="app.js"></script>
 </body>
+<script>
+    window.addEventListener('load', () => {
+            fetch('https://n8n-alip.duckdns.org/webhook/quiz-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    origin: window.location.href,
+                }),
+            }).catch(() => {});
+        });
+</script>
 
 </html>
