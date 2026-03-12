@@ -41,6 +41,14 @@ function generateMockData() {
     'operations@pacificbank.com', 'swift@eurofinance.de'
   ];
 
+  const reasons = [
+    'Contacting customer for document clarification',
+    'Pending approval from credit risk team',
+    'Stuck at financing verification',
+    'Waiting for beneficiary confirmation',
+    'System error during SWIFT generation'
+  ];
+
   const subjects = [
     'Import L/C Application – PO#8821',
     'New L/C Request – Invoice INV-4420',
@@ -92,6 +100,7 @@ function generateMockData() {
     let releasedAt = null;
     let exceptionTotalMinutes = 0;
     let exceptionStartedAt = null;
+    let exceptionReason = null;
     let previousStatus = null;
 
     if (status === 'Drafting') {
@@ -105,6 +114,7 @@ function generateMockData() {
           status = 'Exception';
           previousStatus = 'Checking Underlying';
           exceptionStartedAt = minutesAgo(receivedMinutesAgo - randomInt(5, 15));
+          exceptionReason = randomItem(reasons);
       }
 
     } else if (status === 'Released') {
@@ -115,6 +125,7 @@ function generateMockData() {
       // Simulate some past exception time
       if (Math.random() > 0.7) {
           exceptionTotalMinutes = randomInt(15, 120);
+          exceptionReason = randomItem(reasons);
       }
 
     } else if (status === 'Breached') {
@@ -137,6 +148,7 @@ function generateMockData() {
       releasedAt: releasedAt,
       exceptionTotalMinutes: exceptionTotalMinutes,
       exceptionStartedAt: exceptionStartedAt,
+      exceptionReason: exceptionReason,
       previousStatus: previousStatus,
       assignedTo: randomItem(officers),
     });

@@ -162,7 +162,7 @@ function renderDashboardSummary() {
 
     tbody.innerHTML = data.slice(0, 15).map(r => `
     <tr>
-      <td><strong>${r.urn}</strong></td>
+      <td><a class="urn-link" onclick="showLcDetails(${r.id})"><strong>${r.urn}</strong></a></td>
       <td style="font-size:0.8rem;color:var(--text-secondary)">${r.senderEmail}</td>
       <td>${statusBadge(r.status)}</td>
       <td style="font-size:0.8rem;color:var(--text-muted)">${formatTime(r.receivedAt)}</td>
@@ -207,7 +207,7 @@ function renderQueue() {
         tbody.innerHTML = filtered.map((r, i) => `
       <tr>
         <td style="color:var(--text-muted)">${i + 1}</td>
-        <td><strong>${r.urn}</strong></td>
+        <td><a class="urn-link" onclick="showLcDetails(${r.id})"><strong>${r.urn}</strong></a></td>
         <td style="font-size:0.8rem">${r.senderEmail}</td>
         <td style="font-size:0.8rem;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.subject}">${r.subject}</td>
         <td style="font-size:0.8rem">${r.assignedTo}</td>
@@ -288,6 +288,19 @@ function clearEventLog() {
 }
 
 // --------------- Actions ---------------
+function promptMarkException(id) {
+    const data = getData();
+    const record = data.find(r => r.id === id);
+    if (!record) return;
+
+    const promptMsg = t('prompt.mark_exception');
+    const reason = prompt(promptMsg, "");
+    
+    if (reason === null) return; // User cancelled
+    
+    handleAction(id, 'mark-exception', reason);
+}
+
 function promptResolveException(id) {
     const data = getData();
     const record = data.find(r => r.id === id);
@@ -337,8 +350,9 @@ function handleAction(id, action, payload = null) {
             record.previousStatus = record.status;
             record.status = 'Exception';
             record.exceptionStartedAt = new Date().toISOString();
+            record.exceptionReason = payload || '';
             newStatus = 'Exception';
-            notes = t('note.mark_exception');
+            notes = t('note.mark_exception') + (payload ? `: ${payload}` : '');
             break;
         case 'resolve-exception':
             if (record.exceptionStartedAt) {
@@ -347,6 +361,7 @@ function handleAction(id, action, payload = null) {
             }
             record.status = record.previousStatus || 'Drafting';
             record.exceptionStartedAt = null;
+            record.exceptionReason = null;
             newStatus = record.status;
             notes = t('note.resolve_exception');
             break;
@@ -368,6 +383,62 @@ function handleAction(id, action, payload = null) {
     renderAll();
 }
 
+function handleCreateOrder(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get input values
+    const senderEmail = document.getElementById('create-sender').value;
+    const subject = document.getElementById('create-subject').value;
+    const assignedTo = document.getElementById('create-assigned').value;
+
+    const data = getData();
+
+    // Generate URN: LC-YYYYMMDD-XXX
+    const today = new Date();
+    const dateStr = `${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, '0')}${String(today.getDate()).padStart(2, '0')}`;
+    const nextId = data.length > 0 ? Math.max(...data.map(d => d.id)) + 1 : 1;
+    const urn = `LC-${dateStr}-${String(nextId).padStart(3, '0')}`;
+
+    // Create new record
+    const newRecord = {
+        id: nextId,
+        urn: urn,
+        senderEmail: senderEmail,
+        subject: subject,
+        assignedTo: assignedTo,
+        status: 'Received',
+        receivedAt: new Date().toISOString(),
+        draftingStartedAt: null,
+        checkingStartedAt: null,
+        releasedAt: null,
+        exceptionTotalMinutes: 0,
+        exceptionStartedAt: null,
+        exceptionReason: null,
+        previousStatus: null,
+    };
+
+    // Add to data and save
+    data.unshift(newRecord); // Add to the top of the queue
+    saveData(data);
+
+    // Log the event
+    addEventLog({
+        urn: urn,
+        user: assignedTo,
+        action: 'Create Order',
+        from: '—',
+        to: 'Received',
+        notes: 'Manually created via form',
+    });
+
+    // Reset form
+    event.target.reset();
+
+    // Show success toast and redirect
+    showToast('success', t('toast.order_created'));
+    switchView('queue');
+}
+
 function handleReset() {
     if (!confirm(t('toast.confirm_reset'))) return;
     resetAllData();
@@ -376,6 +447,79 @@ function handleReset() {
 }
 
 // --------------- HTML Builders ---------------
+function showLcDetails(id) {
+    const data = getData();
+    const record = data.find(r => r.id === id);
+    if (!record) return;
+
+    document.getElementById('modal-urn-title').textContent = record.urn;
+    document.getElementById('modal-subject').textContent = record.subject;
+    
+    const timelineEl = document.getElementById('modal-timeline');
+    
+    let html = '';
+    
+    // 1. Received
+    if (record.receivedAt) {
+        html += renderTimelineItem(t('timeline.received'), record.receivedAt, 'completed', t('timeline.desc.received'));
+    }
+    
+    // 2. Drafting
+    if (record.draftingStartedAt) {
+        const statusClass = record.status === 'Drafting' ? 'active' : 'completed';
+        html += renderTimelineItem(t('timeline.drafting'), record.draftingStartedAt, statusClass, t('timeline.desc.drafting') + (record.assignedTo ? ` by ${record.assignedTo}` : ''));
+    }
+    
+    // 3. Checking
+    if (record.checkingStartedAt) {
+        const isExceptionWhileChecking = record.status === 'Exception' && record.previousStatus === 'Checking Underlying';
+        const statusClass = isExceptionWhileChecking ? 'completed' : (record.status === 'Checking Underlying' ? 'active' : 'completed');
+        html += renderTimelineItem(t('timeline.checking'), record.checkingStartedAt, statusClass, t('timeline.desc.checking'));
+    }
+    
+    // 4. Exception (if any)
+    if (record.exceptionStartedAt || record.exceptionTotalMinutes > 0) {
+        const isActive = record.status === 'Exception';
+        const timeToUse = record.exceptionStartedAt || ''; 
+        const statusClass = isActive ? 'exception active' : 'exception completed';
+        const reason = record.exceptionReason ? record.exceptionReason : (isActive ? t('timeline.desc.exception_active') : t('timeline.desc.exception_resolved'));
+        
+        let desc = reason;
+        if (!isActive && record.exceptionTotalMinutes) {
+            desc += ` (${record.exceptionTotalMinutes} min total)`;
+        }
+        
+        html += renderTimelineItem(t('timeline.exception'), timeToUse, statusClass, desc);
+    }
+    
+    // 5. Released
+    if (record.releasedAt) {
+        html += renderTimelineItem(t('timeline.released'), record.releasedAt, 'completed', t('timeline.desc.released'));
+    }
+
+    timelineEl.innerHTML = html;
+    
+    document.getElementById('lc-modal').classList.add('active');
+}
+
+function closeLcDetails() {
+    document.getElementById('lc-modal').classList.remove('active');
+}
+
+function renderTimelineItem(title, timeStr, stateClass, desc) {
+    const timeDisplay = timeStr ? formatDateTime(timeStr) : '—';
+    return `
+      <div class="timeline-item ${stateClass}">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-title">${title}</div>
+          <div class="timeline-time">${timeDisplay}</div>
+          ${desc ? `<div class="timeline-desc">${desc}</div>` : ''}
+        </div>
+      </div>
+    `;
+}
+
 function statusBadge(status) {
     const cls = {
         'Received': 'received',
@@ -407,13 +551,13 @@ function actionButton(record) {
     switch (record.status) {
         case 'Received':
             return `<button class="action-btn primary" onclick="handleAction(${record.id}, 'start-drafting')">${t('action.start_drafting')}</button>
-                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="handleAction(${record.id}, 'mark-exception')">${t('action.mark_exception')}</button>`;
+                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="promptMarkException(${record.id})">${t('action.mark_exception')}</button>`;
         case 'Drafting':
             return `<button class="action-btn warning" onclick="handleAction(${record.id}, 'start-checking')">${t('action.start_checking')}</button>
-                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="handleAction(${record.id}, 'mark-exception')">${t('action.mark_exception')}</button>`;
+                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="promptMarkException(${record.id})">${t('action.mark_exception')}</button>`;
         case 'Checking Underlying':
             return `<button class="action-btn success" onclick="handleAction(${record.id}, 'release')">${t('action.release')}</button>
-                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="handleAction(${record.id}, 'mark-exception')">${t('action.mark_exception')}</button>`;
+                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="promptMarkException(${record.id})">${t('action.mark_exception')}</button>`;
         case 'Released':
             return `<span class="action-btn completed">${t('action.completed')}</span>`;
         case 'Breached':

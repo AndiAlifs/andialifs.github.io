@@ -35,6 +35,10 @@ const translations = {
         // Create Order
         'create.title': 'Create New Order',
         'create.desc': 'Fill in the details below to create a new L/C order.',
+        'create.form.sender': 'Sender Email',
+        'create.form.subject': 'Subject',
+        'create.form.assigned': 'Assigned To',
+        'create.form.submit': '➕ Create Order',
 
         // KPI Cards
         'kpi.active': 'Active L/Cs',
@@ -93,6 +97,19 @@ const translations = {
         'action.mark_exception': '⏸ Exception',
         'action.resolve_exception': '▶ Resolve Exception',
 
+        // Timeline (L/C Details Modal)
+        'timeline.received': 'Received',
+        'timeline.drafting': 'Drafting',
+        'timeline.checking': 'Checking Underlying',
+        'timeline.exception': 'Exception',
+        'timeline.released': 'Released',
+        'timeline.desc.received': 'L/C Application received in the system.',
+        'timeline.desc.drafting': 'Started drafting the documentary credit',
+        'timeline.desc.checking': 'Checking documents and trade compliance.',
+        'timeline.desc.exception_active': 'Currently paused due to an exception.',
+        'timeline.desc.exception_resolved': 'Exception was resolved.',
+        'timeline.desc.released': 'L/C has been released via SWIFT.',
+
         // SLA Settings
         'sla.config_title': '⏱️ SLA Configuration',
         'sla.config_desc': 'Define the minimum and maximum Service Level Agreement thresholds for L/C processing. Items exceeding the maximum will be flagged as breaches.',
@@ -128,13 +145,15 @@ const translations = {
         'toast.data_reset': 'All data has been regenerated.',
         'toast.log_cleared': 'Event log cleared.',
         'toast.confirm_reset': 'This will reset ALL data (30 new records, clear event log, reset SLA). Continue?',
+        'toast.order_created': 'New order created successfully.',
 
         // Event notes
         'note.start_drafting': 'Officer started drafting the L/C.',
         'note.start_checking': 'Draft complete, moved to checking.',
         'note.release': 'L/C released successfully.',
-        'note.mark_exception': 'Marked as Exception (SLA paused).',
+        'note.mark_exception': 'Marked as Exception (SLA paused)',
         'note.resolve_exception': 'Exception resolved. Process resumed.',
+        'prompt.mark_exception': 'Enter the reason for exception (e.g., contacting customer, stuck at financing):',
         'prompt.resolve_exception': 'Enter total minutes spent in this exception (Auto-calculated: {0}m):',
 
         // Lang toggle
@@ -169,6 +188,10 @@ const translations = {
         // Create Order
         'create.title': 'Buat Pesanan Baru',
         'create.desc': 'Isi detail di bawah ini untuk membuat pesanan L/C baru.',
+        'create.form.sender': 'Email Pengirim',
+        'create.form.subject': 'Perihal',
+        'create.form.assigned': 'Ditugaskan Ke',
+        'create.form.submit': '➕ Buat Pesanan',
 
         // KPI Cards
         'kpi.active': 'L/C Aktif',
@@ -227,6 +250,19 @@ const translations = {
         'action.mark_exception': '⏸ Pengecualian',
         'action.resolve_exception': '▶ Selesaikan Pengecualian',
 
+        // Timeline (L/C Details Modal)
+        'timeline.received': 'Diterima',
+        'timeline.drafting': 'Drafting',
+        'timeline.checking': 'Pemeriksaan Underlying',
+        'timeline.exception': 'Pengecualian',
+        'timeline.released': 'Dirilis',
+        'timeline.desc.received': 'Aplikasi L/C diterima di sistem.',
+        'timeline.desc.drafting': 'Mulai menyusun dokumen kredit',
+        'timeline.desc.checking': 'Memeriksa dokumen dan kepatuhan perdagangan.',
+        'timeline.desc.exception_active': 'Sedang dijeda karena pengecualian.',
+        'timeline.desc.exception_resolved': 'Pengecualian telah diselesaikan.',
+        'timeline.desc.released': 'L/C telah dirilis melalui SWIFT.',
+
         // SLA Settings
         'sla.config_title': '⏱️ Konfigurasi SLA',
         'sla.config_desc': 'Tentukan batas minimum dan maksimum Service Level Agreement untuk proses L/C. Item yang melebihi batas maksimum akan ditandai sebagai pelanggaran.',
@@ -262,13 +298,15 @@ const translations = {
         'toast.data_reset': 'Semua data telah dibuat ulang.',
         'toast.log_cleared': 'Log aktivitas dihapus.',
         'toast.confirm_reset': 'Ini akan mereset SEMUA data (30 data baru, hapus log, reset SLA). Lanjutkan?',
+        'toast.order_created': 'Pesanan baru berhasil dibuat.',
 
         // Event notes
         'note.start_drafting': 'Petugas mulai drafting L/C.',
         'note.start_checking': 'Draft selesai, lanjut ke checking.',
         'note.release': 'L/C berhasil di-release.',
-        'note.mark_exception': 'Ditandai sebagai Pengecualian (SLA dijeda).',
+        'note.mark_exception': 'Ditandai sebagai Pengecualian (SLA dijeda)',
         'note.resolve_exception': 'Pengecualian selesai. Proses dilanjutkan.',
+        'prompt.mark_exception': 'Masukkan alasan pengecualian (misalnya: menghubungi nasabah, kendala pembiayaan):',
         'prompt.resolve_exception': 'Masukkan total menit yang dihabiskan untuk pengecualian ini (Dihitung otomatis: {0}m):',
 
         // Lang toggle
