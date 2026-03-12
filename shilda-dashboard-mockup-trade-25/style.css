@@ -565,6 +565,15 @@ body {
   color: var(--danger);
 }
 
+.action-btn.dark {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.action-btn.dark:hover {
+  background: #0f172a;
+}
+
 /* ---------- Stage Duration Chart ---------- */
 .stage-chart {
   background: var(--card-bg);

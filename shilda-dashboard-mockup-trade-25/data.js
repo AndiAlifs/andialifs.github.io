@@ -90,16 +90,33 @@ function generateMockData() {
     let draftingStartedAt = null;
     let checkingStartedAt = null;
     let releasedAt = null;
+    let exceptionTotalMinutes = 0;
+    let exceptionStartedAt = null;
+    let previousStatus = null;
 
     if (status === 'Drafting') {
       draftingStartedAt = minutesAgo(receivedMinutesAgo - randomInt(5, 20));
     } else if (status === 'Checking Underlying') {
       draftingStartedAt = minutesAgo(receivedMinutesAgo - randomInt(5, 15));
       checkingStartedAt = minutesAgo(receivedMinutesAgo - randomInt(20, 50));
+      
+      // Seed some active Exceptions
+      if (Math.random() > 0.8) {
+          status = 'Exception';
+          previousStatus = 'Checking Underlying';
+          exceptionStartedAt = minutesAgo(receivedMinutesAgo - randomInt(5, 15));
+      }
+
     } else if (status === 'Released') {
       draftingStartedAt = minutesAgo(receivedMinutesAgo - randomInt(5, 15));
       checkingStartedAt = minutesAgo(receivedMinutesAgo - randomInt(20, 50));
       releasedAt = minutesAgo(receivedMinutesAgo - randomInt(55, Math.min(receivedMinutesAgo - 5, 110)));
+      
+      // Simulate some past exception time
+      if (Math.random() > 0.7) {
+          exceptionTotalMinutes = randomInt(15, 120);
+      }
+
     } else if (status === 'Breached') {
       // Breached = stuck too long somewhere
       draftingStartedAt = minutesAgo(receivedMinutesAgo - randomInt(5, 15));
@@ -118,6 +135,9 @@ function generateMockData() {
       draftingStartedAt: draftingStartedAt,
       checkingStartedAt: checkingStartedAt,
       releasedAt: releasedAt,
+      exceptionTotalMinutes: exceptionTotalMinutes,
+      exceptionStartedAt: exceptionStartedAt,
+      previousStatus: previousStatus,
       assignedTo: randomItem(officers),
     });
   }

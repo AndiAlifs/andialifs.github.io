@@ -68,6 +68,7 @@ const translations = {
         'queue.title': 'L/C Processing Queue',
         'queue.search': 'Search URN or sender…',
         'queue.filter_all': 'All',
+        'queue.filter_exception': 'Exception',
         'queue.col_num': '#',
         'queue.col_urn': 'URN',
         'queue.col_sender': 'Sender',
@@ -89,6 +90,8 @@ const translations = {
         'action.release': '✅ Release',
         'action.completed': 'Completed',
         'action.resume': '▶ Resume',
+        'action.mark_exception': '⏸ Exception',
+        'action.resolve_exception': '▶ Resolve Exception',
 
         // SLA Settings
         'sla.config_title': '⏱️ SLA Configuration',
@@ -130,6 +133,9 @@ const translations = {
         'note.start_drafting': 'Officer started drafting the L/C.',
         'note.start_checking': 'Draft complete, moved to checking.',
         'note.release': 'L/C released successfully.',
+        'note.mark_exception': 'Marked as Exception (SLA paused).',
+        'note.resolve_exception': 'Exception resolved. Process resumed.',
+        'prompt.resolve_exception': 'Enter total minutes spent in this exception (Auto-calculated: {0}m):',
 
         // Lang toggle
         'lang.label': '🇬🇧 EN',
@@ -196,6 +202,7 @@ const translations = {
         'queue.title': 'Antrian Proses L/C',
         'queue.search': 'Cari URN atau pengirim…',
         'queue.filter_all': 'Semua',
+        'queue.filter_exception': 'Pengecualian',
         'queue.col_num': '#',
         'queue.col_urn': 'URN',
         'queue.col_sender': 'Pengirim',
@@ -217,6 +224,8 @@ const translations = {
         'action.release': '✅ Release',
         'action.completed': 'Selesai',
         'action.resume': '▶ Lanjutkan',
+        'action.mark_exception': '⏸ Pengecualian',
+        'action.resolve_exception': '▶ Selesaikan Pengecualian',
 
         // SLA Settings
         'sla.config_title': '⏱️ Konfigurasi SLA',
@@ -258,6 +267,9 @@ const translations = {
         'note.start_drafting': 'Petugas mulai drafting L/C.',
         'note.start_checking': 'Draft selesai, lanjut ke checking.',
         'note.release': 'L/C berhasil di-release.',
+        'note.mark_exception': 'Ditandai sebagai Pengecualian (SLA dijeda).',
+        'note.resolve_exception': 'Pengecualian selesai. Proses dilanjutkan.',
+        'prompt.resolve_exception': 'Masukkan total menit yang dihabiskan untuk pengecualian ini (Dihitung otomatis: {0}m):',
 
         // Lang toggle
         'lang.label': '🇮🇩 ID',

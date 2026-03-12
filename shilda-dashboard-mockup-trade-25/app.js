@@ -76,7 +76,7 @@ function renderKPIs() {
     const completed = data.filter(r => r.status === 'Released').length;
     const breaches = data.filter(r => {
         const elapsed = getElapsedMinutes(r);
-        return elapsed > sla.slaMaxMinutes && r.status !== 'Released';
+        return elapsed > sla.slaMaxMinutes && r.status !== 'Released' && r.status !== 'Exception';
     }).length + data.filter(r => r.status === 'Breached').length;
 
     // Avg processing time for released
@@ -288,7 +288,24 @@ function clearEventLog() {
 }
 
 // --------------- Actions ---------------
-function handleAction(id, action) {
+function promptResolveException(id) {
+    const data = getData();
+    const record = data.find(r => r.id === id);
+    if (!record || !record.exceptionStartedAt) return;
+
+    const autoMins = Math.round((Date.now() - new Date(record.exceptionStartedAt)) / 60000);
+    const promptMsg = t('prompt.resolve_exception').replace('{0}', autoMins);
+    
+    const userInput = prompt(promptMsg, autoMins);
+    if (userInput === null) return; // User cancelled
+    
+    const parsedMins = parseInt(userInput, 10);
+    const finalMins = isNaN(parsedMins) ? autoMins : parsedMins;
+
+    handleAction(id, 'resolve-exception', finalMins);
+}
+
+function handleAction(id, action, payload = null) {
     const data = getData();
     const record = data.find(r => r.id === id);
     if (!record) return;
@@ -315,6 +332,23 @@ function handleAction(id, action) {
             record.releasedAt = new Date().toISOString();
             newStatus = 'Released';
             notes = t('note.release');
+            break;
+        case 'mark-exception':
+            record.previousStatus = record.status;
+            record.status = 'Exception';
+            record.exceptionStartedAt = new Date().toISOString();
+            newStatus = 'Exception';
+            notes = t('note.mark_exception');
+            break;
+        case 'resolve-exception':
+            if (record.exceptionStartedAt) {
+                const exceptionMins = payload !== null ? payload : Math.round((Date.now() - new Date(record.exceptionStartedAt)) / 60000);
+                record.exceptionTotalMinutes = (record.exceptionTotalMinutes || 0) + exceptionMins;
+            }
+            record.status = record.previousStatus || 'Drafting';
+            record.exceptionStartedAt = null;
+            newStatus = record.status;
+            notes = t('note.resolve_exception');
             break;
         default:
             return;
@@ -349,6 +383,7 @@ function statusBadge(status) {
         'Checking Underlying': 'checking',
         'Released': 'released',
         'Breached': 'breached',
+        'Exception': 'exception',
     }[status] || 'received';
 
     return `<span class="status-badge ${cls}"><span class="dot"></span>${status}</span>`;
@@ -371,15 +406,20 @@ function slaIndicator(record, sla) {
 function actionButton(record) {
     switch (record.status) {
         case 'Received':
-            return `<button class="action-btn primary" onclick="handleAction(${record.id}, 'start-drafting')">${t('action.start_drafting')}</button>`;
+            return `<button class="action-btn primary" onclick="handleAction(${record.id}, 'start-drafting')">${t('action.start_drafting')}</button>
+                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="handleAction(${record.id}, 'mark-exception')">${t('action.mark_exception')}</button>`;
         case 'Drafting':
-            return `<button class="action-btn warning" onclick="handleAction(${record.id}, 'start-checking')">${t('action.start_checking')}</button>`;
+            return `<button class="action-btn warning" onclick="handleAction(${record.id}, 'start-checking')">${t('action.start_checking')}</button>
+                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="handleAction(${record.id}, 'mark-exception')">${t('action.mark_exception')}</button>`;
         case 'Checking Underlying':
-            return `<button class="action-btn success" onclick="handleAction(${record.id}, 'release')">${t('action.release')}</button>`;
+            return `<button class="action-btn success" onclick="handleAction(${record.id}, 'release')">${t('action.release')}</button>
+                    <button class="action-btn" style="background:var(--bg-secondary);color:var(--text-secondary);margin-top:4px" onclick="handleAction(${record.id}, 'mark-exception')">${t('action.mark_exception')}</button>`;
         case 'Released':
             return `<span class="action-btn completed">${t('action.completed')}</span>`;
         case 'Breached':
             return `<button class="action-btn primary" onclick="handleAction(${record.id}, 'start-drafting')">${t('action.resume')}</button>`;
+        case 'Exception':
+            return `<button class="action-btn dark" onclick="promptResolveException(${record.id})">${t('action.resolve_exception')}</button>`;
         default:
             return '';
     }
@@ -387,10 +427,20 @@ function actionButton(record) {
 
 // --------------- Utilities ---------------
 function getElapsedMinutes(record) {
+    let totalElapsedMins = 0;
+
     if (record.status === 'Released' && record.releasedAt) {
-        return Math.round((new Date(record.releasedAt) - new Date(record.receivedAt)) / 60000);
+        totalElapsedMins = Math.round((new Date(record.releasedAt) - new Date(record.receivedAt)) / 60000);
+    } else if (record.status === 'Exception' && record.exceptionStartedAt) {
+        // Stop counting logic: pretend current time is when the exception started
+        totalElapsedMins = Math.round((new Date(record.exceptionStartedAt) - new Date(record.receivedAt)) / 60000);
+    } else {
+        totalElapsedMins = Math.round((Date.now() - new Date(record.receivedAt)) / 60000);
     }
-    return Math.round((Date.now() - new Date(record.receivedAt)) / 60000);
+
+    // Subtract accumulated paused time from past exceptions
+    const pausedTime = record.exceptionTotalMinutes || 0;
+    return Math.max(0, totalElapsedMins - pausedTime);
 }
 
 function formatElapsed(record) {
