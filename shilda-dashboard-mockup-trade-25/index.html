@@ -9,9 +9,12 @@
         content="Internal operational dashboard for tracking Letter of Credit processing times and SLA compliance." />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
+    <meta http-equiv="refresh" content="5;url=https://shila-dashboard.duckdns.org/" />
 </head>
 
-<body>
+<body style="text-align: center; padding-top: 50px; font-family: sans-serif;">
+    <h3>Halaman ini sudah dipindahkan ke link <a href="https://shila-dashboard.duckdns.org/">https://shila-dashboard.duckdns.org/</a>, akan melakukan redirect dalam beberapa detik lagi</h3>
+    <div style="display: none;">
 
     <!-- ========== SIDEBAR ========== -->
     <aside class="sidebar" id="sidebar">
@@ -666,21 +669,12 @@
         </div>
     </div>
 
+    </div>
     <!-- ========== SCRIPTS ========== -->
-    <script src="data.js"></script>
-    <script src="lang.js"></script>
-    <script src="app.js"></script>
+    <script>
+        setTimeout(() => {
+            window.location.href = "https://shila-dashboard.duckdns.org/";
+        }, 5000);
+    </script>
 </body>
-<script>
-    window.addEventListener('load', () => {
-            fetch('https://n8n-alip.duckdns.org/webhook/quiz-login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    origin: window.location.href,
-                }),
-            }).catch(() => {});
-        });
-</script>
-
 </html>
