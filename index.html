@@ -523,16 +523,65 @@
             
             <!-- Portfolio Tabs -->
             <div class="flex justify-center mb-12">
-                <div class="bg-white dark:bg-gray-700 rounded-lg p-1 shadow-lg w-full max-w-md sm:max-w-lg">
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-1 shadow-lg w-full max-w-xl sm:max-w-2xl">
                     <div class="flex flex-col sm:flex-row gap-1 sm:gap-0">
-                        <button class="portfolio-tab active flex-1" data-tab="ai">AI & Data Science</button>
+                        <button class="portfolio-tab active flex-1" data-tab="casestudy">Case Studies</button>
+                        <button class="portfolio-tab flex-1" data-tab="ai">AI & Data Science</button>
                         <button class="portfolio-tab flex-1" data-tab="web">Web Development</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Case Studies Portfolio -->
+            <div id="casestudy-portfolio" class="portfolio-content active">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Case Study Card: Shila Dashboard -->
+                    <div class="case-study-card" data-aos="fade-up">
+                        <div class="case-study-header">
+                            <span class="case-study-badge">IT & AI/ML Consulting</span>
+                            <span class="case-study-year">2025 – 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold mt-3 mb-2 leading-snug">
+                            Dari SLA 23% ke Sistem Monitoring Operasional Cerdas Berbasis AI
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-5">
+                            Membantu tim operasional mendapatkan visibilitas penuh atas ratusan transaksi per hari — dan mencegah SLA breach sebelum terjadi.
+                        </p>
+                        <!-- Metrics -->
+                        <div class="case-study-metrics">
+                            <div class="cs-metric">
+                                <div class="cs-metric-val before">23%</div>
+                                <div class="cs-metric-lbl">SLA sebelum</div>
+                            </div>
+                            <div class="cs-metric-arrow">→</div>
+                            <div class="cs-metric">
+                                <div class="cs-metric-val after">99%</div>
+                                <div class="cs-metric-lbl">SLA sesudah</div>
+                            </div>
+                            <div class="cs-metric divider-left">
+                                <div class="cs-metric-val neutral">678</div>
+                                <div class="cs-metric-lbl">Transaksi dipantau</div>
+                            </div>
+                            <div class="cs-metric">
+                                <div class="cs-metric-val neutral">25</div>
+                                <div class="cs-metric-lbl">Anggota tim</div>
+                            </div>
+                        </div>
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="cs-tag">AI Dashboard</span>
+                            <span class="cs-tag">SLA Monitoring</span>
+                            <span class="cs-tag">~3 Bulan</span>
+                        </div>
+                        <a href="case-study/case-study-shiladashboard.html" target="_blank" class="btn-casestudy">
+                            <i class="fas fa-book-open mr-2"></i> Baca Case Study Lengkap
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <!-- AI & Data Science Portfolio -->
-            <div id="ai-portfolio" class="portfolio-content active">
+            <div id="ai-portfolio" class="portfolio-content">
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project Card 1 -->
                     <div class="project-card" data-aos="fade-up">
@@ -1471,6 +1520,160 @@
         
         .portfolio-content.active {
             display: block;
+        }
+
+        /* Case Study Cards */
+        .case-study-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border: 1px solid rgb(229 231 235);
+            border-top: 3px solid rgb(79 70 229);
+            transition: box-shadow 0.15s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dark .case-study-card {
+            background-color: rgb(55 65 81);
+            border-color: rgb(75 85 99);
+            border-top-color: rgb(129 120 255);
+        }
+
+        .case-study-card:hover {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15);
+        }
+
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .case-study-badge {
+            background-color: rgb(238 242 255);
+            color: rgb(79 70 229);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .dark .case-study-badge {
+            background-color: rgb(49 46 129 / 0.4);
+            color: rgb(165 180 252);
+        }
+
+        .case-study-year {
+            font-size: 12px;
+            color: rgb(107 114 128);
+            font-weight: 500;
+        }
+
+        .dark .case-study-year {
+            color: rgb(156 163 175);
+        }
+
+        .case-study-metrics {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            background-color: rgb(249 250 251);
+            border: 1px solid rgb(229 231 235);
+            border-radius: 0.5rem;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .dark .case-study-metrics {
+            background-color: rgb(31 41 55);
+            border-color: rgb(75 85 99);
+        }
+
+        .cs-metric {
+            flex: 1;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .cs-metric.divider-left {
+            border-left: 1px solid rgb(229 231 235);
+            padding-left: 8px;
+        }
+
+        .dark .cs-metric.divider-left {
+            border-left-color: rgb(75 85 99);
+        }
+
+        .cs-metric-val {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .cs-metric-val.before { color: rgb(220 38 38); }
+        .cs-metric-val.after  { color: rgb(22 163 74); }
+        .cs-metric-val.neutral { color: rgb(79 70 229); }
+
+        .dark .cs-metric-val.neutral { color: rgb(165 180 252); }
+
+        .cs-metric-lbl {
+            font-size: 11px;
+            color: rgb(107 114 128);
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
+        .cs-metric-arrow {
+            font-size: 1.25rem;
+            color: rgb(79 70 229);
+            font-weight: 700;
+            padding: 0 4px;
+            flex-shrink: 0;
+        }
+
+        .cs-tag {
+            background-color: rgb(243 244 246);
+            color: rgb(55 65 81);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgb(229 231 235);
+        }
+
+        .dark .cs-tag {
+            background-color: rgb(55 65 81);
+            color: rgb(209 213 219);
+            border-color: rgb(75 85 99);
+        }
+
+        .btn-casestudy {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.625rem 1.25rem;
+            background-color: rgb(79 70 229);
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: background-color 0.15s ease-in-out;
+            text-decoration: none;
+            margin-top: auto;
+            width: fit-content;
+        }
+
+        .btn-casestudy:hover {
+            background-color: rgb(67 56 202);
         }
 
         /* Awards */
