@@ -138,71 +138,49 @@
     .step-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
     .step-body p { font-size: 14px; color: var(--muted); margin: 0; }
 
-    /* ── SCREENSHOTS ── */
-    .screenshot-section { margin-top: 28px; }
-    .screenshot-item { margin-bottom: 32px; }
-    .screenshot-item .sc-label {
-      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
-      color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    /* ── NEW PDF DIAGRAMS ── */
+    .arch-diagram {
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+      margin: 32px 0; padding: 32px; background: #fff; border: 1px solid var(--border); border-radius: 8px;
     }
-    .screenshot-item .sc-label::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
+    .arch-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; width: 100%; }
+    .arch-box {
+      background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; padding: 16px 24px; text-align: center;
+      min-width: 180px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
     }
-    .screenshot-item .sc-title { font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
-    .screenshot-item .sc-desc  { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
-    .screenshot-item img {
-      width: 100%; border-radius: 4px; border: 1px solid var(--border);
-    }
-
-    /* ── API-FIRST ── */
-    .flow-diagram {
-      display: flex; align-items: center; gap: 0;
-      margin: 32px 0 28px; overflow-x: auto; padding: 4px 0;
-    }
-    .flow-node {
-      flex: 1; min-width: 120px; background: var(--card);
-      border: 1px solid var(--border); border-radius: 6px;
-      padding: 16px 12px; text-align: center; flex-shrink: 0;
-    }
-    .node-source { border-color: #a5b4fc; background: #eef2ff; }
-    .node-middle { border-color: #6ee7b7; background: #ecfdf5; }
-    .node-dest   { border-color: #4f46e5; background: #ede9fe; }
-    .flow-icon   { font-size: 26px; margin-bottom: 8px; }
-    .flow-label  { font-size: 13px; font-weight: 600; color: var(--primary); line-height: 1.4; }
-    .flow-label span { font-weight: 400; color: var(--muted); font-size: 11.5px; }
-    .flow-arrow {
+    .arch-box h4 { font-size: 14px; color: var(--primary); margin-bottom: 8px; }
+    .arch-box p { font-size: 12px; color: var(--muted); margin: 0; }
+    .arch-arrow {
       display: flex; flex-direction: column; align-items: center; gap: 4px;
-      padding: 0 4px; flex-shrink: 0; min-width: 80px;
     }
-    .arrow-line { width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 1px; }
-    .arrow-label { font-size: 10.5px; color: var(--accent); font-weight: 600; text-align: center; line-height: 1.3; }
-    .arrow-tip   { font-size: 18px; color: var(--accent2); line-height: 1; }
+    .arch-arrow-line { width: 2px; height: 30px; background: var(--accent); }
+    .arch-arrow-head { width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--accent); }
+    
+    .data-table {
+      width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px;
+    }
+    .data-table th { background: #f1f5f9; color: var(--primary); font-weight: 600; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--border); }
+    .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: #334155; }
+    .data-table tr:hover { background: #f8fafc; }
+    
+    .ablation-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px;
+    }
+    .ablation-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 20px;
+    }
+    .ablation-card h4 { font-size: 15px; color: var(--primary); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .ablation-card .stat { font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .ablation-card .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
-    .integration-benefits {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 8px;
+    .comparison-diagram {
+      display: flex; gap: 24px; justify-content: center; margin: 32px 0; flex-wrap: wrap;
     }
-    .ib-card {
-      display: flex; gap: 14px; align-items: flex-start;
-      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 16px;
-    }
-    .ib-icon {
-      width: 34px; height: 34px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 700; flex-shrink: 0;
-    }
-    .ib-card strong { font-size: 14px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 4px; }
-    .ib-card p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.5; }
-
-    /* ── AI FEATURES ── */
-    .ai-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; }
-    .ai-card {
-      background: #111827;
-      color: #fff; border-radius: 6px; padding: 22px;
-      border: 1px solid #1f2937;
-    }
-    .ai-card .ai-icon { font-size: 28px; margin-bottom: 14px; }
-    .ai-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #e2e8f0; }
-    .ai-card p  { font-size: 13.5px; color: #94a3b8; margin: 0; }
+    .comp-panel { flex: 1; min-width: 250px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center; }
+    .comp-panel h4 { font-size: 14px; color: var(--primary); margin-bottom: 16px; }
+    .comp-nodes { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .comp-node { background: #eef2ff; color: #3730a3; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 500; border: 1px solid #c7d2fe; width: 80%; }
+    .comp-vector { margin-top: 16px; padding: 12px; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; border-radius: 4px; font-size: 12px; font-weight: 600; }
 
     /* ── TECH STACK ── */
     .tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -223,33 +201,6 @@
       color: var(--accent);
     }
     .result-card .label { font-size: 13.5px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
-
-    /* ── BUSINESS IMPACT ── */
-    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 24px; }
-    .impact-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px;
-      text-align: center;
-    }
-    .impact-card .ic-icon {
-      width: 48px; height: 48px;
-      background: var(--accent);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin: 0 auto 14px;
-    }
-    .impact-card h3 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
-    .impact-card p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
-
-    /* ── QUOTE ── */
-    .quote-block {
-      background: var(--card); border: 1px solid var(--border); border-radius: 6px;
-      padding: 28px 32px; text-align: center; margin-top: 24px; position: relative;
-    }
-    .quote-block::before {
-      content: '"'; font-size: 80px; color: #e0e7ff; font-family: Georgia, serif;
-      position: absolute; top: -10px; left: 24px; line-height: 1;
-    }
-    .quote-block p { font-size: 17px; font-weight: 500; font-style: italic; color: var(--primary); line-height: 1.6; margin-bottom: 16px; position: relative; }
-    .quote-block .author { font-size: 13px; color: var(--muted); font-style: normal; font-weight: 400; }
 
     /* ── DIVIDER ── */
     .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
@@ -283,234 +234,6 @@
     .cs-lang-btn { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--text); cursor: pointer; transition: border-color .15s, color .15s; font-family: 'Inter', sans-serif; }
     .cs-lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-
-    /* ── ROOT CAUSE MINING ── */
-    .rcm-section {
-      margin-top: 32px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .rcm-header {
-      background: linear-gradient(135deg, #1a1a2e, #1e1b4b);
-      padding: 24px 28px;
-    }
-    .rcm-title-block { display: flex; align-items: center; gap: 16px; }
-    .rcm-icon { font-size: 32px; }
-    .rcm-title { font-size: 17px; font-weight: 700; color: #e2e8f0; }
-    .rcm-sub   { font-size: 13px; color: #94a3b8; margin-top: 3px; }
-
-    .rcm-body { display: grid; grid-template-columns: 1fr 1.6fr; gap: 0; }
-
-    .rcm-how {
-      background: #f9fafb;
-      border-right: 1px solid var(--border);
-      padding: 22px;
-    }
-    .rcm-how-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 16px; }
-    .rcm-steps-mini { display: flex; flex-direction: column; gap: 14px; }
-    .rcm-step-mini { display: flex; align-items: flex-start; gap: 12px; font-size: 13.5px; color: #334155; line-height: 1.5; }
-    .rcm-step-dot {
-      width: 22px; height: 22px; flex-shrink: 0;
-      background: var(--accent);
-      color: #fff; border-radius: 3px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700;
-    }
-
-    .rcm-report { padding: 24px; }
-    .rcm-report-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
-    .rcm-report-title { font-size: 15px; font-weight: 700; color: var(--primary); }
-    .rcm-report-badges { display: flex; gap: 6px; }
-    .rcm-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
-    .rcm-badge.ai   { background: #ede9fe; color: #6d28d9; }
-    .rcm-badge.sync { background: #ecfdf5; color: #059669; }
-    .rcm-report-meta { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
-
-    .rcm-finding { margin-bottom: 16px; padding: 14px 16px; background: #f8fafc; border-radius: 10px; border: 1px solid var(--border); }
-    .rcm-finding:last-child { margin-bottom: 0; }
-    .rcm-finding-label { font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
-    .rcm-finding-body { font-size: 13.5px; color: #334155; line-height: 1.6; }
-    .rcm-finding-note { font-size: 12.5px; color: var(--muted); }
-    .rcm-recs { padding-left: 18px; margin: 6px 0 0; }
-    .rcm-recs li { font-size: 13px; color: #334155; margin-bottom: 6px; line-height: 1.5; }
-    .rcm-recs li:last-child { margin-bottom: 0; }
-
-    .rcm-workflow-note {
-      display: flex; align-items: flex-start; gap: 14px;
-      background: #f5f3ff;
-      border-top: 1px solid var(--border);
-      padding: 18px 24px;
-    }
-    .rcm-wf-icon { font-size: 24px; flex-shrink: 0; }
-    .rcm-workflow-note strong { font-size: 14px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 4px; }
-    .rcm-workflow-note p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.55; }
-
-    @media (max-width: 640px) {
-      .rcm-body { grid-template-columns: 1fr; }
-      .rcm-how { border-right: none; border-bottom: 1px solid var(--border); }
-    }
-
-    /* ── SLA TIMELINE ── */
-    .sla-timeline { margin: 28px 0 8px; }
-    .tl-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; align-items: flex-end; }
-    .tl-point { text-align: center; }
-    .tl-bar-wrap { height: 90px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 10px; }
-    .tl-bar { width: 44px; border-radius: 4px 4px 0 0; }
-    .tl-bar.breach  { background: #fca5a5; border: 1px solid #ef4444; height: 21%; }
-    .tl-bar.warning { background: #fde68a; border: 1px solid #f59e0b; height: 45%; }
-    .tl-bar.peak    { background: #86efac; border: 1px solid #22c55e; height: 91%; }
-    .tl-bar.great   { background: #a5b4fc; border: 1px solid #6366f1; height: 76%; }
-    .tl-pct { font-size: 20px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
-    .tl-pct.breach  { color: var(--red); }
-    .tl-pct.warning { color: var(--amber); }
-    .tl-pct.peak    { color: var(--green); }
-    .tl-pct.great   { color: var(--accent); }
-    .tl-date  { font-size: 11px; color: var(--muted); margin-top: 6px; }
-    .tl-event { font-size: 11.5px; font-weight: 700; color: var(--primary); margin-top: 3px; }
-    .tl-axis  { border-top: 2px solid var(--border); margin-top: 0; }
-
-    /* ── ROLE MATRIX ── */
-    .role-streams { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
-    .role-stream-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-    .role-stream-header { padding: 14px 18px 12px; }
-    .role-stream-title { font-size: 14px; font-weight: 700; color: var(--primary); }
-    .role-stream-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .role-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 18px; border-top: 1px solid var(--border); }
-    .role-badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; white-space: nowrap; font-family: monospace; }
-    .role-badge.exec    { background: #ede9fe; color: #6d28d9; }
-    .role-badge.officer { background: #ecfdf5; color: #065f46; }
-    .role-badge.staff   { background: #eff6ff; color: #1e40af; }
-    .role-badge.admin   { background: #111827; color: #f9fafb; }
-    .role-desc { font-size: 13px; color: #334155; flex: 1; padding-top: 2px; }
-    .role-access-note { margin-top: 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 14px 18px; font-size: 13.5px; color: #166534; line-height: 1.6; }
-    @media (max-width: 600px) { .role-streams { grid-template-columns: 1fr; } }
-
-    /* ── ALL 3 AUTOMATIONS ── */
-    .automations-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0 32px; }
-    .auto-card { background: #0f172a; border-radius: 6px; padding: 20px; border: 1px solid #1e293b; }
-    .auto-trigger { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; margin-bottom: 14px; }
-    .auto-trigger.sched { background: #1e293b; color: #94a3b8; }
-    .auto-trigger.ondemand { background: #1e1b4b; color: #a5b4fc; }
-    .auto-card .auto-icon { font-size: 26px; margin-bottom: 10px; }
-    .auto-card h3 { font-size: 14px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; }
-    .auto-card p  { font-size: 12.5px; color: #94a3b8; margin: 0 0 12px; line-height: 1.55; }
-    .auto-outputs { display: flex; flex-wrap: wrap; gap: 5px; }
-    .auto-output { font-size: 10.5px; background: #1e293b; color: #6ee7b7; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
-    @media (max-width: 680px) { .automations-row { grid-template-columns: 1fr; } }
-
-    /* ── LESSONS LEARNED ── */
-    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 24px; }
-    .lesson-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px; }
-    .lesson-type { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
-    .lesson-type.harder    { color: var(--amber); }
-    .lesson-type.different { color: var(--accent); }
-    .lesson-type.roadmap   { color: var(--green); }
-    .lesson-card h3 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
-    .lesson-card p  { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.6; }
-    .lesson-sep { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
-
-    /* ── SLIDE RECREATION ── */
-    .slide-recreation {
-      margin-top: 24px;
-      background: #fff;
-      border: 1px solid #d1d5db;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .slide-title-area {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 32px 20px;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    .slide-eyebrow { font-size: 14px; color: #6b7280; font-weight: 500; margin-bottom: 4px; }
-    .slide-headline { font-size: 26px; font-weight: 800; color: #111827; letter-spacing: -.02em; }
-    .slide-deco { font-size: 28px; color: #6366f1; opacity: .6; letter-spacing: -4px; }
-
-    .slide-cols {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr 1fr;
-      gap: 0;
-    }
-
-    /* Phone-style dark card */
-    .slide-phone-card {
-      background: #0f172a;
-      padding: 16px;
-      border-right: 1px solid #1e293b;
-    }
-    .slide-phone-card.wide { background: #111827; }
-    .spc-topbar { margin-bottom: 8px; }
-    .spc-title { font-size: 11.5px; font-weight: 700; color: #f1f5f9; display: block; margin-bottom: 6px; }
-    .spc-badges { display: flex; gap: 6px; }
-    .spc-badge { font-size: 9.5px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
-    .spc-badge.purple { background: #4c1d95; color: #c4b5fd; }
-    .spc-badge.green  { background: #064e3b; color: #6ee7b7; }
-    .spc-meta { font-size: 10px; color: #64748b; margin-bottom: 12px; line-height: 1.5; }
-    .spc-section-title { font-size: 11px; font-weight: 700; color: #a5b4fc; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
-    .spc-rec { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
-    .spc-num {
-      width: 18px; height: 18px; flex-shrink: 0;
-      background: #4f46e5; color: #fff; border-radius: 3px;
-      font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
-    }
-    .spc-rec span { font-size: 11px; color: #cbd5e1; line-height: 1.5; }
-    .spc-rec strong { color: #f1f5f9; }
-
-    .spc-detail-block {
-      background: #1e293b; border-radius: 6px; padding: 12px; margin-bottom: 10px;
-    }
-    .spc-detail-label { font-size: 11.5px; font-weight: 700; color: #f59e0b; margin-bottom: 4px; }
-    .spc-detail-stat  { font-size: 11px; color: #94a3b8; margin-bottom: 8px; }
-    .spc-detail-stat strong { color: #34d399; }
-    .spc-detail-body  { font-size: 11px; color: #94a3b8; line-height: 1.55; }
-    .spc-detail-body strong { color: #e2e8f0; }
-    .spc-table { width: 100%; border-collapse: collapse; font-size: 10.5px; color: #94a3b8; margin-top: 6px; }
-    .spc-table th { text-align: left; color: #64748b; font-weight: 600; padding: 4px 6px; border-bottom: 1px solid #1e293b; }
-    .spc-table td { padding: 5px 6px; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
-
-    /* Right col */
-    .slide-right-col { padding: 16px; background: #f9fafb; display: flex; flex-direction: column; gap: 16px; }
-
-    .slide-workflow {
-      display: flex; align-items: center; gap: 6px;
-      background: #111827; border-radius: 6px; padding: 12px 10px;
-      overflow-x: auto;
-    }
-    .wf-node {
-      display: flex; flex-direction: column; align-items: center; gap: 4px;
-      background: #1e293b; border-radius: 6px; padding: 8px 6px;
-      min-width: 56px; text-align: center; flex-shrink: 0;
-    }
-    .wf-node-icon { font-size: 16px; }
-    .wf-node-label { font-size: 9px; color: #94a3b8; line-height: 1.3; }
-    .wf-trigger { border: 1px solid #374151; }
-    .wf-agent   { border: 1px solid #4f46e5; background: #1e1b4b; }
-    .wf-format  { border: 1px solid #374151; }
-    .wf-email   { border: 1px solid #374151; opacity: .6; }
-    .wf-arrow   { color: #4b5563; font-size: 12px; flex-shrink: 0; }
-
-    .wf-models {
-      display: flex; flex-wrap: wrap; gap: 4px; align-items: center;
-      padding: 0 2px;
-    }
-    .wf-model { font-size: 10px; font-weight: 600; color: #6366f1; background: #eef2ff; padding: 2px 8px; border-radius: 4px; }
-    .wf-sep   { font-size: 10px; color: #9ca3af; }
-    .wf-model-tool { font-size: 9.5px; color: #059669; background: #ecfdf5; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
-
-    .slide-agent-card {
-      background: #fff; border: 1px solid #e5e7eb; border-radius: 6px; padding: 14px;
-    }
-    .sac-title { font-size: 13px; font-weight: 700; color: #111827; margin-bottom: 10px; }
-    .sac-list  { padding-left: 16px; margin: 0; }
-    .sac-list li { font-size: 12px; color: #374151; margin-bottom: 6px; line-height: 1.5; }
-    .sac-list li:last-child { margin-bottom: 0; }
-
-    @media (max-width: 760px) {
-      .slide-cols { grid-template-columns: 1fr; }
-      .slide-phone-card { border-right: none; border-bottom: 1px solid #1e293b; }
-    }
     @media (max-width: 640px) {
       header { padding: 52px 20px 48px; }
       main { padding: 48px 20px; }
@@ -621,6 +344,42 @@
       I designed a Parameter-Efficient Fine-Tuning (PEFT) strategy leveraging a novel prefix-tuned encoder-decoder architecture. By synergizing a Semantic-Based Model with a Generative-Based Model, this framework acts as a highly capable engine without needing full retraining.
     </p>
 
+    <!-- Architecture Diagram -->
+    <div class="arch-diagram">
+      <div class="arch-row">
+        <div class="arch-box" style="border-color: #a5b4fc; background: #eef2ff;">
+          <h4>Semantic Encoder</h4>
+          <p>IndoSBERT-Large</p>
+        </div>
+      </div>
+      <div class="arch-arrow">
+        <div class="arch-arrow-line"></div>
+        <div class="arch-arrow-head"></div>
+        <span style="font-size: 11px; color: var(--muted); margin-top: 4px;">Semantic Vector</span>
+      </div>
+      <div class="arch-row">
+        <div class="arch-box" style="border-color: #fcd34d; background: #fffbeb;">
+          <h4>MLP Adapter</h4>
+          <p>Projects Vector to Continuous Prefix</p>
+        </div>
+      </div>
+      <div class="arch-arrow">
+        <div class="arch-arrow-line"></div>
+        <div class="arch-arrow-head"></div>
+        <span style="font-size: 11px; color: var(--muted); margin-top: 4px;">3 Prefix Tokens</span>
+      </div>
+      <div class="arch-row">
+        <div class="arch-box" style="border-color: #6ee7b7; background: #ecfdf5; flex: 1;">
+          <h4>Generative Decoder</h4>
+          <p>GPT-2 Medium</p>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #a7f3d0; font-size: 11px; text-align: left;">
+            <strong>Input:</strong> [Prefix Tokens] + Target Context<br>
+            <strong>Output:</strong> Contextually Generated Answer
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
@@ -644,6 +403,112 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2 data-i18n="h2_semantic">Semantic Encoding & Clustering</h2>
+    <p>
+      The core advantage of IndoSBERT-Large in this architecture is its ability to cluster semantically identical queries (formal queries vs. regional dialects) into tight, distinct groups. Standard token-by-token processing fails here due to informal variations.
+    </p>
+    <div class="comparison-diagram">
+      <div class="comp-panel">
+        <h4>Traditional Approach</h4>
+        <div class="comp-nodes">
+          <div class="comp-node">Who is the dean of my faculty?</div>
+          <div class="comp-node" style="opacity: 0.8">Who's lead my faculty?</div>
+        </div>
+        <div class="comp-vector" style="background: #fef2f2; border-color: #fecaca; color: #991b1b;">Semantic gap: Maps to distinct vectors</div>
+      </div>
+      <div class="comp-panel" style="border-color: var(--accent);">
+        <h4>Proposed Approach (IndoSBERT)</h4>
+        <div class="comp-nodes">
+          <div class="comp-node" style="background: var(--accent); color: white;">Who is the dean of my faculty?</div>
+          <div class="comp-node" style="background: var(--accent); color: white;">Who's lead my faculty?</div>
+        </div>
+        <div class="comp-vector">Shared Semantic Vector Space</div>
+      </div>
+    </div>
+  </section>
+  <hr class="divider" />
+
+  <section>
+    <h2 data-i18n="h2_ablation">Ablation Study & Hyperparameter Optimization</h2>
+    <p>
+      Rigorous hyperparameter tuning and ablation studies were conducted to determine the optimal configuration. The results validate that explicit semantic guidance and a specific prefix token length are strictly necessary to prevent severe performance degradation.
+    </p>
+
+    <div class="ablation-grid">
+      <div class="ablation-card" style="border-top: 3px solid var(--green);">
+        <h4>Model A: Full Benchmark</h4>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.4;">IndoSBERT-Large + GPT-2 Medium (3 Prefix Tokens).</p>
+        <div class="stat">0.782</div>
+        <div class="stat-label">BLEU Score</div>
+      </div>
+      <div class="ablation-card" style="border-top: 3px solid var(--amber);">
+        <h4>Model B: Semantic Ablation</h4>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.4;">Encoder removed. Prefixes initialized as randomly trainable vectors.</p>
+        <div class="stat">0.501</div>
+        <div class="stat-label">BLEU Score</div>
+      </div>
+      <div class="ablation-card" style="border-top: 3px solid var(--red);">
+        <h4>Model C: Pretraining Ablation</h4>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.4;">Encoder architecture maintained but trained entirely from scratch.</p>
+        <div class="stat">0.583</div>
+        <div class="stat-label">BLEU Score</div>
+      </div>
+    </div>
+
+    <h3 class="sub" style="margin-top: 32px;" data-i18n="h3_grid">Grid Search Highlights</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Model Encoder</th>
+          <th>Model Decoder</th>
+          <th>Prefix Tokens</th>
+          <th>BLEU</th>
+          <th>chrF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: #f0fdf4; border-left: 3px solid var(--green);">
+          <td><strong>IndoSBERT-Large</strong></td>
+          <td><strong>GPT2-Medium (Indo)</strong></td>
+          <td><strong>3</strong></td>
+          <td><strong>0.782</strong></td>
+          <td><strong>89.672</strong></td>
+        </tr>
+        <tr>
+          <td>IndoSBERT-Large</td>
+          <td>GPT2-Large (Indo)</td>
+          <td>3</td>
+          <td>0.757</td>
+          <td>86.971</td>
+        </tr>
+        <tr>
+          <td>IndoSBERT-Large</td>
+          <td>GPT2-Medium (Indo)</td>
+          <td>5</td>
+          <td>0.724</td>
+          <td>85.872</td>
+        </tr>
+        <tr>
+          <td>Transformer (Baseline)</td>
+          <td>Transformer</td>
+          <td>0</td>
+          <td>0.653</td>
+          <td>77.654</td>
+        </tr>
+        <tr>
+          <td>IndoBERT-Large</td>
+          <td>GPT2-Medium (Indo)</td>
+          <td>0</td>
+          <td>0.591</td>
+          <td>70.941</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <hr class="divider" />
@@ -701,6 +566,9 @@ const CS_I18N = {
     h2_bg: 'Background',
     h2_challenges: 'The Low-Resource Challenge',
     h2_solution: 'The Proposed Solution',
+    h2_semantic: 'Semantic Encoding & Clustering',
+    h2_ablation: 'Ablation Study & Hyperparameter Optimization',
+    h3_grid: 'Grid Search Highlights',
     h2_results: 'Results Achieved',
     h2_cta: 'Want to dive deeper into the research?',
     cta_p: 'The full academic paper is available, detailing the ablation studies, cosine similarity embeddings, and hyperparameter tuning phases.',
@@ -720,6 +588,9 @@ const CS_I18N = {
     h2_bg: 'Latar Belakang',
     h2_challenges: 'Tantangan Low-Resource',
     h2_solution: 'Solusi yang Diusulkan',
+    h2_semantic: 'Enkoding Semantik & Clustering',
+    h2_ablation: 'Studi Ablasi & Optimasi Hyperparameter',
+    h3_grid: 'Sorotan Grid Search',
     h2_results: 'Hasil yang Dicapai',
     h2_cta: 'Ingin mendalami riset ini lebih lanjut?',
     cta_p: 'Makalah akademis lengkap tersedia, merinci studi ablasi, cosine similarity embeddings, dan fase hyperparameter tuning.',

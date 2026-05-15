@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — SNAP-BI Open API Gateway</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:  #111827;
+      --accent:   #4f46e5;
+      --accent2:  #4f46e5;
+      --green:    #16a34a;
+      --amber:    #d97706;
+      --red:      #dc2626;
+      --surface:  #f9fafb;
+      --card:     #ffffff;
+      --border:   #e5e7eb;
+      --text:     #111827;
+      --muted:    #6b7280;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+
+    /* ── HEADER ── */
+    header {
+      background: #111827;
+      color: #fff; padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden;
+    }
+    header::before { display: none; }
+    header .inner { position: relative; max-width: 780px; margin: 0 auto; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      color: #9ca3af; font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
+    }
+    header h1 { font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -.02em; }
+    header h1 span { color: #a5b4fc; }
+    header p { font-size: 17px; color: #cbd5e1; max-width: 600px; margin: 0 auto 36px; }
+
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #94a3b8; }
+    .meta-row span { display: flex; align-items: center; gap: 6px; }
+    .meta-row i { color: #a5b4fc; }
+
+    /* ── HERO STATS ── */
+    .hero-stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+      margin-top: 48px; position: relative;
+    }
+    .hero-stat {
+      flex: 1; min-width: 130px; max-width: 200px;
+      padding: 24px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .num {
+      font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #a5b4fc; display: block;
+    }
+    .hero-stat .lbl { font-size: 12px; color: #94a3b8; margin-top: 4px; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── LAYOUT ── */
+    main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+    section { margin-bottom: 64px; }
+
+    h2 {
+      font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2::before {
+      content: ''; display: inline-block; width: 3px; height: 20px;
+      background: var(--accent);
+      border-radius: 1px; flex-shrink: 0;
+    }
+    h3.sub { font-size: 16px; font-weight: 600; color: var(--primary); margin: 28px 0 14px; }
+
+    p { color: #334155; margin-bottom: 14px; font-size: 15.5px; }
+    p:last-child { margin-bottom: 0; }
+
+    .highlight {
+      background: #eef2ff;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #3730a3; font-style: italic;
+    }
+
+    .architecture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .architecture-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 20px;
+    }
+    .architecture-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+    .architecture-card p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    /* ── SOLUTION STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .step {
+      display: flex; gap: 16px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px;
+    }
+    .step-num {
+      width: 32px; height: 32px; background: var(--accent);
+      color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; flex-shrink: 0;
+    }
+    .step-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
+    .step-body p { font-size: 14px; color: var(--muted); margin: 0; }
+
+    .tag { display: inline-block; padding: 2px 8px; background: #e0e7ff; color: #3730a3; border-radius: 4px; font-size: 12px; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
+
+    /* ── NAV ── */
+    .nav-top { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+    .back-link { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .back-link:hover { color: #fff; }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <div class="nav-top">
+      <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    </div>
+    <div class="inner">
+      <span class="badge">Backend Architecture</span>
+      <h1>Building a High-Scale <span>SNAP-BI</span> Open API Gateway</h1>
+      <p>Migrating 114+ legacy monolithic endpoints to a distributed, highly-available Go microservices architecture compliant with Indonesia's National Open API Standards.</p>
+      
+      <div class="meta-row">
+        <span><i class="fas fa-building"></i> Banking & Finance</span>
+        <span><i class="fas fa-calendar-alt"></i> 2024</span>
+        <span><i class="fas fa-code"></i> Golang, gRPC, Redis</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="num">10+</span>
+          <span class="lbl">Microservices</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">114+</span>
+          <span class="lbl">Endpoints Migrated</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">100%</span>
+          <span class="lbl">SNAP-BI Compliant</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">0.00</span>
+          <span class="lbl">Downtime</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>The Challenge</h2>
+      <p>Bank Indonesia issued the <strong>Standar Nasional Open API Pembayaran (SNAP)</strong>, requiring financial institutions to adopt standardized, secure, and interoperable API architectures. Our client, a major national enterprise (PT. POS Indonesia), relied on a legacy monolith for their core transaction processing. Scaling this monolith to handle millions of transactions securely while complying with strict SNAP-BI security standards (Asymmetric RSA-256 and Symmetric HMAC-512 signatures) proved to be an impossible bottleneck.</p>
+      <div class="highlight">
+        "We needed to decouple 114+ critical financial endpoints into isolated microservices without disrupting ongoing operations or compromising transaction idempotency."
+      </div>
+    </section>
+
+    <section>
+      <h2>Architectural Overhaul</h2>
+      <p>I spearheaded the architectural design and development of a new API Gateway ecosystem written entirely in <strong>Golang</strong>, utilizing <strong>gRPC</strong> for high-performance internal communication. The architecture was broken down into specialized domains to maximize scalability.</p>
+      
+      <div class="architecture-grid">
+        <div class="architecture-card">
+          <h3>Gateway Service</h3>
+          <p>The main entry point handling HTTP requests, performing initial authentication, and routing requests via gRPC to domain-specific microservices.</p>
+        </div>
+        <div class="architecture-card">
+          <h3>Security & Auth Service</h3>
+          <p>Integrates with Keycloak for JWT validation, manages client credentials, and handles complex asymmetric/symmetric cryptographic verifications.</p>
+        </div>
+        <div class="architecture-card">
+          <h3>Rate Limiter Service</h3>
+          <p>Utilizes Redis Sliding Window algorithms to strictly enforce API quotas per client and prevent abuse or DDoS attacks.</p>
+        </div>
+        <div class="architecture-card">
+          <h3>Storage & Idempotency</h3>
+          <p>A Redis-backed service ensuring 100% transaction idempotency by validating unique Reference Numbers and External IDs.</p>
+        </div>
+        <div class="architecture-card">
+          <h3>Transaction Domains</h3>
+          <p>Isolated microservices dedicated to Transfers, Inquiries, and History tracking, mapping new payloads to legacy core systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Deep Dive: Core Implementations</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Strict Signature Validation (SNAP-BI Standard)</h3>
+            <p>Implemented rigid validation for <code>X-SIGNATURE</code> headers. For B2B authentication (Asymmetric), used RSA-256 with PKCS#1 v1.5. For transactional endpoints (Symmetric), utilized HMAC-512 over a concatenated string of HTTP Method, URL Path, Access Token, hashed request body, and timestamp.</p>
+            <div style="margin-top: 8px;">
+              <span class="tag">crypto/rsa</span> <span class="tag">crypto/hmac</span> <span class="tag">sha512</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Idempotency & Duplicate Prevention</h3>
+            <p>Financial transactions must never occur twice. We introduced a centralized Redis storage service to lock <code>PartnerReferenceNo</code> and <code>ExternalId</code>. If a duplicate reference is detected within a given expiration window, the gateway rejects the request with a 409 Conflict immediately, protecting the downstream core.</p>
+            <div style="margin-top: 8px;">
+              <span class="tag">Redis</span> <span class="tag">Distributed Locks</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Sliding Window Rate Limiting</h3>
+            <p>To comply with client SLAs, implemented a highly efficient rate limiter using Redis sorted sets and Hashes to maintain a sliding window count of requests per minute per API key. This guarantees traffic isolation between clients.</p>
+            <div style="margin-top: 8px;">
+              <span class="tag">Redis Hash</span> <span class="tag">Sliding Window</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Observability & Distributed Tracing</h3>
+            <p>Migrating to microservices causes a loss of visibility. Integrated <strong>OpenTelemetry</strong> across all Go services, passing span contexts via gRPC metadata. All logs and traces are centralized via the OTEL Collector for instant debugging and MTTR reduction.</p>
+            <div style="margin-top: 8px;">
+              <span class="tag">OpenTelemetry</span> <span class="tag">gRPC Interceptors</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Results & Impact</h2>
+      <p>The new architecture was deployed via a strict GitOps pipeline using Kustomize and GitLab CI/CD, guaranteeing zero-downtime rollouts.</p>
+      <ul>
+        <li style="margin-bottom: 8px;">Successfully bridged over <strong>10 financial partners</strong> onto the new SNAP-BI compliant gateway.</li>
+        <li style="margin-bottom: 8px;">Isolated scaling allowed the core Transfer and Inquiry services to dynamically scale during peak transaction windows (e.g., payday, holidays).</li>
+        <li style="margin-bottom: 8px;">Reduced transaction debugging time significantly by utilizing end-to-end distributed tracing.</li>
+      </ul>
+    </section>
+
+  </main>
+</body>
+</html>

@@ -1406,7 +1406,7 @@ const CS_I18N = {
   }
 };
 
-let csLang = localStorage.getItem('lang') || 'EN';
+let csLang = localStorage.getItem('lang') || 'ID';
 function csApplyLang(lang) {
   const d = CS_I18N[lang];
   document.querySelectorAll('[data-i18n]').forEach(el => {
