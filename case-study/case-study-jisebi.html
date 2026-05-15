@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Sistem Monitoring Operasional Cerdas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:  #111827;
+      --accent:   #4f46e5;
+      --accent2:  #4f46e5;
+      --green:    #16a34a;
+      --amber:    #d97706;
+      --red:      #dc2626;
+      --surface:  #f9fafb;
+      --card:     #ffffff;
+      --border:   #e5e7eb;
+      --text:     #111827;
+      --muted:    #6b7280;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+
+    /* ── HEADER ── */
+    header {
+      background: #111827;
+      color: #fff; padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden;
+    }
+    header::before { display: none; }
+    header .inner { position: relative; max-width: 780px; margin: 0 auto; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      color: #9ca3af; font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
+    }
+    header h1 { font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -.02em; }
+    header h1 span { color: #a5b4fc; }
+    header p { font-size: 17px; color: #cbd5e1; max-width: 600px; margin: 0 auto 36px; }
+
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #94a3b8; }
+    .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── HERO STATS ── */
+    .hero-stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+      margin-top: 48px; position: relative;
+    }
+    .hero-stat {
+      flex: 1; min-width: 130px; max-width: 200px;
+      padding: 24px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .num {
+      font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #a5b4fc; display: block;
+    }
+    .hero-stat .lbl { font-size: 12px; color: #94a3b8; margin-top: 4px; line-height: 1.4; }
+
+    /* ── LAYOUT ── */
+    main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+    section { margin-bottom: 64px; }
+
+    h2 {
+      font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2::before {
+      content: ''; display: inline-block; width: 3px; height: 20px;
+      background: var(--accent);
+      border-radius: 1px; flex-shrink: 0;
+    }
+    h3.sub { font-size: 16px; font-weight: 600; color: var(--primary); margin: 28px 0 14px; }
+
+    p { color: #334155; margin-bottom: 14px; font-size: 15.5px; }
+    p:last-child { margin-bottom: 0; }
+
+    .highlight {
+      background: #eef2ff;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #3730a3; font-style: italic;
+    }
+
+    /* ── PROBLEM CARDS ── */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .problem-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 20px;
+    }
+    .problem-icon {
+      width: 40px; height: 40px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px;
+    }
+    .problem-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+    .problem-card p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    /* ── BEFORE/AFTER DATA ── */
+    .ba-wrapper {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px;
+      align-items: center; margin: 28px 0;
+    }
+    .ba-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px;
+    }
+    .ba-card.before { border-top: 3px solid var(--red); }
+    .ba-card.after  { border-top: 3px solid var(--green); }
+    .ba-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+    .ba-card.before .ba-label { color: var(--red); }
+    .ba-card.after  .ba-label { color: var(--green); }
+    .ba-num { font-size: 42px; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+    .ba-card.before .ba-num { color: var(--red); }
+    .ba-card.after  .ba-num { color: var(--green); }
+    .ba-desc { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+    .ba-arrow { font-size: 28px; color: var(--accent); text-align: center; }
+
+    .timeline-note {
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px;
+      padding: 14px 18px; font-size: 13.5px; color: #166534; margin-top: 16px;
+    }
+    .timeline-note strong { color: #15803d; }
+
+    /* ── SOLUTION STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .step {
+      display: flex; gap: 16px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px;
+    }
+    .step-num {
+      width: 32px; height: 32px; background: var(--accent);
+      color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; flex-shrink: 0;
+    }
+    .step-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
+    .step-body p { font-size: 14px; color: var(--muted); margin: 0; }
+
+    /* ── SCREENSHOTS ── */
+    .screenshot-section { margin-top: 28px; }
+    .screenshot-item { margin-bottom: 32px; }
+    .screenshot-item .sc-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .screenshot-item .sc-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .screenshot-item .sc-title { font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
+    .screenshot-item .sc-desc  { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+    .screenshot-item img {
+      width: 100%; border-radius: 4px; border: 1px solid var(--border);
+    }
+
+    /* ── API-FIRST ── */
+    .flow-diagram {
+      display: flex; align-items: center; gap: 0;
+      margin: 32px 0 28px; overflow-x: auto; padding: 4px 0;
+    }
+    .flow-node {
+      flex: 1; min-width: 120px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 16px 12px; text-align: center; flex-shrink: 0;
+    }
+    .node-source { border-color: #a5b4fc; background: #eef2ff; }
+    .node-middle { border-color: #6ee7b7; background: #ecfdf5; }
+    .node-dest   { border-color: #4f46e5; background: #ede9fe; }
+    .flow-icon   { font-size: 26px; margin-bottom: 8px; }
+    .flow-label  { font-size: 13px; font-weight: 600; color: var(--primary); line-height: 1.4; }
+    .flow-label span { font-weight: 400; color: var(--muted); font-size: 11.5px; }
+    .flow-arrow {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 0 4px; flex-shrink: 0; min-width: 80px;
+    }
+    .arrow-line { width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 1px; }
+    .arrow-label { font-size: 10.5px; color: var(--accent); font-weight: 600; text-align: center; line-height: 1.3; }
+    .arrow-tip   { font-size: 18px; color: var(--accent2); line-height: 1; }
+
+    .integration-benefits {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 8px;
+    }
+    .ib-card {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 16px;
+    }
+    .ib-icon {
+      width: 34px; height: 34px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; flex-shrink: 0;
+    }
+    .ib-card strong { font-size: 14px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 4px; }
+    .ib-card p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+    /* ── AI FEATURES ── */
+    .ai-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; }
+    .ai-card {
+      background: #111827;
+      color: #fff; border-radius: 6px; padding: 22px;
+      border: 1px solid #1f2937;
+    }
+    .ai-card .ai-icon { font-size: 28px; margin-bottom: 14px; }
+    .ai-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #e2e8f0; }
+    .ai-card p  { font-size: 13.5px; color: #94a3b8; margin: 0; }
+
+    /* ── TECH STACK ── */
+    .tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .tech-pill {
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--text);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tech-pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── RESULTS ── */
+    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 24px; }
+    .result-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px; text-align: center;
+    }
+    .result-card .number {
+      font-size: 36px; font-weight: 800; letter-spacing: -.03em;
+      color: var(--accent);
+    }
+    .result-card .label { font-size: 13.5px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+    /* ── BUSINESS IMPACT ── */
+    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 24px; }
+    .impact-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px;
+      text-align: center;
+    }
+    .impact-card .ic-icon {
+      width: 48px; height: 48px;
+      background: var(--accent);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin: 0 auto 14px;
+    }
+    .impact-card h3 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .impact-card p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    /* ── QUOTE ── */
+    .quote-block {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+      padding: 28px 32px; text-align: center; margin-top: 24px; position: relative;
+    }
+    .quote-block::before {
+      content: '"'; font-size: 80px; color: #e0e7ff; font-family: Georgia, serif;
+      position: absolute; top: -10px; left: 24px; line-height: 1;
+    }
+    .quote-block p { font-size: 17px; font-weight: 500; font-style: italic; color: var(--primary); line-height: 1.6; margin-bottom: 16px; position: relative; }
+    .quote-block .author { font-size: 13px; color: var(--muted); font-style: normal; font-weight: 400; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: #111827;
+      border-radius: 6px; padding: 48px 40px; text-align: center; color: #fff; position: relative; overflow: hidden;
+    }
+    .cta-section::before { display: none; }
+    .cta-section .inner { position: relative; }
+    .cta-section h2 { font-size: 26px; color: #fff; justify-content: center; margin-bottom: 14px; }
+    .cta-section h2::before { display: none; }
+    .cta-section p { color: #cbd5e1; font-size: 16px; max-width: 480px; margin: 0 auto 30px; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff; font-weight: 600; font-size: 14px; padding: 12px 28px;
+      border-radius: 6px; text-decoration: none; letter-spacing: .01em;
+      transition: background .15s;
+    }
+    .cta-btn:hover { background: #4338ca; }
+
+    footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--muted); }
+
+    /* ── BACK NAV ── */
+    .cs-back-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 50px; background: rgba(249,250,251,.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--accent); transition: opacity .15s; text-decoration: none; }
+    .cs-back-link:hover { opacity: .72; }
+    .cs-back-link svg { flex-shrink: 0; }
+    .cs-lang-btn { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--text); cursor: pointer; transition: border-color .15s, color .15s; font-family: 'Inter', sans-serif; }
+    .cs-lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+
+    /* ── ROOT CAUSE MINING ── */
+    .rcm-section {
+      margin-top: 32px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .rcm-header {
+      background: linear-gradient(135deg, #1a1a2e, #1e1b4b);
+      padding: 24px 28px;
+    }
+    .rcm-title-block { display: flex; align-items: center; gap: 16px; }
+    .rcm-icon { font-size: 32px; }
+    .rcm-title { font-size: 17px; font-weight: 700; color: #e2e8f0; }
+    .rcm-sub   { font-size: 13px; color: #94a3b8; margin-top: 3px; }
+
+    .rcm-body { display: grid; grid-template-columns: 1fr 1.6fr; gap: 0; }
+
+    .rcm-how {
+      background: #f9fafb;
+      border-right: 1px solid var(--border);
+      padding: 22px;
+    }
+    .rcm-how-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: 16px; }
+    .rcm-steps-mini { display: flex; flex-direction: column; gap: 14px; }
+    .rcm-step-mini { display: flex; align-items: flex-start; gap: 12px; font-size: 13.5px; color: #334155; line-height: 1.5; }
+    .rcm-step-dot {
+      width: 22px; height: 22px; flex-shrink: 0;
+      background: var(--accent);
+      color: #fff; border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700;
+    }
+
+    .rcm-report { padding: 24px; }
+    .rcm-report-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+    .rcm-report-title { font-size: 15px; font-weight: 700; color: var(--primary); }
+    .rcm-report-badges { display: flex; gap: 6px; }
+    .rcm-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; }
+    .rcm-badge.ai   { background: #ede9fe; color: #6d28d9; }
+    .rcm-badge.sync { background: #ecfdf5; color: #059669; }
+    .rcm-report-meta { font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+
+    .rcm-finding { margin-bottom: 16px; padding: 14px 16px; background: #f8fafc; border-radius: 10px; border: 1px solid var(--border); }
+    .rcm-finding:last-child { margin-bottom: 0; }
+    .rcm-finding-label { font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--primary); }
+    .rcm-finding-body { font-size: 13.5px; color: #334155; line-height: 1.6; }
+    .rcm-finding-note { font-size: 12.5px; color: var(--muted); }
+    .rcm-recs { padding-left: 18px; margin: 6px 0 0; }
+    .rcm-recs li { font-size: 13px; color: #334155; margin-bottom: 6px; line-height: 1.5; }
+    .rcm-recs li:last-child { margin-bottom: 0; }
+
+    .rcm-workflow-note {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: #f5f3ff;
+      border-top: 1px solid var(--border);
+      padding: 18px 24px;
+    }
+    .rcm-wf-icon { font-size: 24px; flex-shrink: 0; }
+    .rcm-workflow-note strong { font-size: 14px; font-weight: 600; color: var(--primary); display: block; margin-bottom: 4px; }
+    .rcm-workflow-note p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    @media (max-width: 640px) {
+      .rcm-body { grid-template-columns: 1fr; }
+      .rcm-how { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+    /* ── SLA TIMELINE ── */
+    .sla-timeline { margin: 28px 0 8px; }
+    .tl-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; align-items: flex-end; }
+    .tl-point { text-align: center; }
+    .tl-bar-wrap { height: 90px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 10px; }
+    .tl-bar { width: 44px; border-radius: 4px 4px 0 0; }
+    .tl-bar.breach  { background: #fca5a5; border: 1px solid #ef4444; height: 21%; }
+    .tl-bar.warning { background: #fde68a; border: 1px solid #f59e0b; height: 45%; }
+    .tl-bar.peak    { background: #86efac; border: 1px solid #22c55e; height: 91%; }
+    .tl-bar.great   { background: #a5b4fc; border: 1px solid #6366f1; height: 76%; }
+    .tl-pct { font-size: 20px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+    .tl-pct.breach  { color: var(--red); }
+    .tl-pct.warning { color: var(--amber); }
+    .tl-pct.peak    { color: var(--green); }
+    .tl-pct.great   { color: var(--accent); }
+    .tl-date  { font-size: 11px; color: var(--muted); margin-top: 6px; }
+    .tl-event { font-size: 11.5px; font-weight: 700; color: var(--primary); margin-top: 3px; }
+    .tl-axis  { border-top: 2px solid var(--border); margin-top: 0; }
+
+    /* ── ROLE MATRIX ── */
+    .role-streams { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+    .role-stream-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .role-stream-header { padding: 14px 18px 12px; }
+    .role-stream-title { font-size: 14px; font-weight: 700; color: var(--primary); }
+    .role-stream-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .role-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 18px; border-top: 1px solid var(--border); }
+    .role-badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 4px; white-space: nowrap; font-family: monospace; }
+    .role-badge.exec    { background: #ede9fe; color: #6d28d9; }
+    .role-badge.officer { background: #ecfdf5; color: #065f46; }
+    .role-badge.staff   { background: #eff6ff; color: #1e40af; }
+    .role-badge.admin   { background: #111827; color: #f9fafb; }
+    .role-desc { font-size: 13px; color: #334155; flex: 1; padding-top: 2px; }
+    .role-access-note { margin-top: 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 14px 18px; font-size: 13.5px; color: #166534; line-height: 1.6; }
+    @media (max-width: 600px) { .role-streams { grid-template-columns: 1fr; } }
+
+    /* ── ALL 3 AUTOMATIONS ── */
+    .automations-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 28px 0 32px; }
+    .auto-card { background: #0f172a; border-radius: 6px; padding: 20px; border: 1px solid #1e293b; }
+    .auto-trigger { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; margin-bottom: 14px; }
+    .auto-trigger.sched { background: #1e293b; color: #94a3b8; }
+    .auto-trigger.ondemand { background: #1e1b4b; color: #a5b4fc; }
+    .auto-card .auto-icon { font-size: 26px; margin-bottom: 10px; }
+    .auto-card h3 { font-size: 14px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; }
+    .auto-card p  { font-size: 12.5px; color: #94a3b8; margin: 0 0 12px; line-height: 1.55; }
+    .auto-outputs { display: flex; flex-wrap: wrap; gap: 5px; }
+    .auto-output { font-size: 10.5px; background: #1e293b; color: #6ee7b7; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
+    @media (max-width: 680px) { .automations-row { grid-template-columns: 1fr; } }
+
+    /* ── LESSONS LEARNED ── */
+    .lessons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 24px; }
+    .lesson-card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px; }
+    .lesson-type { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+    .lesson-type.harder    { color: var(--amber); }
+    .lesson-type.different { color: var(--accent); }
+    .lesson-type.roadmap   { color: var(--green); }
+    .lesson-card h3 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+    .lesson-card p  { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.6; }
+    .lesson-sep { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+    /* ── SLIDE RECREATION ── */
+    .slide-recreation {
+      margin-top: 24px;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .slide-title-area {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .slide-eyebrow { font-size: 14px; color: #6b7280; font-weight: 500; margin-bottom: 4px; }
+    .slide-headline { font-size: 26px; font-weight: 800; color: #111827; letter-spacing: -.02em; }
+    .slide-deco { font-size: 28px; color: #6366f1; opacity: .6; letter-spacing: -4px; }
+
+    .slide-cols {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 0;
+    }
+
+    /* Phone-style dark card */
+    .slide-phone-card {
+      background: #0f172a;
+      padding: 16px;
+      border-right: 1px solid #1e293b;
+    }
+    .slide-phone-card.wide { background: #111827; }
+    .spc-topbar { margin-bottom: 8px; }
+    .spc-title { font-size: 11.5px; font-weight: 700; color: #f1f5f9; display: block; margin-bottom: 6px; }
+    .spc-badges { display: flex; gap: 6px; }
+    .spc-badge { font-size: 9.5px; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+    .spc-badge.purple { background: #4c1d95; color: #c4b5fd; }
+    .spc-badge.green  { background: #064e3b; color: #6ee7b7; }
+    .spc-meta { font-size: 10px; color: #64748b; margin-bottom: 12px; line-height: 1.5; }
+    .spc-section-title { font-size: 11px; font-weight: 700; color: #a5b4fc; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+    .spc-rec { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
+    .spc-num {
+      width: 18px; height: 18px; flex-shrink: 0;
+      background: #4f46e5; color: #fff; border-radius: 3px;
+      font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+    .spc-rec span { font-size: 11px; color: #cbd5e1; line-height: 1.5; }
+    .spc-rec strong { color: #f1f5f9; }
+
+    .spc-detail-block {
+      background: #1e293b; border-radius: 6px; padding: 12px; margin-bottom: 10px;
+    }
+    .spc-detail-label { font-size: 11.5px; font-weight: 700; color: #f59e0b; margin-bottom: 4px; }
+    .spc-detail-stat  { font-size: 11px; color: #94a3b8; margin-bottom: 8px; }
+    .spc-detail-stat strong { color: #34d399; }
+    .spc-detail-body  { font-size: 11px; color: #94a3b8; line-height: 1.55; }
+    .spc-detail-body strong { color: #e2e8f0; }
+    .spc-table { width: 100%; border-collapse: collapse; font-size: 10.5px; color: #94a3b8; margin-top: 6px; }
+    .spc-table th { text-align: left; color: #64748b; font-weight: 600; padding: 4px 6px; border-bottom: 1px solid #1e293b; }
+    .spc-table td { padding: 5px 6px; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+
+    /* Right col */
+    .slide-right-col { padding: 16px; background: #f9fafb; display: flex; flex-direction: column; gap: 16px; }
+
+    .slide-workflow {
+      display: flex; align-items: center; gap: 6px;
+      background: #111827; border-radius: 6px; padding: 12px 10px;
+      overflow-x: auto;
+    }
+    .wf-node {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      background: #1e293b; border-radius: 6px; padding: 8px 6px;
+      min-width: 56px; text-align: center; flex-shrink: 0;
+    }
+    .wf-node-icon { font-size: 16px; }
+    .wf-node-label { font-size: 9px; color: #94a3b8; line-height: 1.3; }
+    .wf-trigger { border: 1px solid #374151; }
+    .wf-agent   { border: 1px solid #4f46e5; background: #1e1b4b; }
+    .wf-format  { border: 1px solid #374151; }
+    .wf-email   { border: 1px solid #374151; opacity: .6; }
+    .wf-arrow   { color: #4b5563; font-size: 12px; flex-shrink: 0; }
+
+    .wf-models {
+      display: flex; flex-wrap: wrap; gap: 4px; align-items: center;
+      padding: 0 2px;
+    }
+    .wf-model { font-size: 10px; font-weight: 600; color: #6366f1; background: #eef2ff; padding: 2px 8px; border-radius: 4px; }
+    .wf-sep   { font-size: 10px; color: #9ca3af; }
+    .wf-model-tool { font-size: 9.5px; color: #059669; background: #ecfdf5; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+
+    .slide-agent-card {
+      background: #fff; border: 1px solid #e5e7eb; border-radius: 6px; padding: 14px;
+    }
+    .sac-title { font-size: 13px; font-weight: 700; color: #111827; margin-bottom: 10px; }
+    .sac-list  { padding-left: 16px; margin: 0; }
+    .sac-list li { font-size: 12px; color: #374151; margin-bottom: 6px; line-height: 1.5; }
+    .sac-list li:last-child { margin-bottom: 0; }
+
+    @media (max-width: 760px) {
+      .slide-cols { grid-template-columns: 1fr; }
+      .slide-phone-card { border-right: none; border-bottom: 1px solid #1e293b; }
+    }
+    @media (max-width: 640px) {
+      header { padding: 52px 20px 48px; }
+      main { padding: 48px 20px; }
+      .hero-stat .num { font-size: 28px; }
+      .step { flex-direction: column; gap: 12px; }
+      .ba-wrapper { grid-template-columns: 1fr; }
+      .ba-arrow { transform: rotate(90deg); }
+      .cta-section { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── BACK NAV ── -->
+<nav class="cs-back-nav">
+  <a href="../index.html" class="cs-back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    <span data-i18n="back">Back to Portfolio</span>
+  </a>
+  <button id="cs-lang-toggle" class="cs-lang-btn" aria-label="Toggle language">ID</button>
+</nav>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header>
+  <div class="inner">
+    <div class="badge" data-i18n="header_badge">Case Study · NLP &amp; AI Research</div>
+    <h1 data-i18n-html="header_h1">From <span>0.653</span> to <span>0.782 BLEU</span> with a<br>Prefix-Tuned Encoder-Decoder</h1>
+    <p data-i18n="header_p">Mitigating Low-Resource Domains in Chatbot Development via Parameter-Efficient Fine-Tuning (PEFT).</p>
+    <div class="meta-row">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2024
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span data-i18n="meta_team">Dataset: 4,489 Q&amp;A Pairs</span>
+      </span>
+    </div>
+
+    <!-- Hero Stats -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">0.85%</span>
+        <div class="lbl" data-i18n="stat_param">Parameters Updated (5.9M)</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">+20%</span>
+        <div class="lbl" data-i18n="stat_bleu_increase">BLEU Score Increase</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">89.67</span>
+        <div class="lbl" data-i18n="stat_chrf">chrF Score Achieved</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">3</span>
+        <div class="lbl" data-i18n="stat_prefix">Optimal Prefix Tokens</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════ MAIN ══════════════════ -->
+<main>
+
+  <section>
+    <h2 data-i18n="h2_bg">Background</h2>
+    <p>
+      Developing chatbots for specialized domains is often hindered by data scarcity and informal linguistic variations (low-resource domains), which significantly degrade model relevance and performance.
+    </p>
+    <p>
+      In the Indonesian context, this data scarcity is intensified by vast linguistic diversity, encompassing formal, informal, and numerous regional dialects. Capturing these semantic nuances is difficult for traditional systems, which frequently fail to recognize user intent when phrasing deviates from standard linguistic patterns.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2 data-i18n="h2_challenges">The Low-Resource Challenge</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon" style="background:#fef2f2;">🔍</div>
+        <h3>Data Scarcity</h3>
+        <p>Specialized institutional domains, such as academic services at FILKOM UB, lack massive, diverse training datasets needed to train generative models from scratch.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:#fff7ed;">🗣️</div>
+        <h3>Morphological Complexity</h3>
+        <p>Indonesian dialectal variations and informal structures mean the same intent can be expressed in vastly different syntactic forms.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:#fef9c3;">⚠️</div>
+        <h3>Overfitting Risks</h3>
+        <p>Standard fine-tuning involves updating all model parameters, which is computationally expensive and prone to overfitting in low-data regimes.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:#f0fdf4;">⚡</div>
+        <h3>Architectural Gap</h3>
+        <p>Standard Transformer decoders struggle to maintain generation quality and context alignment without rigorous guidance in zero-shot or few-shot scenarios.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2 data-i18n="h2_solution">The Proposed Solution</h2>
+    <p>
+      I designed a Parameter-Efficient Fine-Tuning (PEFT) strategy leveraging a novel prefix-tuned encoder-decoder architecture. By synergizing a Semantic-Based Model with a Generative-Based Model, this framework acts as a highly capable engine without needing full retraining.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Semantic Encoder (IndoSBERT-Large)</h3>
+          <p>A pretrained encoder processes structurally diverse user inputs into a holistic, fixed-dimensional semantic vector, clustering dialectal variations that share the same intent.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>MLP Adapter Mapping</h3>
+          <p>The semantic vector is mathematically projected via a Multi-Layer Perceptron adapter to become continuous trainable vectors (prefixes) serving as soft prompts.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Generative Decoder (GPT-2 Medium)</h3>
+          <p>These continuous semantic prefixes are prepended to the frozen GPT-2 Medium decoder, guiding the auto-regressive text generation strictly according to the semantic intent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2 data-i18n="h2_results">Results Achieved</h2>
+    <p>Evaluated against a standard baseline Transformer model trained from scratch, the proposed prefix-tuned architecture displayed remarkable improvements:</p>
+
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="number">0.653 → 0.782</div>
+        <div class="label">BLEU Score Improvement (~20%) over standard baseline</div>
+      </div>
+      <div class="result-card">
+        <div class="number">77.65 → 89.67</div>
+        <div class="label">chrF Score Improvement handling morphological complexity</div>
+      </div>
+      <div class="result-card">
+        <div class="number">0.85%</div>
+        <div class="label">Only 5.9 million out of ~695 million parameters updated</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="inner">
+      <h2 data-i18n="h2_cta">Want to dive deeper into the research?</h2>
+      <p data-i18n="cta_p">The full academic paper is available, detailing the ablation studies, cosine similarity embeddings, and hyperparameter tuning phases.</p>
+      <a class="cta-btn" href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/12886" target="_blank" data-i18n="cta_btn">Read the Full Paper →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span data-i18n="footer_cs">© 2026 · AI &amp; NLP Research</span>
+</footer>
+
+<script>
+// Case Study i18n
+const CS_I18N = {
+  EN: {
+    back: 'Back to Portfolio',
+    header_badge: 'Case Study · NLP & AI Research',
+    header_h1: 'From <span>0.653</span> to <span>0.782 BLEU</span> with a<br>Prefix-Tuned Encoder-Decoder',
+    header_p: 'Mitigating Low-Resource Domains in Chatbot Development via Parameter-Efficient Fine-Tuning (PEFT).',
+    meta_team: 'Dataset: 4,489 Q&A Pairs',
+    stat_param: 'Parameters Updated (5.9M)',
+    stat_bleu_increase: 'BLEU Score Increase',
+    stat_chrf: 'chrF Score Achieved',
+    stat_prefix: 'Optimal Prefix Tokens',
+    h2_bg: 'Background',
+    h2_challenges: 'The Low-Resource Challenge',
+    h2_solution: 'The Proposed Solution',
+    h2_results: 'Results Achieved',
+    h2_cta: 'Want to dive deeper into the research?',
+    cta_p: 'The full academic paper is available, detailing the ablation studies, cosine similarity embeddings, and hyperparameter tuning phases.',
+    cta_btn: 'Read the Full Paper →',
+    footer_cs: '© 2026 · AI & NLP Research',
+  },
+  ID: {
+    back: 'Kembali ke Portofolio',
+    header_badge: 'Studi Kasus · Riset NLP & AI',
+    header_h1: 'Dari <span>0.653</span> menjadi <span>0.782 BLEU</span> dengan<br>Prefix-Tuned Encoder-Decoder',
+    header_p: 'Mitigasi Domain Rendah Sumber Daya pada Chatbot melalui Parameter-Efficient Fine-Tuning (PEFT).',
+    meta_team: 'Dataset: 4.489 Pasang Q&A',
+    stat_param: 'Parameter Diperbarui (5,9M)',
+    stat_bleu_increase: 'Peningkatan Skor BLEU',
+    stat_chrf: 'Skor chrF Dicapai',
+    stat_prefix: 'Token Prefix Optimal',
+    h2_bg: 'Latar Belakang',
+    h2_challenges: 'Tantangan Low-Resource',
+    h2_solution: 'Solusi yang Diusulkan',
+    h2_results: 'Hasil yang Dicapai',
+    h2_cta: 'Ingin mendalami riset ini lebih lanjut?',
+    cta_p: 'Makalah akademis lengkap tersedia, merinci studi ablasi, cosine similarity embeddings, dan fase hyperparameter tuning.',
+    cta_btn: 'Baca Makalah Lengkap →',
+    footer_cs: '© 2026 · Riset AI & NLP',
+  }
+};
+
+let csLang = localStorage.getItem('lang') || 'EN';
+function csApplyLang(lang) {
+  const d = CS_I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = d[el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = d[el.dataset.i18nHtml];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.getElementById('cs-lang-toggle').textContent = lang === 'EN' ? 'ID' : 'EN';
+  document.documentElement.lang = lang === 'EN' ? 'en' : 'id';
+  localStorage.setItem('lang', lang);
+  csLang = lang;
+}
+document.getElementById('cs-lang-toggle').addEventListener('click', () => csApplyLang(csLang === 'EN' ? 'ID' : 'EN'));
+csApplyLang(csLang);
+</script>
+</body>
+</html>

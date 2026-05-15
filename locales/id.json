@@ -55,5 +55,10 @@
     "contact_eyebrow": "Kontak",
     "contact_title": "Hubungi Saya",
     "contact_desc": "Mari terhubung dan diskusikan peluang bersama",
-    "footer_copy": "© 2026 Andi Alifsyah. Hak cipta dilindungi."
+    "footer_copy": "© 2026 Andi Alifsyah. Hak cipta dilindungi.",
+    "cs2_title": "Prefix-Tuned Encoder-Decoder Pretrained Model untuk Mitigasi Domain Rendah Sumber Daya",
+    "cs2_desc": "Mengatasi keterbatasan data dan variasi bahasa informal menggunakan Parameter-Efficient Fine-Tuning (PEFT) pada Large Language Models.",
+    "cs2_lbl_before": "BLEU sebelum",
+    "cs2_lbl_after": "BLEU sesudah",
+    "cs2_lbl_param": "Parameter di-update"
 }

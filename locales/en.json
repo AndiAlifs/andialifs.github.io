@@ -55,5 +55,10 @@
     "contact_eyebrow": "Contact",
     "contact_title": "Get In Touch",
     "contact_desc": "Let's connect and discuss opportunities",
-    "footer_copy": "© 2026 Andi Alifsyah. All rights reserved."
+    "footer_copy": "© 2026 Andi Alifsyah. All rights reserved.",
+    "cs2_title": "A Prefix-Tuned Encoder-Decoder Pretrained Model for Mitigating Low-Resource Domains",
+    "cs2_desc": "Overcoming data scarcity and informal linguistic variations using Parameter-Efficient Fine-Tuning (PEFT) on Large Language Models.",
+    "cs2_lbl_before": "BLEU before",
+    "cs2_lbl_after": "BLEU after",
+    "cs2_lbl_param": "Params updated"
 }
