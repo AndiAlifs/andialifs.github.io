@@ -1,1814 +1,655 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google-site-verification" content="ivqWBOQzYNI2BToI3m2baflJYf9LRAAvGxB5oE5J-8c" />
-    <meta name="description"
-        content="Web Resume of Andi Alifsyah Dyasham, Web Developer, Data Scientist, Researcher. Computer Science Graduate at Universitas Brawijaya, majoring Information System. Interested and Experienced in Business Process, Web & Apps Development, and Data Science" />
+    <meta name="description" content="Andi Alifsyah Dyasham — Software Engineer & AI Researcher specializing in high-scale banking systems and Sovereign AI. Best Graduate of Universitas Brawijaya (GPA 3.95)." />
     <meta name="author" content="Andi Alifsyah" />
     <title>Andi Alifsyah Dyasham</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    
-    <!-- Tailwind CSS -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="Andi Alifsyah Dyasham — Software Engineer & AI Researcher" />
+    <meta property="og:description" content="Specializing in high-scale banking systems and Sovereign AI. Best Graduate of Universitas Brawijaya (GPA 3.95)." />
+    <meta property="og:image" content="https://andialifs.github.io/assets/img/profile.jpg" />
+    <meta property="og:url" content="https://andialifs.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Andi Alifsyah Dyasham — Software Engineer & AI Researcher" />
+    <meta name="twitter:description" content="Specializing in high-scale banking systems and Sovereign AI. Best Graduate of Universitas Brawijaya (GPA 3.95)." />
+    <meta name="twitter:image" content="https://andialifs.github.io/assets/img/profile.jpg" />
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'display': ['Poppins', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: {} } }</script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.4.0/js/all.js" crossorigin="anonymous"></script>
-    
-    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="css/main.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-77PC095VLP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-77PC095VLP');
     </script>
-
 </head>
 
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-sans transition-colors duration-300 overflow-x-hidden">
-    
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-            <div class="flex justify-between items-center h-12 sm:h-14 md:h-16">
-                <!-- Logo/Name -->
-                <div class="flex-shrink-0 min-w-0 mr-2">
-                    <a href="#home" class="text-sm sm:text-base md:text-xl font-bold text-primary-600 dark:text-primary-200 truncate">
-                        Andi Alifsyah
-                    </a>
+<body>
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════════════════════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#home" class="nav-logo">
+            <span class="nav-logo-mark">AA</span>
+            <span class="nav-logo-name">Andi Alifsyah</span>
+        </a>
+        <div class="nav-links">
+            <a href="#home"       class="nav-link" data-i18n="nav_home">Home</a>
+            <a href="#about"      class="nav-link" data-i18n="nav_about">About</a>
+            <a href="#experience" class="nav-link" data-i18n="nav_exp">Experience</a>
+            <a href="#education"  class="nav-link" data-i18n="nav_edu">Education</a>
+            <a href="#skills"     class="nav-link" data-i18n="nav_skills">Skills</a>
+            <a href="#portfolio"  class="nav-link" data-i18n="nav_portfolio">Portfolio</a>
+            <a href="#research"   class="nav-link" data-i18n="nav_research">Research</a>
+            <a href="#awards"     class="nav-link" data-i18n="nav_awards">Awards</a>
+        </div>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                <i class="fas fa-sun dark:hidden"></i>
+                <i class="fas fa-moon hidden dark:inline"></i>
+            </button>
+            <button id="lang-toggle" class="icon-btn lang-btn" aria-label="Toggle language">ID</button>
+            <button id="mobile-menu-button" class="icon-btn menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu hidden">
+        <a href="#home"       class="mob-link" data-i18n="nav_home">Home</a>
+        <a href="#about"      class="mob-link" data-i18n="nav_about">About</a>
+        <a href="#experience" class="mob-link" data-i18n="nav_exp">Experience</a>
+        <a href="#education"  class="mob-link" data-i18n="nav_edu">Education</a>
+        <a href="#skills"     class="mob-link" data-i18n="nav_skills">Skills</a>
+        <a href="#portfolio"  class="mob-link" data-i18n="nav_portfolio">Portfolio</a>
+        <a href="#research"   class="mob-link" data-i18n="nav_research">Research</a>
+        <a href="#awards"     class="mob-link" data-i18n="nav_awards">Awards</a>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO ══════════════════════════════════════ -->
+<section id="home" class="hero-section">
+    <div class="hero-mesh"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-content" data-aos="fade-up">
+        <div class="profile-wrap">
+            <div class="profile-ring"></div>
+            <img src="assets/img/profile.jpg" alt="Andi Alifsyah" class="profile-img">
+        </div>
+        <p class="hero-eyebrow" data-i18n="hero_eyebrow">Software Engineer · AI Researcher · Sovereign AI</p>
+        <h1 class="hero-title"><span data-i18n="hero_title_prefix">Hi, I'm </span><span class="hero-accent">Andi Alifsyah</span></h1>
+        <p class="hero-sub" data-i18n="hero_sub">
+            Engineer with 3+ years in high-scale banking systems. Best Graduate of Universitas Brawijaya (GPA&nbsp;3.95). Slashed development cycles by 70% through AI automation.
+        </p>
+        <div class="hero-socials">
+            <a href="https://www.linkedin.com/in/andyalyf"                                          target="_blank" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/AndiAlifs"                                                   target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/andyalyfsyah"                                               target="_blank" class="soc-btn"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/andi.alifs/"                                          target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://scholar.google.com/citations?user=kedZTroAAAAJ&hl=en&oi=ao"             target="_blank" class="soc-btn"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+        <div class="hero-ctas">
+            <a href="mailto:andyalyfsyah4@gmail.com"              class="btn-primary"><i class="fas fa-envelope"></i> <span data-i18n="hero_cta_contact">Get In Touch</span></a>
+            <a href="assets/CV_AndiAlifsyahEnglish_V2.pdf" target="_blank" class="btn-ghost"><i class="fas fa-download"></i> <span data-i18n="hero_cta_cv">Download CV</span></a>
+        </div>
+    </div>
+    <div class="scroll-hint"><span>scroll</span><i class="fas fa-arrow-down"></i></div>
+</section>
+
+<!-- ═══════════════════════════════════════ ABOUT ════════════════════════════════════ -->
+<section id="about" class="section sec-alt">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="about_eyebrow">About Me</span>
+            <h2 class="sec-title" data-i18n="about_title">Background & Expertise</h2>
+        </div>
+        <div class="about-grid">
+            <div data-aos="fade-right">
+                <p class="body-text" data-i18n="about_p1">An engineer primarily focused on backend development and artificial intelligence with 3+ years of experience in high-scale banking systems, managing core migrations of 114+ transaction types, and pioneering Sovereign AI solutions.</p>
+                <p class="body-text" data-i18n="about_p2">Contributed to scientific publications in NLP at international conferences. In 2023, achieved the distinction of Best Graduate from the Faculty of Computer Science at Universitas Brawijaya (GPA 3.95), and has received over 15 national and international awards.</p>
+                <blockquote class="about-quote" data-i18n="about_quote">"Slashed development cycles by 70% through AI automation and engineered core migrations of 114+ transaction types in high-scale banking infrastructure."</blockquote>
+            </div>
+            <div class="stats-grid" data-aos="fade-left">
+                <div class="stat-card">
+                    <span class="stat-num" data-count="3">0</span><span class="stat-sfx">+</span>
+                    <div class="stat-lbl" data-i18n="stat_years">Years Experience</div>
                 </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="nav-link">Home</a>
-                        <a href="#about" class="nav-link">About</a>
-                        <a href="#experience" class="nav-link">Experience</a>
-                        <a href="#education" class="nav-link">Education</a>
-                        <a href="#skills" class="nav-link">Skills</a>
-                        <a href="#portfolio" class="nav-link">Portfolio</a>
-                        <a href="#awards" class="nav-link">Awards</a>
-                    </div>
+                <div class="stat-card">
+                    <span class="stat-num" data-count="15">0</span><span class="stat-sfx">+</span>
+                    <div class="stat-lbl" data-i18n="stat_awards">Awards Won</div>
                 </div>
-                
-                <!-- Theme Toggle & Mobile Menu Button -->
-                <div class="flex items-center space-x-1 flex-shrink-0">
-                    <button id="theme-toggle" class="p-1 sm:p-1.5 md:p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <i class="fas fa-sun text-yellow-500 dark:hidden text-xs sm:text-sm md:text-base"></i>
-                        <i class="fas fa-moon text-blue-500 hidden dark:inline text-xs sm:text-sm md:text-base"></i>
-                    </button>
-                    
-                    <!-- Mobile menu button -->
-                    <button id="mobile-menu-button" class="md:hidden p-1 sm:p-1.5 md:p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <i class="fas fa-bars text-xs sm:text-sm md:text-base"></i>
-                    </button>
+                <div class="stat-card">
+                    <span class="stat-num stat-dec" data-count="3.95">0</span>
+                    <div class="stat-lbl" data-i18n="stat_gpa">GPA · Summa Cum Laude</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num" data-count="20">0</span><span class="stat-sfx">+</span>
+                    <div class="stat-lbl" data-i18n="stat_projects">Projects Completed</div>
                 </div>
             </div>
         </div>
-        
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out">
-            <div class="px-4 pt-2 pb-3 space-y-1">
-                <a href="#home" class="mobile-nav-link">Home</a>
-                <a href="#about" class="mobile-nav-link">About</a>
-                <a href="#experience" class="mobile-nav-link">Experience</a>
-                <a href="#education" class="mobile-nav-link">Education</a>
-                <a href="#skills" class="mobile-nav-link">Skills</a>
-                <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
-                <a href="#awards" class="mobile-nav-link">Awards</a>
-            </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ EXPERIENCE ══════════════════════════════════ -->
+<section id="experience" class="section">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="exp_eyebrow">Experience</span>
+            <h2 class="sec-title" data-i18n="exp_title">Professional Journey</h2>
         </div>
-    </nav>
+        <div class="timeline">
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-16">
-        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-            <div class="text-center" data-aos="fade-up">
-                <div class="mb-6 sm:mb-8">
-                    <img src="assets/img/profile.jpg" alt="Andi Alifsyah" class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full mx-auto object-cover shadow-xl">
-                </div>
-                <h1 class="text-3xl sm:text-4xl md:text-6xl font-display font-bold mb-3 sm:mb-4 px-2">
-                    Hi, I'm <span class="text-primary-600 dark:text-primary-200">Andi Alifsyah</span>
-                </h1>
-                <p class="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto px-2">
-                    Software Engineer & AI Researcher specializing in high-scale banking systems, Sovereign AI, and intelligent systems
-                </p>
-                <div class="flex justify-center space-x-3 sm:space-x-4 md:space-x-6 mb-6 sm:mb-8 px-2">
-                    <a href="https://www.linkedin.com/in/andyalyf" target="_blank" class="social-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/AndiAlifs" target="_blank" class="social-icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://twitter.com/andyalyfsyah" target="_blank" class="social-icon">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.instagram.com/andi.alifs/" target="_blank" class="social-icon">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://scholar.google.com/citations?user=kedZTroAAAAJ&hl=en&oi=ao" target="_blank" class="social-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </a>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2">
-                    <a href="mailto:andyalyfsyah4@gmail.com" class="btn-primary">
-                        <i class="fas fa-envelope mr-2"></i>
-                        Get In Touch
-                    </a>
-                    <a href="assets/CV_AndiAlifsyahEnglish_V2.pdf" target="_blank" class="btn-secondary">
-                        <i class="fas fa-download mr-2"></i>
-                        Download CV
-                    </a>
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Software Engineer, Low-Code & Business Automation</h3>
+                            <p class="tl-company">PT. Bank Mandiri, Tbk</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+                        </div>
+                        <span class="tl-period">Oct 2025 – Present</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Fortified the Account Statement API with rate limiting and K6 load testing, ensuring ≥90% system availability and identifying critical bottlenecks in ASP.NET services prior to production.</li>
+                        <li>Led the ground-up rewrite of <strong>31 out-of-license internal applications</strong> using AI agents with customized hooks and guardrails for standardized, secure code generation across development teams.</li>
+                        <li>Prototyped <strong>Mandiri Gapura AI Studio</strong> — a centralized monitoring and control platform ensuring AI initiatives align with budgetary constraints and regulatory standards, with integrated PII/PIE scrubber.</li>
+                        <li>Fast-tracked through the National Officer Development Program, earning General Banking Level 1 Certification.</li>
+                    </ul>
                 </div>
             </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Co-Founder & Chief Technology Officer</h3>
+                            <p class="tl-company">CV. SiMi Kita Selesaikan</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Kendari, Indonesia</p>
+                        </div>
+                        <span class="tl-period">May 2023 – Present</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Architected a real-time TOS SLA tracking and early warning dashboard for a finance client, utilizing AI agents to analyze root causes of service breaches and recommend corrective actions.</li>
+                        <li>Architected and launched <strong>NYAMPE</strong>, a GPS-based personnel tracking platform utilized by 5+ organizations to automate attendance monitoring and improve accountability.</li>
+                        <li>Directed digital transformation for 10+ SMEs, delivering custom POS and reservation systems.</li>
+                        <li>Spearheaded R&D for <strong>RECEH</strong>, an AI-driven personal finance ecosystem with automated expense tracking and sovereign-AI financial advisory.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Lead Backend Engineer</h3>
+                            <p class="tl-company">PT. Ihsan Solusi Informatika</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Bandung, Indonesia · Contract Remote</p>
+                        </div>
+                        <span class="tl-period">Jan 2025 – Oct 2025</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Spearheaded migration of <strong>114 core transaction types</strong> to Golang microservices, reducing system downtime by 20% through optimized connection pooling and robust recovery mechanisms.</li>
+                        <li>Developed 11 SNAP APIs for PT. POS Indonesia, achieving seamless integration with 10+ financial services in compliance with Bank Indonesia's open API standards.</li>
+                        <li>Reduced MTTR by <strong>35%</strong> (~4 hours/week saved) via centralized logging and Grafana dashboards for core banking modules.</li>
+                        <li>Integrated AI-driven automated code review workflows, <strong>slashing development turnaround by 70%</strong> from commit to production.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Backend Engineer</h3>
+                            <p class="tl-company">PT. Ihsan Solusi Informatika</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Bandung, Indonesia · Contract Remote</p>
+                        </div>
+                        <span class="tl-period">Nov 2023 – Jan 2025</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Developed API backend services for Sharia financial banking projects using Go, Python, and gRPC.</li>
+                        <li>Responsible for frontend–backend integration, deployment, and logging using Grafana, Docker, and Kubernetes.</li>
+                        <li>Implemented core giro/banking system changes for Bank Jabar Banten Syariah, PT. POS Indonesia, and Pospay Mobile.</li>
+                        <li>Implemented the QRIS Cross Border switching feature on Pospay Mobile.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot tl-dot-sm"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Teaching Assistant</h3>
+                            <p class="tl-company">PACCMANN Academy Indonesia</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia · Remote</p>
+                        </div>
+                        <span class="tl-period">Apr 2023 – May 2024</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Mentored <strong>500+ students</strong> on Flask and Vue.js projects, maintaining a 95% satisfaction rating across 3 cohorts.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot tl-dot-sm"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Full Stack Web Developer</h3>
+                            <p class="tl-company">PT. Venturo Pro Indonesia</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Malang, Indonesia</p>
+                        </div>
+                        <span class="tl-period">Dec 2022 – Mar 2023</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Developed backend web services using Laravel, Native PHP, and Go; frontend using Angular for internal management tools.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot tl-dot-sm"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Research & Laboratory Assistant</h3>
+                            <p class="tl-company">Fakultas Ilmu Komputer, Universitas Brawijaya</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Malang, Indonesia</p>
+                        </div>
+                        <span class="tl-period">Jan 2020 – Nov 2022</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Co-authored research and engineered a deep neural network chatbot using TensorFlow and NLP.</li>
+                        <li>Mentored <strong>220+ students</strong> across Mobile Programming, Database Administration, and Fundamental Programming over 5 academic terms.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot tl-dot-sm"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Web Developer (Internship)</h3>
+                            <p class="tl-company">Techno's Studio</p>
+                            <p class="tl-loc"><i class="fas fa-map-marker-alt"></i> Kendari, Indonesia</p>
+                        </div>
+                        <span class="tl-period">Mar 2021 – Jun 2021</span>
+                    </div>
+                    <ul class="tl-bullets">
+                        <li>Designed and developed a Laravel-based Point of Sale (POS) application.</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="py-12 sm:py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know more about my background and expertise</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-                <div data-aos="fade-right">
-                    <div class="prose prose-lg dark:prose-invert">
-                        <p class="text-base sm:text-lg leading-relaxed">
-                            An engineer primarily focused on backend development and artificial intelligence. Possessing 3 years of experience in developing backend and frontend systems, managing databases, and building/training AI models using various related technologies.
-                        </p>
-                        <p class="text-base sm:text-lg leading-relaxed">
-                            Contributed to scientific publications in the field of natural language processing at several international conferences. In 2023, achieved the distinction of best graduate from the Faculty of Computer Science and the Information Systems study program at Brawijaya University with a GPA of 3.95, and has received over 15 national and international awards.
-                        </p>
-                    </div>
-                </div>
-                
-                <div data-aos="fade-left">
-                    <div class="grid grid-cols-2 gap-4 sm:gap-6">
-                        <div class="stat-card">
-                            <div class="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-200">3+</div>
-                            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Years Experience</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-200">15+</div>
-                            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Awards Won</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-200">3.95</div>
-                            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">GPA (Summa Cum Laude)</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-200">20+</div>
-                            <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300">Projects Completed</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ═══════════════════════════════════════ EDUCATION ════════════════════════════════ -->
+<section id="education" class="section sec-alt">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="edu_eyebrow">Education</span>
+            <h2 class="sec-title" data-i18n="edu_title">Academic Background</h2>
         </div>
-    </section>
+        <div class="timeline">
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">My professional journey and key achievements</p>
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot tl-dot-gold"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Master of Computer Science (M.Kom)</h3>
+                            <p class="tl-company">Universitas Brawijaya</p>
+                            <p class="tl-loc">Computer Science — Intelligent System (NLP)</p>
+                        </div>
+                        <span class="tl-period">2022 – 2024</span>
+                    </div>
+                    <div class="edu-meta">
+                        <span class="gpa-badge">GPA 3.83 <em>Cum Laude</em></span>
+                        <p class="edu-thesis">Thesis: <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/12886" target="_blank">Prefix-Tuned Encoder-Decoder Pretrained Model for Mitigating Low-Resource Domain Cases in Chatbot Development</a></p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="space-y-8">
-                <!-- Experience Item New 1 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">Software Engineer of Low-Code and Business Automation</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    October 2025 - Present
-                                </span>
-                            </div>
-                            <p class="text-primary-600 dark:text-primary-200 font-medium mb-1">PT. Bank Mandiri, Tbk</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Jakarta, Indonesia</p>
-                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Fortified the Account Statement API by implementing Rate Limiting and K6 load testing, ensuring at least 90% system availability.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Spearheaded "Sovereign AI" prototypes by developing local AI agents for SDLC documentation and L/C discrepancy checking.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Architected a "Smart RM Copilot" prototype leveraging Knowledge Management systems to provide personalized customer insights.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Fast-tracked through the National Officer Development Program, earning General Banking Level 1 Certification.
-                                </li>
-                            </ul>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot tl-dot-gold"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">Bachelor of Computer Science (S.Kom)</h3>
+                            <p class="tl-company">Universitas Brawijaya</p>
+                            <p class="tl-loc">Information System Program</p>
                         </div>
+                        <span class="tl-period">2019 – 2023</span>
+                    </div>
+                    <div class="edu-meta">
+                        <span class="gpa-badge gpa-gold">GPA 3.95 <em>Best Graduate · Summa Cum Laude</em></span>
+                        <p class="edu-thesis">Thesis: Design and Development of a Retrieval-Based Chatbot for Helpdesk Automation at the Faculty of Computer Science, Brawijaya University</p>
                     </div>
                 </div>
-
-                <!-- Experience Item New 2 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">Co-Founder & Chief Technology Officer</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    May 2023 - Present
-                                </span>
-                            </div>
-                            <p class="text-primary-600 dark:text-primary-200 font-medium mb-1">CV. SiMi Kita Selesaikan</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Kendari, Indonesia</p>
-                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Architected and launched "NYAMPE," a GPS-based personnel tracking platform utilized by 5+ organizations.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Directed digital transformation for 10+ SMEs, delivering custom POS and reservation systems.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Spearheaded the R&D for "RECEH," an AI-driven personal finance ecosystem featuring automated expense tracking.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience Item 1 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">Lead Backend Engineer</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    January 2025 - October 2025
-                                </span>
-                            </div>
-                            <p class="text-primary-600 dark:text-primary-200 font-medium mb-1">Ihsan Solusi Informatika, Bandung Indonesia</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Contract-Based Remote</p>
-                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Spearheaded the migration of 114 Transaction Types for the Core Switching System from legacy technologies to Golang microservices, including the implementation of observability and tracing.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Spearheaded the 11 API development of the SNAP API for PT. POS Indonesia, ensuring compliance with Bank Indonesia's open API standards.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Managed project communication, effectively reporting status, addressing issues, and aligning on goals and timelines with the project manager.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience Item 2 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">Backend Engineer</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    November 2023 - January 2025
-                                </span>
-                            </div>
-                            <p class="text-primary-600 dark:text-primary-200 font-medium mb-1">Ihsan Solusi Informatika, Bandung Indonesia</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Contract-Based Remote</p>
-                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Developed API backend services for Sharia financial banking projects using Go, Python, Dafsysctl, and gRPC.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Responsible for the integration of Frontend and Backend technologies through support, deployment, and logging using Grafana, Docker, and Kubernetes.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Accountable for the implementation of development and change requests for the core giro/banking system and back-office system of Bank Jabar Banten Syariah, PT. POS Indonesia and Pospay Mobile.
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-chevron-right text-primary-500 mt-1 mr-3 text-sm"></i>
-                                    Implemented a switching system for the QRIS Cross Border feature on Pospay Mobile
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience Item 3 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">Teaching Assistant</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    February 2023 - Present
-                                </span>
-                            </div>
-                            <p class="text-primary-600 dark:text-primary-200 font-medium mb-1">PACCMANN, Jakarta Indonesia</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Part-Time Remote</p>
-                            <p class="text-gray-700 dark:text-gray-300">
-                                Responsible for assisting students in learning web development. I was assigned to teach students about HTML, CSS, and Javascript. I also responsible for creating and grading assignments and exams.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Additional experience items would continue here... -->
             </div>
+
+            <div class="tl-item" data-aos="fade-up">
+                <div class="tl-dot tl-dot-sm"></div>
+                <div class="tl-card">
+                    <div class="tl-hdr">
+                        <div>
+                            <h3 class="tl-role">SMA Negeri 4 Kendari</h3>
+                            <p class="tl-loc">Mathematics and Science</p>
+                        </div>
+                        <span class="tl-period">2016 – 2019</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title">Education</h2>
-                <p class="section-subtitle">My academic background and achievements</p>
-            </div>
-            
-            <div class="space-y-8">
-                <!-- Education Item 1 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">Masters of Computer Science</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    August 2022 - December 2024
-                                </span>
-                            </div>
-                            <p class="text-primary-600 dark:text-primary-200 font-medium mb-1">Universitas Brawijaya</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Computer Science - Intelligent System (Natural Language Processing)</p>
-                            <div class="space-y-2 text-gray-700 dark:text-gray-300">
-                                <p>Thesis: Prefix-Tuned Encoder-Decoder Pretrained Model for Mitigating Low-Resource Domain Cases in Chatbot Development - <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/12886" class="text-primary-600 dark:text-primary-200 hover:underline">Article Link</a></p>
-                                <p class="font-medium">GPA: 3.83 - <span class="text-yellow-600 dark:text-yellow-400">Cum Laude / Graduated With Honors</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Education Item 2 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">Bachelor of Computer Science</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    August 2019 - August 2023
-                                </span>
-                            </div>
-                            <p class="text-primary-600 dark:text-primary-200 font-medium mb-1">Universitas Brawijaya</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Computer Science - Information System</p>
-                            <div class="space-y-2 text-gray-700 dark:text-gray-300">
-                                <p>Thesis: Chatbot Development of Universitas Brawijaya Automation Service - <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/12886" class="text-primary-600 dark:text-primary-200 hover:underline">Article Link</a></p>
-                                <p class="font-medium">GPA: 3.95 - <span class="text-yellow-600 dark:text-yellow-400">Best Graduate & Summa Cum Laude</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Education Item 3 -->
-                <div class="experience-card" data-aos="fade-up">
-                    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
-                        <div class="flex-1">
-                            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
-                                <h3 class="text-xl font-semibold mb-1 lg:mb-2">SMA Negeri 4 Kendari</h3>
-                                <span class="inline-block bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm font-medium mb-2 lg:mb-0 lg:flex-shrink-0">
-                                    August 2016 - June 2019
-                                </span>
-                            </div>
-                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Mathematics and Science</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ═══════════════════════════════════════ SKILLS ════════════════════════════════════ -->
+<section id="skills" class="section">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="skills_eyebrow">Skills</span>
+            <h2 class="sec-title" data-i18n="skills_title">Technologies & Expertise</h2>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-12 sm:py-20">
-        <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
-                <h2 class="section-title">Skills & Technologies</h2>
-                <p class="section-subtitle">Tools and technologies I work with</p>
+        <div class="skills-grid">
+            <div data-aos="fade-right">
+                <h3 class="skill-cat-title" data-i18n="skills_cat1">Languages & Tools</h3>
+                <div class="skill-tags">
+                    <span class="sk-tag"><i class="fab fa-python"></i> Python</span>
+                    <span class="sk-tag"><i class="fab fa-golang"></i> Golang</span>
+                    <span class="sk-tag"><i class="fab fa-php"></i> PHP</span>
+                    <span class="sk-tag"><i class="fab fa-laravel"></i> Laravel</span>
+                    <span class="sk-tag"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="sk-tag"><i class="fas fa-fire"></i> PyTorch</span>
+                    <span class="sk-tag"><i class="fas fa-project-diagram"></i> LangGraph</span>
+                    <span class="sk-tag"><i class="fab fa-docker"></i> Docker</span>
+                    <span class="sk-tag"><i class="fas fa-dharmachakra"></i> Kubernetes</span>
+                    <span class="sk-tag"><i class="fas fa-cubes"></i> Microservices</span>
+                    <span class="sk-tag"><i class="fas fa-code-branch"></i> gRPC</span>
+                    <span class="sk-tag"><i class="fas fa-chart-line"></i> Grafana</span>
+                    <span class="sk-tag"><i class="fas fa-database"></i> PostgreSQL</span>
+                    <span class="sk-tag"><i class="fas fa-robot"></i> AI Agents</span>
+                </div>
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-8 sm:gap-12">
-                <!-- Programming Languages -->
-                <div data-aos="fade-right">
-                    <h3 class="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-center">Programming Languages & Tools</h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6">
-                        <div class="skill-icon">
-                            <i class="fab fa-python text-2xl sm:text-4xl text-blue-500"></i>
-                            <span class="text-xs sm:text-sm">Python</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fab fa-php text-2xl sm:text-4xl text-purple-500"></i>
-                            <span class="text-xs sm:text-sm">PHP</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fab fa-laravel text-2xl sm:text-4xl text-red-500"></i>
-                            <span class="text-xs sm:text-sm">Laravel</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fab fa-golang text-2xl sm:text-4xl text-blue-400"></i>
-                            <span class="text-xs sm:text-sm">Golang</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fas fa-fire text-2xl sm:text-4xl text-orange-600"></i>
-                            <span class="text-xs sm:text-sm">PyTorch</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fas fa-project-diagram text-2xl sm:text-4xl text-purple-500"></i>
-                            <span class="text-xs sm:text-sm">LangGraph</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fab fa-docker text-2xl sm:text-4xl text-blue-600"></i>
-                            <span class="text-xs sm:text-sm">Docker</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fas fa-dharmachakra text-2xl sm:text-4xl text-blue-500"></i>
-                            <span class="text-xs sm:text-sm">Kubernetes</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fas fa-cubes text-2xl sm:text-4xl text-green-500"></i>
-                            <span class="text-xs sm:text-sm">Microservices</span>
-                        </div>
-                        <div class="skill-icon">
-                            <i class="fas fa-palette text-2xl sm:text-4xl text-pink-500"></i>
-                            <span class="text-xs sm:text-sm">Design System</span>
+            <div data-aos="fade-left">
+                <h3 class="skill-cat-title" data-i18n="skills_cat2">Expertise Areas</h3>
+                <div class="expertise-list">
+                    <div class="exp-item">
+                        <div class="exp-icon"><i class="fas fa-brain"></i></div>
+                        <div>
+                            <div class="exp-title">AI & Machine Learning</div>
+                            <div class="exp-desc">PyTorch, LangGraph, NLP, Deep Learning, Scikit-Learn, Pandas, Numpy</div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Skill Set -->
-                <div data-aos="fade-left">
-                    <h3 class="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-center">Expertise Areas</h3>
-                    <div class="space-y-3 sm:space-y-4">
-                        <div class="skill-item">
-                            <i class="fas fa-check text-primary-500 mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">AI, Data Science, & Machine Learning (PyTorch, LangGraph, Python, Pandas, Numpy, Matplotlib, Scikit-Learn, Keras, Deep Learning, NLP)</span>
+                    <div class="exp-item">
+                        <div class="exp-icon"><i class="fas fa-server"></i></div>
+                        <div>
+                            <div class="exp-title">Backend Development</div>
+                            <div class="exp-desc">Golang, Python, PHP, Laravel, NestJS, Flask, gRPC, REST APIs</div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-check text-primary-500 mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">Backend Development (Golang, Python, PHP, Laravel, NestJS, Flask, Codeigniter, gRPC)</span>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-icon"><i class="fas fa-cloud"></i></div>
+                        <div>
+                            <div class="exp-title">DevOps & Infrastructure</div>
+                            <div class="exp-desc">Docker, Kubernetes, Microservices, CI/CD, Grafana, K6 load testing</div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-check text-primary-500 mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">DevOps & Infrastructure (Docker, Kubernetes, Microservices, API Development, RESTful, JSON)</span>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-icon"><i class="fas fa-sitemap"></i></div>
+                        <div>
+                            <div class="exp-title">System Design & Architecture</div>
+                            <div class="exp-desc">Microservices Architecture, Design Systems, Distributed Systems</div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-check text-primary-500 mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">Design & Architecture (Design Systems, Microservices Architecture, System Design)</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-check text-primary-500 mr-2 sm:mr-3 text-sm"></i>
-                            <span class="text-sm sm:text-base">Research & Development (Scientific Writing, Data Mining, Agile Development, Scrum)</span>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-icon"><i class="fas fa-flask"></i></div>
+                        <div>
+                            <div class="exp-title">Research & Development</div>
+                            <div class="exp-desc">Scientific Writing, Data Mining, NLP Research, Agile, Scrum</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title">Portfolio</h2>
-                <p class="section-subtitle">Showcasing my projects and achievements</p>
+<!-- ════════════════════════════════════ PORTFOLIO ═══════════════════════════════════ -->
+<section id="portfolio" class="section sec-alt">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="portfolio_eyebrow">Portfolio</span>
+            <h2 class="sec-title" data-i18n="portfolio_title">Projects & Case Studies</h2>
+        </div>
+
+        <div class="tabs-wrap" data-aos="fade-up">
+            <div class="tabs">
+                <button class="tab active" data-tab="casestudy" data-i18n="tab_casestudy">Case Studies</button>
+                <button class="tab"        data-tab="ai"        data-i18n="tab_ai">AI & Data Science</button>
+                <button class="tab"        data-tab="web"       data-i18n="tab_web">Web Development</button>
             </div>
-            
-            <!-- Portfolio Tabs -->
-            <div class="flex justify-center mb-12">
-                <div class="bg-white dark:bg-gray-700 rounded-lg p-1 shadow-lg w-full max-w-xl sm:max-w-2xl">
-                    <div class="flex flex-col sm:flex-row gap-1 sm:gap-0">
-                        <button class="portfolio-tab active flex-1" data-tab="casestudy">Case Studies</button>
-                        <button class="portfolio-tab flex-1" data-tab="ai">AI & Data Science</button>
-                        <button class="portfolio-tab flex-1" data-tab="web">Web Development</button>
+        </div>
+
+        <!-- Case Studies -->
+        <div id="casestudy-portfolio" class="tab-content active">
+            <div class="case-grid">
+                <div class="case-card" data-aos="fade-up">
+                    <div class="case-top">
+                        <span class="case-badge">IT & AI/ML Consulting</span>
+                        <span class="case-year">2025 – 2026</span>
                     </div>
+                    <h3 class="case-title" data-i18n="cs_title">From 23% SLA to an AI-Powered Intelligent Operational Monitoring System</h3>
+                    <p class="case-desc" data-i18n="cs_desc">Helping the operations team gain full visibility over hundreds of transactions per day — and prevent SLA breaches before they happen.</p>
+                    <div class="cs-metrics">
+                        <div class="cs-m"><div class="cs-val cs-bad">23%</div><div class="cs-lbl" data-i18n="cs_lbl_before">SLA before</div></div>
+                        <div class="cs-arrow">→</div>
+                        <div class="cs-m"><div class="cs-val cs-good">99%</div><div class="cs-lbl" data-i18n="cs_lbl_after">SLA after</div></div>
+                        <div class="cs-m cs-div"><div class="cs-val cs-neu">678</div><div class="cs-lbl" data-i18n="cs_lbl_tx">Transactions monitored</div></div>
+                        <div class="cs-m"><div class="cs-val cs-neu">25</div><div class="cs-lbl" data-i18n="cs_lbl_team">Team members</div></div>
+                    </div>
+                    <div class="case-tags">
+                        <span class="cs-tag">AI Dashboard</span>
+                        <span class="cs-tag">SLA Monitoring</span>
+                        <span class="cs-tag" data-i18n="cs_tag_duration">~3 Months</span>
+                    </div>
+                    <a href="case-study/case-study-shiladashboard.html" target="_blank" class="btn-case">
+                        <i class="fas fa-book-open"></i> <span data-i18n="cs_btn">Read Full Case Study</span>
+                    </a>
                 </div>
             </div>
+        </div>
 
-            <!-- Case Studies Portfolio -->
-            <div id="casestudy-portfolio" class="portfolio-content active">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Case Study Card: Shila Dashboard -->
-                    <div class="case-study-card" data-aos="fade-up">
-                        <div class="case-study-header">
-                            <span class="case-study-badge">IT & AI/ML Consulting</span>
-                            <span class="case-study-year">2025 – 2026</span>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3 mb-2 leading-snug">
-                            Dari SLA 23% ke Sistem Monitoring Operasional Cerdas Berbasis AI
-                        </h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-5">
-                            Membantu tim operasional mendapatkan visibilitas penuh atas ratusan transaksi per hari — dan mencegah SLA breach sebelum terjadi.
-                        </p>
-                        <!-- Metrics -->
-                        <div class="case-study-metrics">
-                            <div class="cs-metric">
-                                <div class="cs-metric-val before">23%</div>
-                                <div class="cs-metric-lbl">SLA sebelum</div>
-                            </div>
-                            <div class="cs-metric-arrow">→</div>
-                            <div class="cs-metric">
-                                <div class="cs-metric-val after">99%</div>
-                                <div class="cs-metric-lbl">SLA sesudah</div>
-                            </div>
-                            <div class="cs-metric divider-left">
-                                <div class="cs-metric-val neutral">678</div>
-                                <div class="cs-metric-lbl">Transaksi dipantau</div>
-                            </div>
-                            <div class="cs-metric">
-                                <div class="cs-metric-val neutral">25</div>
-                                <div class="cs-metric-lbl">Anggota tim</div>
-                            </div>
-                        </div>
-                        <!-- Tags -->
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="cs-tag">AI Dashboard</span>
-                            <span class="cs-tag">SLA Monitoring</span>
-                            <span class="cs-tag">~3 Bulan</span>
-                        </div>
-                        <a href="case-study/case-study-shiladashboard.html" target="_blank" class="btn-casestudy">
-                            <i class="fas fa-book-open mr-2"></i> Baca Case Study Lengkap
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI & Data Science Portfolio -->
-            <div id="ai-portfolio" class="portfolio-content">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="assets/img/ssprojek/halofilkom.png" alt="Chatbot FILKOM" class="w-full h-48 object-cover rounded-t-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-3">Chatbot FILKOM</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                Chatbot FILKOM is a rule based chatbot developed in flask and tensorflow keras. The Chatbot can serve as an agent to answer student questions immediately without waiting for admin response.
-                            </p>
-                            <div class="flex gap-2">
-                                <a href="https://halofilkom.azurewebsites.net/" target="_blank" class="btn-small-primary">
-                                    <i class="fas fa-globe mr-1"></i> Website
-                                </a>
-                                <a href="https://colab.research.google.com/drive/1bRv6AE0oZB1WkbKU55-AMCFTBWEbKYHy#scrollTo=mEsH27Bdp2Ve" target="_blank" class="btn-small-secondary">
-                                    <i class="fab fa-python mr-1"></i> Notebook
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 2 -->
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/ssprojek/dashboard.png" alt="Superstore Dashboard" class="w-full h-48 object-cover rounded-t-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-3">Superstore Dashboard</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                Implementing dashboard of Superstore dataset according to store KPI using Tableau. The content includes descriptive and predictive information such as sales prediction.
-                            </p>
-                            <div class="flex gap-2">
-                                <a href="https://s.ub.ac.id/kba-kelompok5" target="_blank" class="btn-small-primary">
-                                    <i class="fas fa-desktop mr-1"></i> Dashboard
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 3 -->
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/ssprojek/rnnfluent.png" alt="RNN Chatbot" class="w-full h-48 object-cover rounded-t-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-3">RNN Based Chatbot</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                Development of RNN Based Chatbot for Indonesian Language. The Model achieved 0.00021 in Loss and 83% in BLEU Score.
-                            </p>
-                            <div class="flex gap-2">
-                                <a href="https://github.com/AndiAlifs/FLUENT-Chatbot-2023" target="_blank" class="btn-small-secondary">
-                                    <i class="fab fa-python mr-1"></i> Notebook
-                                </a>
-                            </div>
+        <!-- AI & Data Science -->
+        <div id="ai-portfolio" class="tab-content">
+            <div class="proj-grid">
+                <div class="proj-card" data-aos="fade-up">
+                    <div class="proj-img"><img src="assets/img/ssprojek/halofilkom.png" alt="Chatbot FILKOM"></div>
+                    <div class="proj-body">
+                        <h3 class="proj-title">Chatbot FILKOM</h3>
+                        <p class="proj-desc">Rule-based chatbot in Flask + TensorFlow Keras serving as an agent to answer student questions in real time.</p>
+                        <div class="proj-links">
+                            <a href="https://halofilkom.azurewebsites.net/" target="_blank" class="btn-sm-p"><i class="fas fa-globe"></i> Website</a>
+                            <a href="https://colab.research.google.com/drive/1bRv6AE0oZB1WkbKU55-AMCFTBWEbKYHy#scrollTo=mEsH27Bdp2Ve" target="_blank" class="btn-sm-o"><i class="fab fa-python"></i> Notebook</a>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Web Development Portfolio -->
-            <div id="web-portfolio" class="portfolio-content">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="assets/img/ssprojek/pyjundocs.png" alt="API for Bank Account" class="w-full h-48 object-cover rounded-t-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-3">API for Bank Account</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                API for Bank Account Business Process. Features include CRUD for Account and Check Mutation. Built using FastAPI, Docker, SQLAlchemy ORM.
-                            </p>
-                            <div class="flex gap-2">
-                                <a href="https://github.com/AndiAlifs/SanberHub_PyJuniorBackend_Andi2023" target="_blank" class="btn-small-secondary">
-                                    <i class="fab fa-github mr-1"></i> GitHub
-                                </a>
-                            </div>
+                <div class="proj-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="proj-img"><img src="assets/img/ssprojek/dashboard.png" alt="Superstore Dashboard"></div>
+                    <div class="proj-body">
+                        <h3 class="proj-title">Superstore Dashboard</h3>
+                        <p class="proj-desc">Tableau dashboard for Superstore KPIs with descriptive and predictive analytics including sales forecasting.</p>
+                        <div class="proj-links">
+                            <a href="https://s.ub.ac.id/kba-kelompok5" target="_blank" class="btn-sm-p"><i class="fas fa-desktop"></i> Dashboard</a>
                         </div>
                     </div>
-
-                    <!-- Project Card 2 -->
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/ssprojek/wesim.png" alt="Wesim POS" class="w-full h-48 object-cover rounded-t-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-3">Wesim POS</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                Wesim is a point of sales web based application. Features include cashier, reporting, export to PDF, product management. Built using Laravel, Bootstrap, jQuery.
-                            </p>
-                            <div class="flex gap-2">
-                                <a href="https://github.com/AndiAlifs/wesim_pos" target="_blank" class="btn-small-secondary">
-                                    <i class="fab fa-github mr-1"></i> GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 3 -->
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/ssprojek/kasirku.png" alt="Kasirku POS" class="w-full h-48 object-cover rounded-t-lg">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-3">Kasirku POS</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4">
-                                KASIRKU is a Point Of Sales Web Based Application. Built with Codeigniter 3, Bootstrap, jQuery for AJAX transactions.
-                            </p>
-                            <div class="flex gap-2">
-                                <a href="https://kasirku.risera.online/" target="_blank" class="btn-small-primary">
-                                    <i class="fas fa-globe mr-1"></i> Website
-                                </a>
-                                <a href="https://github.com/AndiAlifs/wesim_pos" target="_blank" class="btn-small-secondary">
-                                    <i class="fab fa-github mr-1"></i> GitHub
-                                </a>
-                            </div>
+                </div>
+                <div class="proj-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="proj-img"><img src="assets/img/ssprojek/rnnfluent.png" alt="RNN Chatbot"></div>
+                    <div class="proj-body">
+                        <h3 class="proj-title">RNN Based Chatbot</h3>
+                        <p class="proj-desc">RNN-based chatbot for Indonesian Language — achieved 0.00021 loss and 83% BLEU Score.</p>
+                        <div class="proj-links">
+                            <a href="https://github.com/AndiAlifs/FLUENT-Chatbot-2023" target="_blank" class="btn-sm-o"><i class="fab fa-github"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Awards Section -->
-    <section id="awards" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title">Awards & Certifications</h2>
-                <p class="section-subtitle">Recognition of excellence and achievements</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="award-item" data-aos="fade-right">
-                    <i class="fas fa-trophy text-yellow-500 mr-4"></i>
-                    <span>The Best Graduate of Faculty of Computer Science, Universitas Brawijaya 2023</span>
+        <!-- Web Development -->
+        <div id="web-portfolio" class="tab-content">
+            <div class="proj-grid">
+                <div class="proj-card" data-aos="fade-up">
+                    <div class="proj-img"><img src="assets/img/ssprojek/pyjundocs.png" alt="API for Bank Account"></div>
+                    <div class="proj-body">
+                        <h3 class="proj-title">API for Bank Account</h3>
+                        <p class="proj-desc">Bank account CRUD and mutation API built with FastAPI, Docker, and SQLAlchemy ORM.</p>
+                        <div class="proj-links">
+                            <a href="https://github.com/AndiAlifs/SanberHub_PyJuniorBackend_Andi2023" target="_blank" class="btn-sm-o"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="award-item" data-aos="fade-left">
-                    <i class="fas fa-medal text-yellow-500 mr-4"></i>
-                    <span>The Best Graduate of Information System Study Program, Faculty of Computer Science, Universitas Brawijaya 2023</span>
+                <div class="proj-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="proj-img"><img src="assets/img/ssprojek/wesim.png" alt="Wesim POS"></div>
+                    <div class="proj-body">
+                        <h3 class="proj-title">Wesim POS</h3>
+                        <p class="proj-desc">Point-of-sale web app with cashier, reporting, PDF export, and product management. Built with Laravel + Bootstrap.</p>
+                        <div class="proj-links">
+                            <a href="https://github.com/AndiAlifs/wesim_pos" target="_blank" class="btn-sm-o"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="award-item" data-aos="fade-right">
-                    <i class="fas fa-award text-silver mr-4"></i>
-                    <span>The 2nd Winner of Universitas Mataram National Paper Competition 2023</span>
-                </div>
-                <div class="award-item" data-aos="fade-left">
-                    <i class="fas fa-trophy text-gold mr-4"></i>
-                    <span>The 1st Winner of Universitas Soedirman Faculty of Biology National Essay Competition 2023 for Master Student</span>
-                </div>
-                <div class="award-item" data-aos="fade-right">
-                    <i class="fas fa-certificate text-yellow-600 mr-4"></i>
-                    <span>The Golden Ticket Awardee Mandiri My Digital Academy 2023</span>
-                </div>
-                <div class="award-item" data-aos="fade-left">
-                    <i class="fas fa-medal text-bronze mr-4"></i>
-                    <span>The Bronze Medalist of International Youth Business Competition 2022 in Entrepreneurship Category</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact/Resources Section -->
-    <section class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's connect and discuss opportunities</p>
-            </div>
-            
-            <div class="text-center space-y-8">
-                <div class="flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/andyalyf" target="_blank" class="social-icon-large">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/AndiAlifs" target="_blank" class="social-icon-large">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://twitter.com/andyalyfsyah" target="_blank" class="social-icon-large">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="mailto:andyalyfsyah4@gmail.com" class="social-icon-large">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="assets/CV_AndiAlifsyah.pdf" target="_blank" class="btn-secondary">
-                        <i class="fas fa-download mr-2"></i>
-                        CV (Bahasa Indonesia)
-                    </a>
-                    <a href="assets/CV_AndiAlifsyahEnglish_V2.pdf" target="_blank" class="btn-secondary">
-                        <i class="fas fa-download mr-2"></i>
-                        CV (English)
-                    </a>
-                    <a href="assets/WebPortofolio_AndiAlifsyahDyasham.pdf" target="_blank" class="btn-secondary">
-                        <i class="fas fa-download mr-2"></i>
-                        Web Portfolio
-                    </a>
+                <div class="proj-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="proj-img"><img src="assets/img/ssprojek/kasirku.png" alt="Kasirku POS"></div>
+                    <div class="proj-body">
+                        <h3 class="proj-title">Kasirku POS</h3>
+                        <p class="proj-desc">POS web app built with CodeIgniter 3, Bootstrap, and jQuery for AJAX transactions.</p>
+                        <div class="proj-links">
+                            <a href="https://kasirku.risera.online/" target="_blank" class="btn-sm-p"><i class="fas fa-globe"></i> Website</a>
+                            <a href="https://github.com/AndiAlifs/wesim_pos" target="_blank" class="btn-sm-o"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <p class="text-gray-600 dark:text-gray-300">
-                    © 2026 <a href="https://andialifs.github.io/" class="text-primary-600 dark:text-primary-200 hover:underline font-medium">Andi Alifsyah</a>. All rights reserved.
-                </p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════ RESEARCH ═══════════════════════════════════ -->
+<section id="research" class="section">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="research_eyebrow">Research</span>
+            <h2 class="sec-title" data-i18n="research_title">Publications & Scientific Work</h2>
+        </div>
+        <div class="expertise-list" data-aos="fade-up">
+            <div class="exp-item">
+                <div class="exp-icon"><i class="fas fa-microscope"></i></div>
+                <div>
+                    <div class="exp-title" data-i18n="research_item1_title">Prefix-Tuned Encoder-Decoder Pretrained Model</div>
+                    <div class="exp-desc" data-i18n="research_item1_desc">Mitigating Low-Resource Domain Cases in Chatbot Development. Master's Thesis focused on Intelligent Systems and NLP.</div>
+                    <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/12886" target="_blank" class="btn-sm-o" style="margin-top: 8px;"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon"><i class="fas fa-comments"></i></div>
+                <div>
+                    <div class="exp-title" data-i18n="research_item2_title">Retrieval-Based Chatbot for Helpdesk Automation</div>
+                    <div class="exp-desc" data-i18n="research_item2_desc">Design and development of an automated support system for the Faculty of Computer Science, Brawijaya University.</div>
+                </div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div>
+                    <div class="exp-title" data-i18n="research_item3_title">International NLP Research</div>
+                    <div class="exp-desc" data-i18n="research_item3_desc">Contributions to scientific publications in NLP at various international conferences.</div>
+                    <a href="https://scholar.google.com/citations?user=kedZTroAAAAJ&hl=en&oi=ao" target="_blank" class="btn-sm-p" style="margin-top: 8px;"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- Custom CSS Styles -->
-    <style>
-        /* Global overflow prevention */
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-        }
-        
-        /* AOS animation overflow fix */
-        [data-aos] {
-            overflow: hidden;
-        }
-        
-        [data-aos="fade-right"] {
-            transform: translateX(0) !important;
-        }
-        
-        [data-aos="fade-left"] {
-            transform: translateX(0) !important;
-        }
-        
-        /* Ensure all sections stay within viewport */
-        section {
-            overflow-x: hidden;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        
-        /* Container overflow fixes */
-        .max-w-7xl {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        
-        /* Add padding for laptop screens on all sections except hero and navbar */
-        @media (min-width: 1024px) {
-            section:not(#home) .max-w-7xl {
-                padding-left: 7rem;
-                padding-right: 7rem;
-            }
-            
-            /* Specific padding for different section containers */
-            section:not(#home) > .max-w-7xl,
-            section:not(#home) .container,
-            section:not(#home) .mx-auto.px-4,
-            section:not(#home) .mx-auto.px-3 {
-                padding-left: 7rem !important;
-                padding-right: 7rem !important;
-            }
-        }
-        
-        /* Extra padding for larger screens */
-        @media (min-width: 1280px) {
-            section:not(#home) .max-w-7xl {
-                padding-left: 9rem;
-                padding-right: 9rem;
-            }
-            
-            section:not(#home) > .max-w-7xl,
-            section:not(#home) .container,
-            section:not(#home) .mx-auto.px-4,
-            section:not(#home) .mx-auto.px-3 {
-                padding-left: 9rem !important;
-                padding-right: 9rem !important;
-            }
-        }
-        /* Base responsive styles */
-        @media (max-width: 767px) {
-            .nav-link {
-                display: none;
-            }
-        }
+<!-- ═══════════════════════════════════════ AWARDS ═══════════════════════════════════ -->
+<section id="awards" class="section">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="awards_eyebrow">Awards & Recognition</span>
+            <h2 class="sec-title" data-i18n="awards_title">Excellence & Achievements</h2>
+        </div>
+        <div class="awards-grid">
+            <div class="award-card award-gold" data-aos="fade-up"><div class="award-icon"><i class="fas fa-trophy"></i></div><div><div class="award-title">Best Graduate, Faculty of Computer Science</div><div class="award-meta">Universitas Brawijaya · Period IX · 2023/2024</div></div></div>
+            <div class="award-card award-gold" data-aos="fade-up"><div class="award-icon"><i class="fas fa-medal"></i></div><div><div class="award-title">Best Graduate, Information System Program</div><div class="award-meta">Universitas Brawijaya · Adjudication Period XIV · 2023/2024</div></div></div>
+            <div class="award-card award-gold" data-aos="fade-up"><div class="award-icon"><i class="fas fa-star"></i></div><div><div class="award-title">Gold Medalist, Tanoto Student Research Award (TSRA)</div><div class="award-meta">2022</div></div></div>
+            <div class="award-card" data-aos="fade-up"><div class="award-icon"><i class="fas fa-award"></i></div><div><div class="award-title">1st Place, Master's Essay Competition</div><div class="award-meta">Faculty of Biology Anniversary · Jenderal Soedirman University · 2023</div></div></div>
+            <div class="award-card" data-aos="fade-up"><div class="award-icon"><i class="fas fa-certificate"></i></div><div><div class="award-title">Awardee, Bank Indonesia Scholarship</div><div class="award-meta">2022</div></div></div>
+            <div class="award-card" data-aos="fade-up"><div class="award-icon"><i class="fas fa-certificate"></i></div><div><div class="award-title">Awardee, Fast-Track Master's Scholarship</div><div class="award-meta">Computer Science · Universitas Brawijaya · 2022</div></div></div>
+            <div class="award-card" data-aos="fade-up"><div class="award-icon"><i class="fas fa-award"></i></div><div><div class="award-title">2nd Place, National Student Scientific Research Week</div><div class="award-meta">Universitas Mataram · 2023</div></div></div>
+            <div class="award-card" data-aos="fade-up"><div class="award-icon"><i class="fas fa-medal"></i></div><div><div class="award-title">Bronze Medal, International Youth Business Competition</div><div class="award-meta">IYSA · Entrepreneurship Category · 2022</div></div></div>
+            <div class="award-card" data-aos="fade-up"><div class="award-icon"><i class="fas fa-user-graduate"></i></div><div><div class="award-title">2nd Runner Up, Most Outstanding Student (MAWAPRES)</div><div class="award-meta">Faculty of Computer Science · Universitas Brawijaya · 2022</div></div></div>
+            <div class="award-card" data-aos="fade-up"><div class="award-icon"><i class="fas fa-trophy"></i></div><div><div class="award-title">1st Place, Business Case Competition</div><div class="award-meta">Faculty of Economics and Business · Haluoleo University · 2021</div></div></div>
+        </div>
+    </div>
+</section>
 
-        /* Navigation responsive fixes */
-        nav {
-            width: 100%;
-            max-width: 100vw;
-            box-sizing: border-box;
-        }
-        
-        nav .max-w-7xl {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        
-        nav .flex.justify-between {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-        
-        /* Prevent any child elements from causing overflow */
-        * {
-            box-sizing: border-box;
-        }
-        
-        /* Specific overflow fixes for common problematic elements */
-        .grid, .flex {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        
-        /* Image and media overflow prevention */
-        img, video, iframe {
-            max-width: 100%;
-            height: auto;
-        }
+<!-- ═══════════════════════════════════════ CONTACT ══════════════════════════════════ -->
+<section id="contact" class="section sec-alt">
+    <div class="container">
+        <div class="sec-hdr" data-aos="fade-up">
+            <span class="eyebrow" data-i18n="contact_eyebrow">Contact</span>
+            <h2 class="sec-title" data-i18n="contact_title">Get In Touch</h2>
+            <p class="sec-desc" data-i18n="contact_desc">Let's connect and discuss opportunities</p>
+        </div>
+        <div class="contact-wrap" data-aos="fade-up">
+            <div class="contact-socials">
+                <a href="https://www.linkedin.com/in/andyalyf"    target="_blank" class="soc-lg"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/AndiAlifs"             target="_blank" class="soc-lg"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/andyalyfsyah"         target="_blank" class="soc-lg"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:andyalyfsyah4@gmail.com"                           class="soc-lg"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="contact-dls">
+                <a href="assets/CV_AndiAlifsyah.pdf"                    target="_blank" class="btn-ghost"><i class="fas fa-download"></i> CV (Bahasa)</a>
+                <a href="assets/CV_AndiAlifsyahEnglish_V2.pdf"          target="_blank" class="btn-ghost"><i class="fas fa-download"></i> CV (English)</a>
+                <a href="assets/WebPortofolio_AndiAlifsyahDyasham.pdf"  target="_blank" class="btn-ghost"><i class="fas fa-file"></i> Web Portfolio</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-        /* Ultra-small mobile styles (320px and below) */
-        @media (max-width: 320px) {
-            /* Navbar adjustments */
-            nav {
-                width: 100vw;
-                max-width: 100vw;
-                overflow-x: hidden;
-            }
-            
-            nav .max-w-7xl {
-                padding-left: 0.375rem;
-                padding-right: 0.375rem;
-                max-width: 100%;
-                width: 100%;
-            }
-            
-            nav .flex.justify-between {
-                gap: 0.125rem;
-                min-width: 0;
-                flex-wrap: nowrap;
-            }
-            
-            nav .h-12 {
-                height: 2.25rem;
-            }
-            
-            nav .text-sm {
-                font-size: 0.7rem;
-                line-height: 1;
-            }
-            
-            nav button {
-                padding: 0.125rem;
-                min-width: 1.5rem;
-                min-height: 1.5rem;
-                flex-shrink: 0;
-            }
-            
-            nav i {
-                font-size: 0.7rem;
-            }
-            
-            nav .flex-shrink-0.min-w-0 {
-                min-width: 0;
-                flex: 1;
-                overflow: hidden;
-            }
-            
-            nav .truncate {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 100%;
-            }
-            
-            .max-w-7xl {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            
-            .px-4 {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-            
-            .text-4xl {
-                font-size: 1.875rem;
-                line-height: 2.25rem;
-            }
-            
-            .text-xl {
-                font-size: 1.125rem;
-                line-height: 1.75rem;
-            }
-            
-            .space-x-4 > * + * {
-                margin-left: 0.5rem;
-            }
-            
-            .gap-4 {
-                gap: 0.75rem;
-            }
-            
-            .py-20 {
-                padding-top: 3rem;
-                padding-bottom: 3rem;
-            }
-            
-            .mb-8 {
-                margin-bottom: 1.5rem;
-            }
-            
-            .grid-cols-2 {
-                grid-template-columns: repeat(1, minmax(0, 1fr));
-            }
-            
-            .grid-cols-4 {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-            
-            /* Force zero left padding for timeline spans on ultra-small screens */
-            .experience-card .flex.flex-col.lg\\:flex-row span {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-            }
-        }
+<!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+<footer class="site-footer">
+    <div class="container">
+        <p><span data-i18n="footer_copy">© 2026 Andi Alifsyah. All rights reserved.</span> — <a href="https://andialifs.github.io/">andialifs.github.io</a></p>
+    </div>
+</footer>
 
-        /* Small mobile improvements */
-        @media (max-width: 480px) {
-            /* Navbar improvements for small screens */
-            nav {
-                font-size: 0.875rem;
-                width: 100vw;
-                max-width: 100vw;
-                overflow-x: hidden;
-            }
-            
-            nav .max-w-7xl {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                max-width: 100%;
-                width: 100%;
-            }
-            
-            nav .flex.justify-between {
-                gap: 0.25rem;
-                min-width: 0;
-            }
-            
-            nav .h-12 {
-                height: 2.5rem;
-            }
-            
-            nav .text-sm {
-                font-size: 0.75rem;
-            }
-            
-            nav button {
-                padding: 0.25rem;
-                min-width: 1.75rem;
-                min-height: 1.75rem;
-                flex-shrink: 0;
-            }
-            
-            nav i {
-                font-size: 0.75rem;
-            }
-            
-            nav .flex-shrink-0.min-w-0 {
-                flex: 1;
-                min-width: 0;
-                overflow: hidden;
-            }
-            
-            .section-title {
-                font-size: 1.875rem;
-                line-height: 2.25rem;
-            }
-            
-            .section-subtitle {
-                font-size: 1rem;
-                line-height: 1.5rem;
-            }
-            
-            .btn-primary, .btn-secondary {
-                padding: 0.625rem 1rem;
-                font-size: 0.875rem;
-            }
-            
-            .experience-card {
-                padding: 1rem;
-            }
-            
-            .project-card .p-6 {
-                padding: 1rem;
-            }
-            
-            .stat-card {
-                padding: 1rem;
-            }
-            
-            /* Force zero left padding for timeline spans on small screens */
-            .experience-card .flex.flex-col.lg\\:flex-row span {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-            }
-            
-            /* Additional mobile timeline fixes */
-            .experience-card span:contains("January"),
-            .experience-card span:contains("February"),
-            .experience-card span:contains("August"),
-            .experience-card span:contains("November"),
-            .experience-card span:contains("Present"),
-            .experience-card span:contains("2023"),
-            .experience-card span:contains("2024"),
-            .experience-card span:contains("2025") {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-                text-align: left !important;
-            }
-        }
-
-        /* Navigation */
-        .nav-link {
-            color: rgb(55 65 81);
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.15s ease-in-out;
-            text-decoration: none;
-        }
-        
-        .dark .nav-link {
-            color: rgb(209 213 219);
-        }
-        
-        .nav-link:hover {
-            color: rgb(37 99 235);
-        }
-        
-        .dark .nav-link:hover {
-            color: rgb(96 165 250);
-        }
-        
-        .mobile-nav-link {
-            color: rgb(55 65 81);
-            display: block;
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.15s ease-in-out;
-            text-decoration: none;
-            border-bottom: 1px solid rgb(229 231 235);
-        }
-        
-        .mobile-nav-link:last-child {
-            border-bottom: none;
-        }
-        
-        .dark .mobile-nav-link {
-            color: rgb(209 213 219);
-            border-bottom-color: rgb(75 85 99);
-        }
-        
-        .mobile-nav-link:hover {
-            color: rgb(37 99 235);
-            background-color: rgb(243 244 246);
-        }
-        
-        .dark .mobile-nav-link:hover {
-            color: rgb(96 165 250);
-            background-color: rgb(55 65 81);
-        }
-
-        /* Buttons */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            background-color: rgb(37 99 235);
-            color: white;
-            font-weight: 500;
-            border-radius: 0.5rem;
-            transition: background-color 0.15s ease-in-out;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            text-decoration: none;
-        }
-        
-        .btn-primary:hover {
-            background-color: rgb(29 78 216);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-        }
-        
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            background-color: transparent;
-            border: 2px solid rgb(37 99 235);
-            color: rgb(37 99 235);
-            font-weight: 500;
-            border-radius: 0.5rem;
-            transition: all 0.15s ease-in-out;
-            text-decoration: none;
-        }
-        
-        .dark .btn-secondary {
-            color: rgb(96 165 250);
-            border-color: rgb(96 165 250);
-        }
-        
-        .btn-secondary:hover {
-            background-color: rgb(37 99 235);
-            color: white;
-        }
-
-        .btn-small-primary {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.375rem 0.75rem;
-            background-color: rgb(37 99 235);
-            color: white;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 0.25rem;
-            transition: background-color 0.15s ease-in-out;
-            text-decoration: none;
-        }
-        
-        .btn-small-primary:hover {
-            background-color: rgb(29 78 216);
-        }
-        
-        .btn-small-secondary {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.375rem 0.75rem;
-            background-color: rgb(243 244 246);
-            color: rgb(55 65 81);
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 0.25rem;
-            transition: background-color 0.15s ease-in-out;
-            text-decoration: none;
-        }
-        
-        .dark .btn-small-secondary {
-            background-color: rgb(55 65 81);
-            color: rgb(209 213 219);
-        }
-        
-        .btn-small-secondary:hover {
-            background-color: rgb(229 231 235);
-        }
-        
-        .dark .btn-small-secondary:hover {
-            background-color: rgb(75 85 99);
-        }
-
-        /* Social Icons */
-        .social-icon {
-            width: 2rem;
-            height: 2rem;
-            background-color: rgb(243 244 246);
-            color: rgb(75 85 99);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s ease-in-out;
-            text-decoration: none;
-            font-size: 0.875rem;
-        }
-        
-        @media (min-width: 380px) {
-            .social-icon {
-                width: 2.5rem;
-                height: 2.5rem;
-                font-size: 1rem;
-            }
-        }
-        
-        @media (min-width: 640px) {
-            .social-icon {
-                width: 3rem;
-                height: 3rem;
-                font-size: 1.125rem;
-            }
-        }
-        
-        .dark .social-icon {
-            background-color: rgb(31 41 55);
-            color: rgb(209 213 219);
-        }
-        
-        .social-icon:hover {
-            background-color: rgb(37 99 235);
-            color: white;
-        }
-        
-        .social-icon-large {
-            width: 4rem;
-            height: 4rem;
-            background-color: rgb(243 244 246);
-            color: rgb(75 85 99);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.15s ease-in-out;
-            font-size: 1.25rem;
-            text-decoration: none;
-        }
-        
-        .dark .social-icon-large {
-            background-color: rgb(55 65 81);
-            color: rgb(209 213 219);
-        }
-        
-        .social-icon-large:hover {
-            background-color: rgb(37 99 235);
-            color: white;
-        }
-
-        /* Typography */
-        .section-title {
-            font-size: 2.25rem;
-            font-family: 'Poppins', system-ui, sans-serif;
-            font-weight: 700;
-            color: rgb(17 24 39);
-            margin-bottom: 1rem;
-        }
-        
-        .dark .section-title {
-            color: white;
-        }
-        
-        @media (min-width: 768px) {
-            .section-title {
-                font-size: 3rem;
-            }
-        }
-        
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: rgb(75 85 99);
-            max-width: 42rem;
-            margin: 0 auto;
-        }
-        
-        .dark .section-subtitle {
-            color: rgb(209 213 219);
-        }
-
-        /* Cards */
-        .experience-card {
-            background-color: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            transition: box-shadow 0.15s ease-in-out;
-            border: 1px solid rgb(229 231 235);
-        }
-        
-        .dark .experience-card {
-            background-color: rgb(55 65 81);
-            border-color: rgb(75 85 99);
-        }
-        
-        .experience-card:hover {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-        }
-        
-        /* Timeline span specific styles - force zero left padding on small screens */
-        @media (max-width: 1023px) {
-            .experience-card span.inline-block.bg-primary-100,
-            .experience-card span.inline-block.dark\\:bg-primary-900 {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-            }
-        }
-        
-        /* Additional aggressive timeline padding removal for all small screens */
-        @media (max-width: 1023px) {
-            .experience-card span[class*="bg-primary"],
-            .experience-card span.rounded-full,
-            .experience-card .flex.flex-col span,
-            .experience-card .lg\\:flex-row span {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-                padding-right: 12px !important;
-                text-align: left !important;
-            }
-        }
-        
-        /* Force remove all spacing on mobile timeline elements */
-        @media (max-width: 767px) {
-            .experience-card span,
-            .experience-card .flex span,
-            .experience-card div span {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-                padding-right: 12px !important;
-            }
-            
-            /* Target timeline spans more specifically */
-            .experience-card .flex.flex-col.lg\\:flex-row.lg\\:justify-between.lg\\:items-start span.inline-block {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-                text-align: left !important;
-                display: block !important;
-                width: 100% !important;
-                box-sizing: border-box !important;
-            }
-            
-            /* Ensure no inherited padding from parent elements */
-            .experience-card .flex.flex-col.lg\\:flex-row.lg\\:justify-between.lg\\:items-start {
-                padding-left: 0px !important;
-                margin-left: 0px !important;
-            }
-        }
-        
-        .stat-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            border: 1px solid rgb(229 231 235);
-        }
-        
-        .dark .stat-card {
-            background-color: rgb(55 65 81);
-            border-color: rgb(75 85 99);
-        }
-        
-        .project-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            transition: box-shadow 0.15s ease-in-out;
-            overflow: hidden;
-            border: 1px solid rgb(229 231 235);
-        }
-        
-        .dark .project-card {
-            background-color: rgb(55 65 81);
-            border-color: rgb(75 85 99);
-        }
-        
-        .project-card:hover {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-        }
-
-        /* Skills */
-        .skill-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.25rem;
-            padding: 0.75rem;
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-            transition: box-shadow 0.15s ease-in-out;
-            border: 1px solid rgb(229 231 235);
-        }
-        
-        @media (min-width: 640px) {
-            .skill-icon {
-                gap: 0.5rem;
-                padding: 1rem;
-            }
-        }
-        
-        .dark .skill-icon {
-            background-color: rgb(55 65 81);
-            border-color: rgb(75 85 99);
-        }
-        
-        .skill-icon:hover {
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-        }
-        
-        .skill-item {
-            display: flex;
-            align-items: center;
-            color: rgb(55 65 81);
-        }
-        
-        .dark .skill-item {
-            color: rgb(209 213 219);
-        }
-
-        /* Portfolio */
-        .portfolio-tab {
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            transition: all 0.15s ease-in-out;
-            cursor: pointer;
-            border: none;
-            background: none;
-            text-align: center;
-            font-size: 0.875rem;
-        }
-        
-        @media (min-width: 640px) {
-            .portfolio-tab {
-                padding: 0.5rem 1.5rem;
-                font-size: 1rem;
-            }
-        }
-        
-        .portfolio-tab.active {
-            background-color: rgb(37 99 235);
-            color: white;
-        }
-        
-        .portfolio-tab:not(.active) {
-            color: rgb(75 85 99);
-        }
-        
-        .dark .portfolio-tab:not(.active) {
-            color: rgb(209 213 219);
-        }
-        
-        .portfolio-tab:not(.active):hover {
-            color: rgb(17 24 39);
-            background-color: rgb(243 244 246);
-        }
-        
-        .dark .portfolio-tab:not(.active):hover {
-            color: white;
-            background-color: rgb(55 65 81);
-        }
-        
-        .portfolio-content {
-            display: none;
-        }
-        
-        .portfolio-content.active {
-            display: block;
-        }
-
-        /* Case Study Cards */
-        .case-study-card {
-            background-color: white;
-            border-radius: 0.75rem;
-            padding: 1.75rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            border: 1px solid rgb(229 231 235);
-            border-top: 3px solid rgb(79 70 229);
-            transition: box-shadow 0.15s ease-in-out;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .dark .case-study-card {
-            background-color: rgb(55 65 81);
-            border-color: rgb(75 85 99);
-            border-top-color: rgb(129 120 255);
-        }
-
-        .case-study-card:hover {
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.15);
-        }
-
-        .case-study-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .case-study-badge {
-            background-color: rgb(238 242 255);
-            color: rgb(79 70 229);
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.07em;
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-
-        .dark .case-study-badge {
-            background-color: rgb(49 46 129 / 0.4);
-            color: rgb(165 180 252);
-        }
-
-        .case-study-year {
-            font-size: 12px;
-            color: rgb(107 114 128);
-            font-weight: 500;
-        }
-
-        .dark .case-study-year {
-            color: rgb(156 163 175);
-        }
-
-        .case-study-metrics {
-            display: flex;
-            align-items: center;
-            gap: 0;
-            background-color: rgb(249 250 251);
-            border: 1px solid rgb(229 231 235);
-            border-radius: 0.5rem;
-            padding: 14px 16px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .dark .case-study-metrics {
-            background-color: rgb(31 41 55);
-            border-color: rgb(75 85 99);
-        }
-
-        .cs-metric {
-            flex: 1;
-            text-align: center;
-            min-width: 60px;
-        }
-
-        .cs-metric.divider-left {
-            border-left: 1px solid rgb(229 231 235);
-            padding-left: 8px;
-        }
-
-        .dark .cs-metric.divider-left {
-            border-left-color: rgb(75 85 99);
-        }
-
-        .cs-metric-val {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1;
-        }
-
-        .cs-metric-val.before { color: rgb(220 38 38); }
-        .cs-metric-val.after  { color: rgb(22 163 74); }
-        .cs-metric-val.neutral { color: rgb(79 70 229); }
-
-        .dark .cs-metric-val.neutral { color: rgb(165 180 252); }
-
-        .cs-metric-lbl {
-            font-size: 11px;
-            color: rgb(107 114 128);
-            margin-top: 4px;
-            line-height: 1.3;
-        }
-
-        .cs-metric-arrow {
-            font-size: 1.25rem;
-            color: rgb(79 70 229);
-            font-weight: 700;
-            padding: 0 4px;
-            flex-shrink: 0;
-        }
-
-        .cs-tag {
-            background-color: rgb(243 244 246);
-            color: rgb(55 65 81);
-            font-size: 12px;
-            font-weight: 500;
-            padding: 3px 10px;
-            border-radius: 9999px;
-            border: 1px solid rgb(229 231 235);
-        }
-
-        .dark .cs-tag {
-            background-color: rgb(55 65 81);
-            color: rgb(209 213 219);
-            border-color: rgb(75 85 99);
-        }
-
-        .btn-casestudy {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.625rem 1.25rem;
-            background-color: rgb(79 70 229);
-            color: white;
-            font-size: 0.875rem;
-            font-weight: 600;
-            border-radius: 0.5rem;
-            transition: background-color 0.15s ease-in-out;
-            text-decoration: none;
-            margin-top: auto;
-            width: fit-content;
-        }
-
-        .btn-casestudy:hover {
-            background-color: rgb(67 56 202);
-        }
-
-        /* Awards */
-        .award-item {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-            border: 1px solid rgb(229 231 235);
-        }
-        
-        .dark .award-item {
-            background-color: rgb(55 65 81);
-            border-color: rgb(75 85 99);
-        }
-
-        /* Colors */
-        .text-gold { color: #FFD700; }
-        .text-silver { color: #C0C0C0; }
-        .text-bronze { color: #CD7F32; }
-    </style>
-
-    <!-- JavaScript -->
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-
-        // Check for saved theme preference or default to 'light'
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        html.classList.toggle('dark', currentTheme === 'dark');
-
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const theme = html.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            
-            // Toggle hamburger icon
-            const icon = mobileMenuButton.querySelector('i');
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-                const icon = mobileMenuButton.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Close mobile menu on window resize if desktop view
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768) {
-                mobileMenu.classList.add('hidden');
-                const icon = mobileMenuButton.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Portfolio Tabs
-        const portfolioTabs = document.querySelectorAll('.portfolio-tab');
-        const portfolioContents = document.querySelectorAll('.portfolio-content');
-
-        portfolioTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const targetTab = tab.dataset.tab;
-                
-                // Remove active class from all tabs and contents
-                portfolioTabs.forEach(t => t.classList.remove('active'));
-                portfolioContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding content
-                tab.classList.add('active');
-                document.getElementById(targetTab + '-portfolio').classList.add('active');
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100,
-            disable: function() {
-                // Disable AOS animations on very small screens to prevent overflow
-                return window.innerWidth < 768;
-            }
-        });
-
-        // Webhook notification when this page is accessed
-        window.addEventListener('load', () => {
-            fetch('https://n8n-alip.duckdns.org/webhook/quiz-login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    origin: window.location.href,
-                }),
-            }).catch(() => {});
-        });
-    </script>
+<script src="js/app.js" defer></script>
 </body>
-
-
 </html>

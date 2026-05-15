@@ -1,0 +1,16 @@
+{
+  "name": "Andi Alifsyah Dyasham Portfolio",
+  "short_name": "Andi Alifsyah",
+  "description": "Software Engineer & AI Researcher Portfolio",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "assets/img/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

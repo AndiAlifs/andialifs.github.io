@@ -275,6 +275,14 @@
 
     footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--muted); }
 
+    /* ── BACK NAV ── */
+    .cs-back-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 50px; background: rgba(249,250,251,.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--accent); transition: opacity .15s; text-decoration: none; }
+    .cs-back-link:hover { opacity: .72; }
+    .cs-back-link svg { flex-shrink: 0; }
+    .cs-lang-btn { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--text); cursor: pointer; transition: border-color .15s, color .15s; font-family: 'Inter', sans-serif; }
+    .cs-lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+
 
     /* ── ROOT CAUSE MINING ── */
     .rcm-section {
@@ -457,12 +465,21 @@
 </head>
 <body>
 
+<!-- ── BACK NAV ── -->
+<nav class="cs-back-nav">
+  <a href="../index.html" class="cs-back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    <span data-i18n="back">Back to Portfolio</span>
+  </a>
+  <button id="cs-lang-toggle" class="cs-lang-btn" aria-label="Toggle language">ID</button>
+</nav>
+
 <!-- ══════════════════ HEADER ══════════════════ -->
 <header>
   <div class="inner">
-    <div class="badge">Case Study · IT &amp; AI/ML Consulting</div>
-    <h1>Dari <span>SLA 23%</span> ke Sistem<br>Monitoring Cerdas Berbasis AI</h1>
-    <p>Bagaimana saya membantu tim operasional mendapatkan visibilitas penuh atas ratusan transaksi per hari — dan mencegah SLA breach sebelum terjadi.</p>
+    <div class="badge" data-i18n="header_badge">Case Study · IT &amp; AI/ML Consulting</div>
+    <h1 data-i18n-html="header_h1">From <span>23% SLA</span> to an AI-Powered<br>Intelligent Monitoring System</h1>
+    <p data-i18n="header_p">How I helped an operations team gain full visibility over hundreds of transactions per day — and prevent SLA breaches before they happened.</p>
     <div class="meta-row">
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -470,11 +487,11 @@
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Durasi: ~3 Bulan
+        <span data-i18n="meta_duration">Duration: ~3 Months</span>
       </span>
       <span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        25 Anggota Tim Dipantau
+        <span data-i18n="meta_team">25 Team Members Monitored</span>
       </span>
     </div>
 
@@ -482,19 +499,19 @@
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="num">23%</span>
-        <div class="lbl">SLA compliance sebelum implementasi</div>
+        <div class="lbl" data-i18n="stat_sla_before">SLA compliance before implementation</div>
       </div>
       <div class="hero-stat">
         <span class="num">100%</span>
-        <div class="lbl">SLA compliance di hari pertama go-live</div>
+        <div class="lbl" data-i18n="stat_sla_go_live">SLA compliance on day-one go-live</div>
       </div>
       <div class="hero-stat">
         <span class="num">678</span>
-        <div class="lbl">Transaksi diproses dalam monitoring</div>
+        <div class="lbl" data-i18n="stat_tx_monitored">Transactions processed in monitoring</div>
       </div>
       <div class="hero-stat">
         <span class="num">99%</span>
-        <div class="lbl">Rata-rata SLA compliance pasca implementasi</div>
+        <div class="lbl" data-i18n="stat_sla_avg">Average SLA compliance post-implementation</div>
       </div>
     </div>
   </div>
@@ -505,7 +522,7 @@
 
   <!-- LATAR BELAKANG -->
   <section>
-    <h2>Latar Belakang</h2>
+    <h2 data-i18n="h2_bg">Background</h2>
     <p>
       Klien saya adalah perusahaan dengan volume transaksi operasional yang sangat tinggi — ratusan dokumen diproses setiap harinya oleh tim yang terbagi atas beberapa alur kerja berbeda. Setiap transaksi memiliki SLA yang ketat karena dampak keterlambatan langsung terasa pada kualitas layanan dan kepuasan pelanggan.
     </p>
@@ -521,7 +538,7 @@
 
   <!-- TANTANGAN -->
   <section>
-    <h2>Tantangan: Beroperasi dengan "Blind Spots"</h2>
+    <h2 data-i18n="h2_challenges">Challenges: Operating with "Blind Spots"</h2>
     <p>Setelah sesi discovery mendalam bersama tim operasional dan leadership, saya mengidentifikasi empat root cause utama yang menyebabkan SLA performance hanya di kisaran 23–50%:</p>
 
     <div class="problem-grid">
@@ -552,7 +569,7 @@
 
   <!-- DATA SEBELUM vs SESUDAH -->
   <section>
-    <h2>Bukti Nyata: Sebelum vs Sesudah</h2>
+    <h2 data-i18n="h2_proof">Hard Evidence: Before vs After</h2>
     <p>Ini bukan klaim — ini adalah data aktual dari sistem klien sebelum dan setelah implementasi monitoring dashboard:</p>
 
     <div class="ba-wrapper">
@@ -580,7 +597,7 @@
 
   <!-- SOLUSI -->
   <section>
-    <h2>Solusi yang Saya Bangun</h2>
+    <h2 data-i18n="h2_solution">The Solution I Built</h2>
     <p>
       Saya merancang dan membangun sistem operational monitoring end-to-end yang memberi klien full visibility dan kendali atas setiap transaksi — dari masuk hingga selesai — lengkap dengan AI intelligence layer di atasnya. Core philosophy-nya: <em>centralized tracking tanpa beban administrasi baru bagi tim di lapangan.</em>
     </p>
@@ -628,7 +645,7 @@
 
   <!-- TAMPILAN SISTEM -->
   <section>
-    <h2>Tampilan Sistem Aktual</h2>
+    <h2 data-i18n="h2_screenshots">Actual System Screenshots</h2>
     <p>Berikut adalah tampilan nyata dari sistem yang saya bangun, digunakan langsung oleh tim operasional klien:</p>
 
     <div class="screenshot-section">
@@ -668,7 +685,7 @@
 
   <!-- API-FIRST -->
   <section>
-    <h2>Dibangun API-First: Bisa Terhubung ke Sistem Apapun</h2>
+    <h2 data-i18n="h2_api">Built API-First: Connects to Any System</h2>
     <p>
       Salah satu keputusan architecture terpenting yang saya buat sejak awal adalah membangun sistem ini dengan pendekatan <strong>API-First</strong> — setiap core function tersedia sebagai endpoint yang bisa dipanggil sistem lain, bukan hanya internal interface.
     </p>
@@ -749,7 +766,7 @@
 
   <!-- AI FEATURES -->
   <section>
-    <h2>AI Layer yang Saya Rancang</h2>
+    <h2 data-i18n="h2_ai">The AI Layer I Designed</h2>
     <p>Berbeda dengan sistem monitoring biasa, saya mengintegrasikan AI di titik-titik yang benar-benar deliver value — bukan sekadar label. Tiga AI agent bekerja secara independen, 24/7, tanpa perlu dijalankan manual.</p>
 
     <div class="ai-features">
@@ -981,7 +998,7 @@
 
   <!-- TECH STACK -->
   <section>
-    <h2>Teknologi yang Digunakan</h2>
+    <h2 data-i18n="h2_tech">Technologies Used</h2>
     <p>Saya memilih tech stack yang proven, scalable, dan sesuai kebutuhan klien — bukan yang paling hype.</p>
     <div class="tech-grid">
       <div class="tech-pill"><span class="dot" style="background:#dd0031;"></span>Angular 18</div>
@@ -1000,7 +1017,7 @@
 
   <!-- HASIL -->
   <section>
-    <h2>Hasil yang Dicapai</h2>
+    <h2 data-i18n="h2_results">Results Achieved</h2>
     <p>Dalam tiga bulan dari kickoff hingga go-live, berikut perubahan nyata berdasarkan data aktual dari sistem:</p>
 
     <div class="results-grid">
@@ -1040,7 +1057,7 @@
 
   <!-- BUSINESS IMPACT -->
   <section>
-    <h2>Dampak Bisnis Jangka Panjang</h2>
+    <h2 data-i18n="h2_impact">Long-Term Business Impact</h2>
     <p>Di luar angka-angka di atas, ada tiga perubahan fundamental pada cara klien mengelola operasional mereka:</p>
 
     <div class="impact-grid">
@@ -1066,7 +1083,7 @@
 
   <!-- PELAJARAN -->
   <section>
-    <h2>Insight dari Proyek Ini</h2>
+    <h2 data-i18n="h2_insights">Insights from This Project</h2>
     <p>
       Masalah yang dihadapi klien ini sangat umum — dan tidak eksklusif ke industri mereka. Banyak tim operasional yang bekerja keras, tapi informasinya terpecah-pecah dan tidak mengalir ke tempat yang tepat pada waktu yang tepat. Hasilnya terasa seperti masalah SDM atau resource, padahal root cause-nya adalah <strong>information architecture yang buruk</strong>.
     </p>
@@ -1081,17 +1098,95 @@
   <!-- CTA -->
   <section class="cta-section">
     <div class="inner">
-      <h2>Punya Masalah Operasional yang Belum Terpecahkan?</h2>
-      <p>Saya membantu perusahaan mengubah inefficient process menjadi intelligent system — dari design hingga deployment. Mari mulai dengan free discovery call 30 menit.</p>
-      <a class="cta-btn" href="mailto:andi.dyasham@bankmandiri.co.id">Mulai Diskusi Gratis →</a>
+      <h2 data-i18n="h2_cta">Have an Unsolved Operational Challenge?</h2>
+      <p data-i18n="cta_p">I help companies transform inefficient processes into intelligent systems — from design to deployment. Let's start with a free 30-minute discovery call.</p>
+      <a class="cta-btn" href="mailto:andi.dyasham@bankmandiri.co.id" data-i18n="cta_btn">Start Free Discussion →</a>
     </div>
   </section>
 
 </main>
 
 <footer>
-  © 2026 · IT &amp; AI/ML Consultant · Client identity dirahasiakan untuk menjaga kerahasiaan business information.
+  <span data-i18n="footer_cs">© 2026 · IT &amp; AI/ML Consultant · Client identity kept confidential to protect business information.</span>
 </footer>
 
+<script>
+// Case Study i18n
+const CS_I18N = {
+  EN: {
+    back: 'Back to Portfolio',
+    header_badge: 'Case Study · IT & AI/ML Consulting',
+    header_h1: 'From <span>23% SLA</span> to an AI-Powered<br>Intelligent Monitoring System',
+    header_p: 'How I helped an operations team gain full visibility over hundreds of transactions per day — and prevent SLA breaches before they happened.',
+    meta_duration: 'Duration: ~3 Months',
+    meta_team: '25 Team Members Monitored',
+    stat_sla_before: 'SLA compliance before implementation',
+    stat_sla_go_live: 'SLA compliance on day-one go-live',
+    stat_tx_monitored: 'Transactions processed in monitoring',
+    stat_sla_avg: 'Average SLA compliance post-implementation',
+    h2_bg: 'Background',
+    h2_challenges: 'Challenges: Operating with "Blind Spots"',
+    h2_proof: 'Hard Evidence: Before vs After',
+    h2_solution: 'The Solution I Built',
+    h2_screenshots: 'Actual System Screenshots',
+    h2_api: 'Built API-First: Connects to Any System',
+    h2_ai: 'The AI Layer I Designed',
+    h2_tech: 'Technologies Used',
+    h2_results: 'Results Achieved',
+    h2_impact: 'Long-Term Business Impact',
+    h2_insights: 'Insights from This Project',
+    h2_cta: 'Have an Unsolved Operational Challenge?',
+    cta_p: 'I help companies transform inefficient processes into intelligent systems — from design to deployment. Let\'s start with a free 30-minute discovery call.',
+    cta_btn: 'Start Free Discussion →',
+    footer_cs: '© 2026 · IT & AI/ML Consultant · Client identity kept confidential to protect business information.',
+  },
+  ID: {
+    back: 'Kembali ke Portofolio',
+    header_badge: 'Studi Kasus · Konsultasi IT & AI/ML',
+    header_h1: 'Dari <span>SLA 23%</span> ke Sistem<br>Monitoring Cerdas Berbasis AI',
+    header_p: 'Bagaimana saya membantu tim operasional mendapatkan visibilitas penuh atas ratusan transaksi per hari — dan mencegah SLA breach sebelum terjadi.',
+    meta_duration: 'Durasi: ~3 Bulan',
+    meta_team: '25 Anggota Tim Dipantau',
+    stat_sla_before: 'SLA compliance sebelum implementasi',
+    stat_sla_go_live: 'SLA compliance di hari pertama go-live',
+    stat_tx_monitored: 'Transaksi diproses dalam monitoring',
+    stat_sla_avg: 'Rata-rata SLA compliance pasca implementasi',
+    h2_bg: 'Latar Belakang',
+    h2_challenges: 'Tantangan: Beroperasi dengan "Blind Spots"',
+    h2_proof: 'Bukti Nyata: Sebelum vs Sesudah',
+    h2_solution: 'Solusi yang Saya Bangun',
+    h2_screenshots: 'Tampilan Sistem Aktual',
+    h2_api: 'Dibangun API-First: Bisa Terhubung ke Sistem Apapun',
+    h2_ai: 'AI Layer yang Saya Rancang',
+    h2_tech: 'Teknologi yang Digunakan',
+    h2_results: 'Hasil yang Dicapai',
+    h2_impact: 'Dampak Bisnis Jangka Panjang',
+    h2_insights: 'Insight dari Proyek Ini',
+    h2_cta: 'Punya Masalah Operasional yang Belum Terpecahkan?',
+    cta_p: 'Saya membantu perusahaan mengubah inefficient process menjadi intelligent system — dari design hingga deployment. Mari mulai dengan free discovery call 30 menit.',
+    cta_btn: 'Mulai Diskusi Gratis →',
+    footer_cs: '© 2026 · IT & AI/ML Consultant · Client identity dirahasiakan untuk menjaga kerahasiaan business information.',
+  }
+};
+
+let csLang = localStorage.getItem('lang') || 'EN';
+function csApplyLang(lang) {
+  const d = CS_I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = d[el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = d[el.dataset.i18nHtml];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.getElementById('cs-lang-toggle').textContent = lang === 'EN' ? 'ID' : 'EN';
+  document.documentElement.lang = lang === 'EN' ? 'en' : 'id';
+  localStorage.setItem('lang', lang);
+  csLang = lang;
+}
+document.getElementById('cs-lang-toggle').addEventListener('click', () => csApplyLang(csLang === 'EN' ? 'ID' : 'EN'));
+csApplyLang(csLang);
+</script>
 </body>
 </html>
