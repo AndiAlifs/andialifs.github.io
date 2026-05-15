@@ -31,24 +31,27 @@ function initTheme() {
 function initMobileMenu() {
     const mbtn = document.getElementById('mobile-menu-button');
     const mmenu = document.getElementById('mobile-menu');
-    const micon = () => mbtn.querySelector('i');
     
+    const updateIcon = (isHidden) => {
+        mbtn.innerHTML = isHidden ? '<i class="fas fa-bars"></i>' : '<i class="fas fa-times"></i>';
+    };
+
     mbtn.addEventListener('click', () => {
         mmenu.classList.toggle('hidden');
-        micon().className = mmenu.classList.contains('hidden') ? 'fas fa-bars' : 'fas fa-times';
+        updateIcon(mmenu.classList.contains('hidden'));
     });
     
     document.addEventListener('click', e => {
         if (!mbtn.contains(e.target) && !mmenu.contains(e.target)) {
             mmenu.classList.add('hidden');
-            micon().className = 'fas fa-bars';
+            updateIcon(true);
         }
     });
     
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) {
             mmenu.classList.add('hidden');
-            micon().className = 'fas fa-bars';
+            updateIcon(true);
         }
     });
 }
@@ -79,7 +82,7 @@ function initSmoothScroll() {
                 const mmenu = document.getElementById('mobile-menu');
                 const mbtn = document.getElementById('mobile-menu-button');
                 mmenu.classList.add('hidden');
-                mbtn.querySelector('i').className = 'fas fa-bars';
+                mbtn.innerHTML = '<i class="fas fa-bars"></i>';
             }
         });
     });
@@ -168,7 +171,8 @@ function initWebhook() {
     window.addEventListener('load', () => {
         fetch('https://n8n-alip.duckdns.org/webhook/quiz-login', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify({ origin: window.location.href }),
         }).catch(() => {});
     });
