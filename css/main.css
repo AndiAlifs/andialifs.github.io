@@ -201,7 +201,8 @@ strong { font-weight: 600 }
     margin-bottom: 2rem;
     letter-spacing: -.03em;
 }
-.hero-title em {
+.hero-title em,
+.hero-accent {
     font-style: normal;
     color: var(--accent);
 }
@@ -270,9 +271,9 @@ strong { font-weight: 600 }
 .hero-aside:hover .profile-wrap::after { opacity: .45 }
 .profile-img {
     width: 100%;
-    height: 380px;
+    height: 420px;
     object-fit: cover;
-    object-position: top center;
+    object-position: center 15%;
     border: 1px solid var(--border);
     border-radius: var(--r);
     display: block;
