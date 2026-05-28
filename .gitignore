@@ -1,2 +1,13 @@
 .claude/
 .antigravitycli/
+
+# Common OS / Editor / System Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Common Web Project Files
+node_modules/
+npm-debug.log
+yarn-error.log
