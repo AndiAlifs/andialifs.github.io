@@ -44,12 +44,13 @@
 
 /* ── reset ── */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0 }
-html { scroll-behavior: smooth }
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100% }
 body {
     font-family: var(--F);
     background: var(--bg);
     color: var(--text);
     overflow-x: hidden;
+    max-width: 100%;
     transition: background .3s, color .3s;
     line-height: 1.7;
     font-size: 16px;
@@ -654,5 +655,6 @@ strong { font-weight: 600 }
     .tl-period { align-self: flex-start }
 }
 
-/* AOS overflow fix */
-[data-aos="fade-right"],[data-aos="fade-left"] { overflow: hidden !important }
+/* AOS overflow fix — prevent fade-right/left from creating horizontal scroll */
+.section, .hero-section { overflow-x: clip }
+[data-aos] { backface-visibility: hidden }
