@@ -24,7 +24,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { darkMode: 'class', theme: { extend: {} } }</script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.4.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -83,34 +83,28 @@
 
 <!-- ═══════════════════════════════════════ HERO ══════════════════════════════════════ -->
 <section id="home" class="hero-section">
-    <div class="hero-inner">
-        <div class="hero-text" data-aos="fade-up">
-            <p class="hero-eyebrow" data-i18n="hero_eyebrow">Software Engineer · AI Researcher · Sovereign AI</p>
-            <h1 class="hero-title">Andi<br>Alifsyah<br><em>Dyasham</em></h1>
-            <div class="hero-rule"></div>
-            <p class="hero-sub" data-i18n="hero_sub">
-                Engineer with 3+ years in high-scale banking systems. Best Graduate of Universitas Brawijaya (GPA&nbsp;3.95). Slashed development cycles by 70% through AI automation.
-            </p>
-            <div class="hero-socials">
-                <a href="https://www.linkedin.com/in/andyalyf"                                          target="_blank" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/AndiAlifs"                                                   target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/andyalyfsyah"                                               target="_blank" class="soc-btn"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/andi.alifs/"                                          target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
-                <a href="https://scholar.google.com/citations?user=kedZTroAAAAJ&hl=en&oi=ao"             target="_blank" class="soc-btn"><i class="fas fa-graduation-cap"></i></a>
-            </div>
-            <div class="hero-ctas">
-                <a href="mailto:andyalyfsyah4@gmail.com"              class="btn-primary"><i class="fas fa-envelope"></i> <span data-i18n="hero_cta_contact">Get In Touch</span></a>
-                <a href="assets/CV_AndiAlifsyahEnglish_V2.pdf" target="_blank" class="btn-ghost"><i class="fas fa-download"></i> <span data-i18n="hero_cta_cv">Download CV</span></a>
-            </div>
+    <div class="hero-mesh"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-content" data-aos="fade-up">
+        <div class="profile-wrap">
+            <div class="profile-ring"></div>
+            <img src="assets/img/profile.jpg" alt="Andi Alifsyah" class="profile-img">
         </div>
-        <div class="hero-aside" data-aos="fade-left" data-aos-delay="150">
-            <div class="profile-wrap">
-                <img src="assets/img/profile.jpg" alt="Andi Alifsyah" class="profile-img">
-            </div>
-            <div class="hero-aside-meta">
-                <span class="mono-label">Software Engineer · PT. Bank Mandiri, Tbk</span>
-                <span class="mono-label">Jakarta, Indonesia</span>
-            </div>
+        <p class="hero-eyebrow" data-i18n="hero_eyebrow">Software Engineer · AI Researcher · Sovereign AI</p>
+        <h1 class="hero-title"><span data-i18n="hero_title_prefix">Hi, I'm </span><span class="hero-accent">Andi Alifsyah</span></h1>
+        <p class="hero-sub" data-i18n="hero_sub">
+            Engineer with 3+ years in high-scale banking systems. Best Graduate of Universitas Brawijaya (GPA&nbsp;3.95). Slashed development cycles by 70% through AI automation.
+        </p>
+        <div class="hero-socials">
+            <a href="https://www.linkedin.com/in/andyalyf"                                          target="_blank" class="soc-btn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/AndiAlifs"                                                   target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/andyalyfsyah"                                               target="_blank" class="soc-btn"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/andi.alifs/"                                          target="_blank" class="soc-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://scholar.google.com/citations?user=kedZTroAAAAJ&hl=en&oi=ao"             target="_blank" class="soc-btn"><i class="fas fa-graduation-cap"></i></a>
+        </div>
+        <div class="hero-ctas">
+            <a href="mailto:andyalyfsyah4@gmail.com"              class="btn-primary"><i class="fas fa-envelope"></i> <span data-i18n="hero_cta_contact">Get In Touch</span></a>
+            <a href="assets/CV_AndiAlifsyahEnglish_V2.pdf" target="_blank" class="btn-ghost"><i class="fas fa-download"></i> <span data-i18n="hero_cta_cv">Download CV</span></a>
         </div>
     </div>
     <div class="scroll-hint"><span>scroll</span><i class="fas fa-arrow-down"></i></div>
@@ -120,7 +114,6 @@
 <section id="about" class="section sec-alt">
     <div class="container">
         <div class="sec-hdr" data-aos="fade-up">
-            <span class="sec-num">01 — About</span>
             <span class="eyebrow" data-i18n="about_eyebrow">About Me</span>
             <h2 class="sec-title" data-i18n="about_title">Background & Expertise</h2>
         </div>
@@ -156,7 +149,6 @@
 <section id="experience" class="section">
     <div class="container">
         <div class="sec-hdr" data-aos="fade-up">
-            <span class="sec-num">02 — Experience</span>
             <span class="eyebrow" data-i18n="exp_eyebrow">Experience</span>
             <h2 class="sec-title" data-i18n="exp_title">Professional Journey</h2>
         </div>
@@ -319,7 +311,6 @@
 <section id="education" class="section sec-alt">
     <div class="container">
         <div class="sec-hdr" data-aos="fade-up">
-            <span class="sec-num">03 — Education</span>
             <span class="eyebrow" data-i18n="edu_eyebrow">Education</span>
             <h2 class="sec-title" data-i18n="edu_title">Academic Background</h2>
         </div>
@@ -382,7 +373,6 @@
 <section id="skills" class="section">
     <div class="container">
         <div class="sec-hdr" data-aos="fade-up">
-            <span class="sec-num">04 — Skills</span>
             <span class="eyebrow" data-i18n="skills_eyebrow">Skills</span>
             <h2 class="sec-title" data-i18n="skills_title">Technologies & Expertise</h2>
         </div>
@@ -454,7 +444,6 @@
 <section id="portfolio" class="section sec-alt">
     <div class="container">
         <div class="sec-hdr" data-aos="fade-up">
-            <span class="sec-num">05 — Portfolio</span>
             <span class="eyebrow" data-i18n="portfolio_eyebrow">Portfolio</span>
             <h2 class="sec-title" data-i18n="portfolio_title">Projects & Case Studies</h2>
         </div>
@@ -622,7 +611,6 @@
 <section id="research" class="section">
     <div class="container">
         <div class="sec-hdr" data-aos="fade-up">
-            <span class="sec-num">06 — Research</span>
             <span class="eyebrow" data-i18n="research_eyebrow">Research</span>
             <h2 class="sec-title" data-i18n="research_title">Publications & Scientific Work</h2>
         </div>
@@ -658,7 +646,6 @@
 <section id="awards" class="section">
     <div class="container">
         <div class="sec-hdr" data-aos="fade-up">
-            <span class="sec-num">07 — Awards</span>
             <span class="eyebrow" data-i18n="awards_eyebrow">Awards & Recognition</span>
             <h2 class="sec-title" data-i18n="awards_title">Excellence & Achievements</h2>
         </div>
@@ -680,8 +667,7 @@
 <!-- ═══════════════════════════════════════ CONTACT ══════════════════════════════════ -->
 <section id="contact" class="section sec-alt">
     <div class="container">
-        <div class="sec-hdr centered" data-aos="fade-up">
-            <span class="sec-num">08 — Contact</span>
+        <div class="sec-hdr" data-aos="fade-up">
             <span class="eyebrow" data-i18n="contact_eyebrow">Contact</span>
             <h2 class="sec-title" data-i18n="contact_title">Get In Touch</h2>
             <p class="sec-desc" data-i18n="contact_desc">Let's connect and discuss opportunities</p>
