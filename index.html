@@ -45,7 +45,6 @@
 <nav id="navbar">
     <div class="nav-inner">
         <a href="#home" class="nav-logo">
-            <span class="nav-logo-mark">AA</span>
             <span class="nav-logo-name">Andi Alifsyah</span>
         </a>
         <div class="nav-links">
@@ -800,14 +799,24 @@
 </section>
 
 <!-- ═══════════════════════════════════════ CONTACT ══════════════════════════════════ -->
-<section id="contact" class="section sec-alt">
-    <div class="container">
+<section id="contact" class="section sec-alt relative overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <!-- Glowing Orbs -->
+        <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[140%] bg-gradient-to-br from-amber-600/10 to-transparent blur-3xl rounded-full transform rotate-12"></div>
+        <div class="absolute -bottom-[20%] -right-[10%] w-[50%] h-[140%] bg-gradient-to-tl from-orange-600/10 to-transparent blur-3xl rounded-full transform -rotate-12"></div>
+        
+        <!-- Subtle Grid Pattern -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTM5IDM5VjFoLTM4djM4aDM4eiIgZmlsbD0icmdiYSgyOCwgMjUsIDIzLCAwLjAzKSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] dark:bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgwVjB6bTM5IDM5VjFoLTM4djM4aDM4eiIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] opacity-50"></div>
+    </div>
+
+    <div class="container relative z-10">
         <div class="sec-hdr" data-aos="fade-up">
             <span class="eyebrow" data-i18n="contact_eyebrow">Contact</span>
             <h2 class="sec-title" data-i18n="contact_title">Get In Touch</h2>
             <p class="sec-desc" data-i18n="contact_desc">Let's connect and discuss opportunities</p>
         </div>
-        <div class="contact-wrap" data-aos="fade-up">
+        <div class="contact-wrap">
             <div class="contact-socials">
                 <a href="https://www.linkedin.com/in/andyalyf"    target="_blank" class="soc-lg"><i class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/AndiAlifs"             target="_blank" class="soc-lg"><i class="fab fa-github"></i></a>
