@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Smart-RM Co-Pilot</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:  #1C1917;
+      --accent:   #2563EB;
+      --accent2:  #3B82F6;
+      --green:    #15803D;
+      --amber:    #D97706;
+      --red:      #B91C1C;
+      --surface:  #F8FAFC;
+      --card:     #FFFFFF;
+      --border:   rgba(28,25,23,.13);
+      --text:     #1C1917;
+      --muted:    #64748B;
+    }
+
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+
+    /* ── HEADER ── */
+    header {
+      background: #0F172A;
+      color: #fff; padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden;
+    }
+    header .inner { position: relative; max-width: 780px; margin: 0 auto; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      color: #93C5FD; font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
+    }
+    header h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -.02em; }
+    header h1 span { color: #60A5FA; }
+    header p { font-size: 17px; color: #CBD5E1; max-width: 600px; margin: 0 auto 36px; }
+
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #94A3B8; }
+    .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── HERO STATS ── */
+    .hero-stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+      margin-top: 48px; position: relative;
+    }
+    .hero-stat {
+      flex: 1; min-width: 130px; max-width: 200px;
+      padding: 24px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .num {
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #60A5FA; display: block;
+    }
+    .hero-stat .lbl { font-size: 13px; color: #94A3B8; margin-top: 4px; line-height: 1.4; }
+
+    /* ── LAYOUT ── */
+    main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+    section { margin-bottom: 64px; }
+
+    h2 {
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2::before {
+      content: ''; display: inline-block; width: 3px; height: 20px;
+      background: var(--accent);
+      border-radius: 1px; flex-shrink: 0;
+    }
+
+    p { color: #334155; margin-bottom: 14px; font-size: 15.5px; }
+
+    .highlight {
+      background: #EFF6FF;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #1E3A8A; font-style: normal;
+    }
+
+    /* ── PROBLEM CARDS ── */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .problem-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 20px;
+    }
+    .problem-icon {
+      width: 40px; height: 40px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px;
+    }
+    .problem-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+    .problem-card p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    /* ── BEFORE/AFTER DATA ── */
+    .ba-wrapper {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px;
+      align-items: center; margin: 28px 0;
+    }
+    .ba-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 22px;
+    }
+    .ba-card.before { border-top: 3px solid var(--red); }
+    .ba-card.after  { border-top: 3px solid var(--green); }
+    .ba-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+    .ba-card.before .ba-label { color: var(--red); }
+    .ba-card.after  .ba-label { color: var(--green); }
+    .ba-num { font-size: 42px; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+    .ba-card.before .ba-num { color: var(--red); }
+    .ba-card.after  .ba-num { color: var(--green); }
+    .ba-desc { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+    .ba-arrow { font-size: 28px; color: var(--accent); text-align: center; }
+
+    /* ── SCREENSHOTS ── */
+    .screenshot-item { margin-bottom: 32px; }
+    .screenshot-item .sc-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .screenshot-item .sc-title { font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
+    .screenshot-item .sc-desc  { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+    .screenshot-item img {
+      width: 100%; border-radius: 4px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* ── TECH STACK ── */
+    .tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .tech-pill {
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--text);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tech-pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
+
+    /* ── BACK NAV ── */
+    .cs-back-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 50px; background: rgba(248,250,252,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+    
+    footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<nav class="cs-back-nav">
+  <a href="../index.html" class="cs-back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    <span>Back to Portfolio</span>
+  </a>
+</nav>
+
+<header>
+  <div class="inner">
+    <div class="badge">Case Study · Banking AI Co-Pilot</div>
+    <h1>From Manual Tracking to an AI-Powered <span>Smart-RM Co-Pilot</span></h1>
+    <p>How I helped corporate banking Relationship Managers (RM) eliminate liquidity unbalance and proactively prevent relationship risk with AI.</p>
+    <div class="meta-row">
+      <span>2026</span>
+      <span>Duration: ~1 Month</span>
+      <span>Corporate Banking</span>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">100%</span>
+        <div class="lbl">SME Loan Opportunity Visibility</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">0</span>
+        <div class="lbl">Ignored VIP Clients >90 days</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">1-Click</span>
+        <div class="lbl">AI Script Generation</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <h2>Background</h2>
+    <p>
+      In corporate banking, Relationship Managers (RMs) handle large portfolios of corporate clients. The branch faced a critical "Liquidity Unbalance": they had extremely high funding (Giro balances) but very low lending (SME Loans). 
+    </p>
+    <p>
+      Despite the obvious potential, RMs were struggling to identify which clients to cross-sell to because the data was scattered. Furthermore, long-time loyal clients were being ignored for months, increasing the risk of churn to competitor banks.
+    </p>
+    <div class="highlight">
+      "We had clients with billions in Giro but zero loans. By the time we realized they needed working capital, they had already moved to a competitor."
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>Challenges: The "Blind Spots" of RM</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon" style="background:#fee2e2;">⚠️</div>
+        <h3>Liquidity Imbalance</h3>
+        <p>A massive gap between high Giro deposits and low SME loan penetration, leaving huge potential revenue on the table.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:#fef3c7;">⏳</div>
+        <h3>Relationship Risk</h3>
+        <p>Loyal clients (>10 years tenure) were frequently ignored for over 90 days, increasing churn risk without the RM knowing.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="background:#e0f2fe;">📝</div>
+        <h3>Manual Pitching</h3>
+        <p>RMs spent hours drafting manual engagement and cross-selling scripts, leading to inconsistent messaging and delays.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>The Solution: Smart-RM Co-Pilot</h2>
+    <p>
+      I designed and developed the **Smart-RM Co-Pilot**, an intelligent dashboard that turns scattered client data into actionable insights and ready-to-send AI communications.
+    </p>
+    
+    <div class="screenshot-item" style="margin-top: 30px;">
+      <div class="sc-label">System Preview</div>
+      <div class="sc-title">Corporate Banking Dashboard</div>
+      <div class="sc-desc">A unified view displaying critical liquidity unbalances, SME loan opportunities, and prioritized alerts for at-risk VIP clients.</div>
+      <img src="../assets/img/branchx_crm_dashboard.png" alt="Smart-RM Co-Pilot Dashboard Screenshot" />
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>Hard Evidence: Before vs After</h2>
+    <div class="ba-wrapper">
+      <div class="ba-card before">
+        <div class="ba-label">Before Implementation</div>
+        <div class="ba-num">Manual</div>
+        <div class="ba-desc">RMs manually scoured Excel sheets to find cross-selling targets. High risk of ignoring 10+ year clients due to lack of visibility.</div>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-card after">
+        <div class="ba-label">After Smart-RM</div>
+        <div class="ba-num">100% Auto</div>
+        <div class="ba-desc">Dashboard instantly highlights "TARGET SME LOAN" and flags "CRITICAL" relationship risks with 1-click AI scripts ready to send.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>Technologies Used</h2>
+    <div class="tech-grid">
+      <div class="tech-pill"><span class="dot" style="background:#FF4B4B;"></span>Streamlit</div>
+      <div class="tech-pill"><span class="dot" style="background:#150458;"></span>Pandas</div>
+      <div class="tech-pill"><span class="dot" style="background:#3F4F75;"></span>Plotly Express</div>
+      <div class="tech-pill"><span class="dot" style="background:#0ea5e9;"></span>Python</div>
+      <div class="tech-pill"><span class="dot" style="background:#10B981;"></span>AI Prompt Engineering</div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>Long-Term Business Impact</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <h3>Objective Targeting</h3>
+        <p>RMs no longer guess who to call. The system directly targets accounts with high Giro balances and no active loans.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Zero Churn from Neglect</h3>
+        <p>With color-coded SLA alerts on "Days Since Contact", no loyal client is ever left unengaged for more than 90 days.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Hyper-Personalization</h3>
+        <p>The AI automatically drafts WhatsApp scripts based on the client's tenure, financial gap, and historical context.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© 2026 · IT & AI/ML Consultant · Corporate Banking System Portofolio</span>
+</footer>
+
+</body>
+</html>

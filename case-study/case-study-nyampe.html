@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — NYAMPE Attendance System</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:  #1C1917;
+      --accent:   #B45309;
+      --accent2:  #D97706;
+      --green:    #15803D;
+      --amber:    #D97706;
+      --red:      #B91C1C;
+      --surface:  #F5F1EA;
+      --card:     #FAF7F2;
+      --border:   rgba(28,25,23,.13);
+      --text:     #1C1917;
+      --muted:    #6B6560;
+    }
+
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+
+    /* ── HEADER ── */
+    header {
+      background: #1C0F05;
+      color: #fff; padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden;
+    }
+    header::before { display: none; }
+    header .inner { position: relative; max-width: 780px; margin: 0 auto; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      color: #C4B49A; font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
+    }
+    header h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -.02em; }
+    header h1 span { color: #D97706; }
+    header p { font-size: 17px; color: #C4B49A; max-width: 600px; margin: 0 auto 36px; }
+
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #A08060; }
+    .meta-row span { display: flex; align-items: center; gap: 6px; }
+    .meta-row i { color: #D97706; }
+
+    /* ── HERO STATS ── */
+    .hero-stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+      margin-top: 48px; position: relative;
+    }
+    .hero-stat {
+      flex: 1; min-width: 130px; max-width: 200px;
+      padding: 24px 20px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .num {
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #D97706; display: block;
+    }
+    .hero-stat .lbl { font-size: 13px; color: #A08060; margin-top: 4px; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── LAYOUT ── */
+    main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+    section { margin-bottom: 64px; }
+
+    h2 {
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2::before {
+      content: ''; display: inline-block; width: 3px; height: 20px;
+      background: var(--accent);
+      border-radius: 1px; flex-shrink: 0;
+    }
+    h3.sub { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); margin: 28px 0 14px; }
+
+    p { color: #57534E; margin-bottom: 14px; font-size: 15.5px; }
+    p:last-child { margin-bottom: 0; }
+
+    .highlight {
+      background: #F4EBD8;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #92400E; font-style: normal;
+    }
+
+    .diagram-container {
+      margin: 32px 0;
+      background: var(--card);
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    .architecture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .architecture-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 20px;
+    }
+    .architecture-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--primary); }
+    .architecture-card p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    /* ── SOLUTION STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .step {
+      display: flex; gap: 16px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 6px; padding: 20px 22px;
+    }
+    .step-num {
+      width: 32px; height: 32px; background: var(--accent);
+      color: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; flex-shrink: 0;
+    }
+    .step-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
+    .step-body p { font-size: 14px; color: var(--muted); margin: 0; }
+
+    .tag { display: inline-block; padding: 2px 8px; background: #FEF3C7; color: #92400E; border-radius: 4px; font-size: 12px; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
+
+    /* ── NAV ── */
+    .nav-top { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+    .back-link { color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: color .2s; }
+    .back-link:hover { color: #fff; }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Mermaid.js for Diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'DM Sans' });
+    });
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="nav-top">
+      <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    </div>
+    <div class="inner">
+      <span class="badge">Full Stack Development</span>
+      <h1>NYAMPE: <span>GPS-Verified</span> Electronic Attendance</h1>
+      <p>Automating attendance tracking with precise HTML5 GPS coordinates and Server-Side Haversine distance calculations, eliminating fraud and reducing manual manager overhead by 83%.</p>
+      
+      <div class="meta-row">
+        <span><i class="fas fa-building"></i> HR Tech & Operations</span>
+        <span><i class="fas fa-calendar-alt"></i> 2026</span>
+        <span><i class="fas fa-code"></i> Golang, Angular, MySQL</span>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="num">83%</span>
+          <span class="lbl">Less Admin Time</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">5+</span>
+          <span class="lbl">Organizations</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">1m</span>
+          <span class="lbl">GPS Accuracy</span>
+        </div>
+        <div class="hero-stat">
+          <span class="num">1-Click</span>
+          <span class="lbl">Auto-Approval</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>The Challenge</h2>
+      <p>Traditional attendance systems are vulnerable to fraud, such as buddy punching or spoofed locations, and create heavy administrative overhead for managers. Validating who was actually on-site required manual checking of paper cards or trusting easily forgeable apps. The client needed a bullet-proof system to automatically verify employee locations using exact coordinates without requiring expensive physical biometric devices.</p>
+      <div class="highlight">
+        "We needed to automate the approval of hundreds of daily clock-ins, ensuring personnel were physically within their assigned office radiuses, while gracefully handling off-site exceptions."
+      </div>
+    </section>
+
+    <section>
+      <h2>Architectural Overhaul</h2>
+      <p>I architected and developed NYAMPE from the ground up using a high-performance <strong>Go (Golang)</strong> backend, powered by the Gin framework and GORM, and a responsive <strong>Angular 16</strong> frontend. The system relies on precise mathematical computations for location validation.</p>
+      
+      <div class="diagram-container">
+        <div class="mermaid">
+        graph TD
+            Employee[Employee Browser] -->|HTML5 Geolocation| API(Go Backend)
+            
+            subgraph Location Engine [Server-Side Haversine Verification]
+                API --> Distance[Calculate Haversine Distance]
+                Distance --> DB[(MySQL 8.0)]
+                DB -->|Fetch Office Target GPS| Distance
+            end
+            
+            Distance -->|Distance <= Radius| AutoApprove[✅ Auto-Approved]
+            Distance -->|Distance > Radius| Pending[⚠️ Pending Manual Review]
+            
+            AutoApprove --> Dashboard[Manager Real-Time Dashboard]
+            Pending --> Dashboard
+
+            style Employee fill:#F5F1EA,stroke:#C4B49A,stroke-width:1px
+            style API fill:#FEF3C7,stroke:#B45309,stroke-width:2px,color:#92400E
+            style Distance fill:#FAF7F2,stroke:#C4B49A,stroke-width:1px
+            style DB fill:#EDE8DC,stroke:#A08060,stroke-width:1px
+            style AutoApprove fill:#dcfce7,stroke:#16a34a,stroke-width:1px
+            style Pending fill:#fef08a,stroke:#ca8a04,stroke-width:1px
+            style Dashboard fill:#F5F1EA,stroke:#C4B49A,stroke-width:1px
+        </div>
+      </div>
+
+      <div class="architecture-grid">
+        <div class="architecture-card">
+          <h3>Go Micro-Backend</h3>
+          <p>Utilizes Gin Web Framework and GORM for lightning-fast API responses and database migrations.</p>
+        </div>
+        <div class="architecture-card">
+          <h3>Angular 16 Frontend</h3>
+          <p>Reactive forms and TailwindCSS deliver a seamless, native-feeling mobile and desktop experience.</p>
+        </div>
+        <div class="architecture-card">
+          <h3>Stateless RBAC</h3>
+          <p>Role-Based Access Control via stateless JWTs separating Employees, Managers, and Super Admins.</p>
+        </div>
+        <div class="architecture-card">
+          <h3>Multi-Office Support</h3>
+          <p>Dynamic configuration allowing managers to oversee 1-4 offices, each with custom coordinates and radiuses.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Deep Dive: Core Implementations</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Server-Side Haversine Formula</h3>
+            <p>To prevent location spoofing, the browser captures the HTML5 Geolocation, but the validation logic is strictly server-side. The Go backend computes the great-circle distance between the employee's coordinates and their assigned office profile, accurate to approximately 1 meter.</p>
+            <div style="margin-top: 8px;">
+              <span class="tag">utils/distance.go</span> <span class="tag">Math Computation</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>One-Click Auto-Approval Workflow</h3>
+            <p>If the calculated distance is less than or equal to the configured allowed radius, the system instantly marks the attendance as <strong>Approved</strong>. If not, it falls into a <strong>Pending</strong> state, securely queuing it for manual review by a Manager in the dashboard.</p>
+            <div style="margin-top: 8px;">
+              <span class="tag">Workflow Automation</span> <span class="tag">State Management</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Real-Time Manager Dashboard</h3>
+            <p>A reactive queue provides managers with a real-time overview of Present, Absent, Late, or On Leave personnel across multiple branches, enabling immediate oversight and rapid exception handling.</p>
+            <div style="margin-top: 8px;">
+              <span class="tag">RxJS</span> <span class="tag">Angular Components</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Application Interface</h2>
+      <p>A look at the modern, responsive UI designed for both employees in the field and managers in the office.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 24px;">
+        <div>
+          <img src="../assets/img/ssprojek/nyampe_clockin.png" alt="Employee Clock-In Mobile View" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+          <h3 style="font-size: 14px; font-weight: 700; margin-top: 12px; color: var(--primary);">Employee Clock-In</h3>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">GPS-verified attendance with 1-click auto-approval.</p>
+        </div>
+        <div>
+          <img src="../assets/img/ssprojek/nyampe_dashboard.png" alt="Manager Dashboard Desktop View" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+          <h3 style="font-size: 14px; font-weight: 700; margin-top: 12px; color: var(--primary);">Manager Dashboard</h3>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">Real-time queue of personnel status and exceptions.</p>
+        </div>
+        <div>
+          <img src="../assets/img/ssprojek/nyampe_leave.png" alt="Leave Management Screen" style="width: 100%; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+          <h3 style="font-size: 14px; font-weight: 700; margin-top: 12px; color: var(--primary);">Leave Management</h3>
+          <p style="font-size: 13px; color: var(--muted); margin-top: 4px;">Streamlined workflow for requesting and approving time off.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Results & Impact</h2>
+      <p>The NYAMPE platform revolutionized attendance tracking for our clients, creating a frictionless experience for employees and unparalleled visibility for management.</p>
+      <ul>
+        <li style="margin-bottom: 8px;">Reduced daily manager administrative overhead from ~30 minutes to just <strong>~5 minutes</strong> (an 83% reduction).</li>
+        <li style="margin-bottom: 8px;">Completely eliminated "buddy punching" and effectively mitigated location fraud.</li>
+        <li style="margin-bottom: 8px;">Currently utilized by <strong>5+ organizations</strong>, scaling gracefully with Go's efficient concurrency model.</li>
+      </ul>
+    </section>
+
+  </main>
+</body>
+</html>

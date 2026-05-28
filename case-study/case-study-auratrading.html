@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study — Aura Swing-Trade Co-Pilot</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:  #F8FAFC;
+      --accent:   #4ADE80;
+      --accent2:  #22C55E;
+      --red:      #F87171;
+      --surface:  #0F172A;
+      --card:     #1E293B;
+      --border:   #334155;
+      --text:     #CBD5E1;
+      --muted:    #94A3B8;
+    }
+
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+
+    /* ── HEADER ── */
+    header {
+      background: #020617;
+      color: #fff; padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    header .inner { position: relative; max-width: 780px; margin: 0 auto; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.2);
+      color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
+    }
+    header h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -.02em; color: #fff;}
+    header h1 span { color: var(--accent); }
+    header p { font-size: 17px; color: var(--muted); max-width: 600px; margin: 0 auto 36px; }
+
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: var(--muted); }
+    .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── HERO STATS ── */
+    .hero-stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+      margin-top: 48px; position: relative;
+    }
+    .hero-stat {
+      flex: 1; min-width: 130px; max-width: 200px;
+      padding: 24px 20px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .num {
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: var(--accent); display: block;
+    }
+    .hero-stat .lbl { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+    /* ── LAYOUT ── */
+    main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+    section { margin-bottom: 64px; }
+
+    h2 {
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2::before {
+      content: ''; display: inline-block; width: 3px; height: 20px;
+      background: var(--accent);
+      border-radius: 1px; flex-shrink: 0;
+    }
+
+    p { color: var(--text); margin-bottom: 14px; font-size: 15.5px; }
+
+    .highlight {
+      background: rgba(74, 222, 128, 0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #fff; font-style: normal;
+    }
+
+    /* ── PROBLEM CARDS ── */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .problem-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 20px;
+    }
+    .problem-icon {
+      width: 40px; height: 40px; border-radius: 6px; background: rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 12px;
+    }
+    .problem-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #fff; }
+    .problem-card p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+    /* ── FLOW DIAGRAM ── */
+    .flow-diagram {
+      display: flex; align-items: center; gap: 0;
+      margin: 32px 0 28px; overflow-x: auto; padding: 4px 0;
+    }
+    .flow-node {
+      flex: 1; min-width: 120px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 16px 12px; text-align: center; flex-shrink: 0;
+    }
+    .node-source { border-color: var(--accent); background: rgba(74, 222, 128, 0.05); }
+    .flow-icon   { font-size: 26px; margin-bottom: 8px; }
+    .flow-label  { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.4; }
+    .flow-label span { font-weight: 400; color: var(--muted); font-size: 11.5px; display: block; }
+    .flow-arrow {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 0 4px; flex-shrink: 0; min-width: 60px; color: var(--accent);
+    }
+    .arrow-line { width: 100%; height: 2px; background: var(--accent); border-radius: 1px; }
+
+    /* ── SCREENSHOTS ── */
+    .screenshot-item { margin-bottom: 32px; }
+    .screenshot-item .sc-label {
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--accent); margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .screenshot-item .sc-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .screenshot-item .sc-desc  { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+    .screenshot-item img {
+      width: 100%; border-radius: 4px; border: 1px solid var(--border);
+    }
+
+    /* ── TECH STACK ── */
+    .tech-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .tech-pill {
+      background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 14px; font-size: 13px; font-weight: 500; color: #fff;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .tech-pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
+
+    /* ── BACK NAV ── */
+    .cs-back-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 50px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+    
+    footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<nav class="cs-back-nav">
+  <a href="../index.html" class="cs-back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    <span>Back to Portfolio</span>
+  </a>
+</nav>
+
+<header>
+  <div class="inner">
+    <div class="badge">Case Study · Agentic AI Architecture</div>
+    <h1>Aura: The Agentic AI <span>Swing-Trade Co-Pilot</span></h1>
+    <p>Solving the emotional trading problem for retail investors with a hyper-logical, RAG-powered quantitative analyst built with Angular and Go.</p>
+    <div class="meta-row">
+      <span>2026</span>
+      <span>Gemini 3.1 Pro Integrated</span>
+      <span>Vercel Monorepo</span>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">Live</span>
+        <div class="lbl">RapidAPI Yahoo Finance Data</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">Strict</span>
+        <div class="lbl">JSON AI Output Enforcement</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">&lt;2s</span>
+        <div class="lbl">Go Serverless Execution</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <h2>Background</h2>
+    <p>
+      Retail stock investors often fall victim to emotional trading, particularly when executing short-term swing trades or BSJP (Beli Sore Jual Pagi) strategies on the Indonesian Stock Exchange (IDX). They rely on scattered, unstructured chat-bot outputs which fuel intuition over logic.
+    </p>
+    <p>
+      I built <strong>Aura</strong> to be a hyper-logical, risk-averse Lead System Architect & Quantitative Analyst. She speaks in technical certainties and outputs structured data, completely removing conversational fluff and emotional bias from trading.
+    </p>
+    <div class="highlight">
+      "The goal was to force an LLM to output structured quantitative setups rather than conversational text, forcing the user into a logical trading framework."
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>Challenges: Combating Emotional Trading</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🧠</div>
+        <h3>Emotional Bias</h3>
+        <p>Investors make irrational decisions based on market panic or hype. They need cold, hard quantitative limits (Entry, Take Profit, Stop Loss).</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📉</div>
+        <h3>Unstructured Data</h3>
+        <p>Standard LLMs output paragraphs of text which are hard to parse quickly during fast-moving trading hours.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⏱️</div>
+        <h3>Delayed Analysis</h3>
+        <p>Flipping between Yahoo Finance, charting tools, and ChatGPT takes too long for BSJP strategies where minutes matter.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>The Solution: Agentic RAG Workflow</h2>
+    <p>
+      Aura is built on an agentic RAG workflow. Instead of acting as a standard chatbot, she pulls live market data via RapidAPI behind the scenes, analyzes it using Google's Gemini 3.1 Pro, and enforces a strict JSON output schema.
+    </p>
+    
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="flow-icon">💻</div>
+        <div class="flow-label">User Query<span>Angular UI</span></div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-source">
+        <div class="flow-icon">⚡</div>
+        <div class="flow-label">Go Serverless API<span>Fetch RapidAPI Live Data</span></div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="flow-icon">🧠</div>
+        <div class="flow-label">Gemini 3.1 Pro<span>Agentic Analysis</span></div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node node-source">
+        <div class="flow-icon">📊</div>
+        <div class="flow-label">JSON Strategy Card<span>Rendered on UI</span></div>
+      </div>
+    </div>
+
+    <div class="screenshot-item" style="margin-top: 40px;">
+      <div class="sc-label">System Preview</div>
+      <div class="sc-title">Dark Mode Quantitative Strategy UI</div>
+      <div class="sc-desc">A highly logical interface showing exact Entry, Take Profit (Green), and Stop Loss (Red) values generated by the AI based on live data.</div>
+      <img src="../assets/img/aura_trading_dashboard.png" alt="Aura Trading Copilot Screenshot" />
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section>
+    <h2>Architecture & Technologies</h2>
+    <p>Aura uses a Vercel-optimized Monorepo to maintain security and performance, bridging a frontend SPA with serverless backend functions.</p>
+    <div class="tech-grid">
+      <div class="tech-pill"><span class="dot" style="background:#DD0031;"></span>Angular 18</div>
+      <div class="tech-pill"><span class="dot" style="background:#00ADD8;"></span>Go (Golang)</div>
+      <div class="tech-pill"><span class="dot" style="background:#000000;"></span>Vercel Serverless Functions</div>
+      <div class="tech-pill"><span class="dot" style="background:#4285F4;"></span>Gemini 3.1 Pro API</div>
+      <div class="tech-pill"><span class="dot" style="background:#38BDF8;"></span>Tailwind CSS (Slate/Neon)</div>
+      <div class="tech-pill"><span class="dot" style="background:#10B981;"></span>RapidAPI (Yahoo Finance)</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© 2026 · IT & AI/ML Consultant · Quantitative Trading Systems</span>
+</footer>
+
+</body>
+</html>
