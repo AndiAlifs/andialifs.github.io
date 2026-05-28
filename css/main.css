@@ -474,7 +474,7 @@ strong { font-weight: 600 }
 .exp-desc { font-family: var(--FM); font-size: .8125rem; color: var(--muted); line-height: 1.55 }
 
 /* ── portfolio tabs ── */
-.tabs-wrap { margin-bottom: 2.5rem }
+.tabs-wrap { margin-bottom: 2.5rem; display: flex; justify-content: center }
 .tabs {
     display: inline-flex;
     border-bottom: 1px solid var(--rule);
@@ -552,9 +552,9 @@ strong { font-weight: 600 }
     transition: border-color .2s, box-shadow .2s;
 }
 .proj-card:hover { border-color: var(--accent); box-shadow: var(--sh) }
-.proj-img { overflow: hidden; height: 10rem }
-.proj-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; filter: grayscale(15%) }
-.proj-card:hover .proj-img img { transform: scale(1.04); filter: grayscale(0%) }
+.proj-img { overflow: hidden; height: 11rem; background: var(--bg-alt); display: flex; align-items: center; justify-content: center }
+.proj-img img { width: 100%; height: 100%; object-fit: contain; transition: transform .35s; filter: none }
+.proj-card:hover .proj-img img { transform: scale(1.03) }
 .proj-body { padding: 1.25rem }
 .proj-title { font-family: var(--FD); font-size: 1.0625rem; font-weight: 700; font-style: normal; margin-bottom: .375rem; color: var(--text); letter-spacing: -.01em }
 .proj-desc { font-size: .9375rem; color: var(--muted); line-height: 1.65; margin-bottom: .875rem }
