@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Case Study — SNAP-BI Open API Gateway</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary:  #111827;
-      --accent:   #4f46e5;
-      --accent2:  #4f46e5;
-      --green:    #16a34a;
-      --amber:    #d97706;
-      --red:      #dc2626;
-      --surface:  #f9fafb;
-      --card:     #ffffff;
-      --border:   #e5e7eb;
-      --text:     #111827;
-      --muted:    #6b7280;
+      --primary:  #1C1917;
+      --accent:   #B45309;
+      --accent2:  #D97706;
+      --green:    #15803D;
+      --amber:    #D97706;
+      --red:      #B91C1C;
+      --surface:  #F5F1EA;
+      --card:     #FAF7F2;
+      --border:   rgba(28,25,23,.13);
+      --text:     #1C1917;
+      --muted:    #6B6560;
     }
 
-    body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
 
     /* ── HEADER ── */
     header {
-      background: #111827;
+      background: #1C0F05;
       color: #fff; padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden;
     }
     header::before { display: none; }
@@ -36,16 +36,16 @@
     .badge {
       display: inline-block;
       background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
-      color: #9ca3af; font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      color: #C4B49A; font-size: 11px; font-weight: 600; letter-spacing: .1em;
       text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
     }
-    header h1 { font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -.02em; }
-    header h1 span { color: #a5b4fc; }
-    header p { font-size: 17px; color: #cbd5e1; max-width: 600px; margin: 0 auto 36px; }
+    header h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -.02em; }
+    header h1 span { color: #D97706; }
+    header p { font-size: 17px; color: #C4B49A; max-width: 600px; margin: 0 auto 36px; }
 
-    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #94a3b8; }
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #A08060; }
     .meta-row span { display: flex; align-items: center; gap: 6px; }
-    .meta-row i { color: #a5b4fc; }
+    .meta-row i { color: #D97706; }
 
     /* ── HERO STATS ── */
     .hero-stats {
@@ -59,16 +59,16 @@
     }
     .hero-stat:last-child { border-right: none; }
     .hero-stat .num {
-      font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #a5b4fc; display: block;
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #D97706; display: block;
     }
-    .hero-stat .lbl { font-size: 12px; color: #94a3b8; margin-top: 4px; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
+    .hero-stat .lbl { font-size: 13px; color: #A08060; margin-top: 4px; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
 
     /* ── LAYOUT ── */
     main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
     section { margin-bottom: 64px; }
 
     h2 {
-      font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
       display: flex; align-items: center; gap: 10px;
     }
     h2::before {
@@ -76,16 +76,16 @@
       background: var(--accent);
       border-radius: 1px; flex-shrink: 0;
     }
-    h3.sub { font-size: 16px; font-weight: 600; color: var(--primary); margin: 28px 0 14px; }
+    h3.sub { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); margin: 28px 0 14px; }
 
-    p { color: #334155; margin-bottom: 14px; font-size: 15.5px; }
+    p { color: #57534E; margin-bottom: 14px; font-size: 15.5px; }
     p:last-child { margin-bottom: 0; }
 
     .highlight {
-      background: #eef2ff;
+      background: #F4EBD8;
       border-left: 3px solid var(--accent);
       border-radius: 0 4px 4px 0;
-      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #3730a3; font-style: italic;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #92400E; font-style: normal;
     }
 
     .diagram-container {
@@ -120,7 +120,7 @@
     .step-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
     .step-body p { font-size: 14px; color: var(--muted); margin: 0; }
 
-    .tag { display: inline-block; padding: 2px 8px; background: #e0e7ff; color: #3730a3; border-radius: 4px; font-size: 12px; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
+    .tag { display: inline-block; padding: 2px 8px; background: #FEF3C7; color: #92400E; border-radius: 4px; font-size: 12px; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
 
     /* ── NAV ── */
     .nav-top { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
@@ -133,7 +133,7 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'Inter' });
+      mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'DM Sans' });
     });
   </script>
 </head>
@@ -205,16 +205,16 @@
             Idemp -.->|TCP| RD
             Trx -->|Legacy Protocols| Core[(Legacy Core System)]
 
-            style Client fill:#f9fafb,stroke:#cbd5e1,stroke-width:1px
-            style GW fill:#eef2ff,stroke:#4f46e5,stroke-width:2px,color:#3730a3
-            style Auth fill:#ffffff,stroke:#94a3b8,stroke-width:1px
-            style RL fill:#ffffff,stroke:#94a3b8,stroke-width:1px
-            style Idemp fill:#ffffff,stroke:#94a3b8,stroke-width:1px
-            style Trx fill:#ffffff,stroke:#94a3b8,stroke-width:1px
+            style Client fill:#F5F1EA,stroke:#C4B49A,stroke-width:1px
+            style GW fill:#FEF3C7,stroke:#B45309,stroke-width:2px,color:#92400E
+            style Auth fill:#FAF7F2,stroke:#C4B49A,stroke-width:1px
+            style RL fill:#FAF7F2,stroke:#C4B49A,stroke-width:1px
+            style Idemp fill:#FAF7F2,stroke:#C4B49A,stroke-width:1px
+            style Trx fill:#FAF7F2,stroke:#C4B49A,stroke-width:1px
             style KC fill:#fef3c7,stroke:#d97706,stroke-width:1px
             style RD fill:#fee2e2,stroke:#dc2626,stroke-width:1px
-            style Core fill:#f1f5f9,stroke:#64748b,stroke-width:1px
-            style Microservices fill:#f8fafc,stroke:#e2e8f0,stroke-dasharray: 5 5
+            style Core fill:#EDE8DC,stroke:#A08060,stroke-width:1px
+            style Microservices fill:#F5F1EA,stroke:#C4B49A,stroke-dasharray: 5 5
         </div>
       </div>
 

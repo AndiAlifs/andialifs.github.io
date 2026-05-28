@@ -5,29 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Case Study — Sistem Monitoring Operasional Cerdas</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary:  #111827;
-      --accent:   #4f46e5;
-      --accent2:  #4f46e5;
-      --green:    #16a34a;
-      --amber:    #d97706;
-      --red:      #dc2626;
-      --surface:  #f9fafb;
-      --card:     #ffffff;
-      --border:   #e5e7eb;
-      --text:     #111827;
-      --muted:    #6b7280;
+      --primary:  #1C1917;
+      --accent:   #B45309;
+      --accent2:  #D97706;
+      --green:    #15803D;
+      --amber:    #D97706;
+      --red:      #B91C1C;
+      --surface:  #F5F1EA;
+      --card:     #FAF7F2;
+      --border:   rgba(28,25,23,.13);
+      --text:     #1C1917;
+      --muted:    #6B6560;
     }
 
-    body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
 
     /* ── HEADER ── */
     header {
-      background: #111827;
+      background: #1C0F05;
       color: #fff; padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden;
     }
     header::before { display: none; }
@@ -36,14 +36,14 @@
     .badge {
       display: inline-block;
       background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
-      color: #9ca3af; font-size: 11px; font-weight: 600; letter-spacing: .1em;
+      color: #C4B49A; font-size: 11px; font-weight: 600; letter-spacing: .1em;
       text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
     }
-    header h1 { font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -.02em; }
-    header h1 span { color: #a5b4fc; }
-    header p { font-size: 17px; color: #cbd5e1; max-width: 600px; margin: 0 auto 36px; }
+    header h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -.02em; }
+    header h1 span { color: #D97706; }
+    header p { font-size: 17px; color: #C4B49A; max-width: 600px; margin: 0 auto 36px; }
 
-    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #94a3b8; }
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #A08060; }
     .meta-row span { display: flex; align-items: center; gap: 6px; }
 
     /* ── HERO STATS ── */
@@ -58,16 +58,16 @@
     }
     .hero-stat:last-child { border-right: none; }
     .hero-stat .num {
-      font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #a5b4fc; display: block;
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #D97706; display: block;
     }
-    .hero-stat .lbl { font-size: 12px; color: #94a3b8; margin-top: 4px; line-height: 1.4; }
+    .hero-stat .lbl { font-size: 13px; color: #A08060; margin-top: 4px; line-height: 1.4; }
 
     /* ── LAYOUT ── */
     main { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
     section { margin-bottom: 64px; }
 
     h2 {
-      font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
+      font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 20px;
       display: flex; align-items: center; gap: 10px;
     }
     h2::before {
@@ -75,16 +75,16 @@
       background: var(--accent);
       border-radius: 1px; flex-shrink: 0;
     }
-    h3.sub { font-size: 16px; font-weight: 600; color: var(--primary); margin: 28px 0 14px; }
+    h3.sub { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary); margin: 28px 0 14px; }
 
-    p { color: #334155; margin-bottom: 14px; font-size: 15.5px; }
+    p { color: #57534E; margin-bottom: 14px; font-size: 15.5px; }
     p:last-child { margin-bottom: 0; }
 
     .highlight {
-      background: #eef2ff;
+      background: #F4EBD8;
       border-left: 3px solid var(--accent);
       border-radius: 0 4px 4px 0;
-      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #3730a3; font-style: italic;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #92400E; font-style: normal;
     }
 
     /* ── PROBLEM CARDS ── */
@@ -160,7 +160,7 @@
       width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px;
     }
     .data-table th { background: #f1f5f9; color: var(--primary); font-weight: 600; padding: 12px 16px; text-align: left; border-bottom: 2px solid var(--border); }
-    .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: #334155; }
+    .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: #57534E; }
     .data-table tr:hover { background: #f8fafc; }
     
     .ablation-grid {
@@ -179,7 +179,7 @@
     .comp-panel { flex: 1; min-width: 250px; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: center; }
     .comp-panel h4 { font-size: 14px; color: var(--primary); margin-bottom: 16px; }
     .comp-nodes { display: flex; flex-direction: column; gap: 12px; align-items: center; }
-    .comp-node { background: #eef2ff; color: #3730a3; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 500; border: 1px solid #c7d2fe; width: 80%; }
+    .comp-node { background: #FEF3C7; color: #92400E; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 500; border: 1px solid rgba(180,83,9,.3); width: 80%; }
     .comp-vector { margin-top: 16px; padding: 12px; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; border-radius: 4px; font-size: 12px; font-weight: 600; }
 
     /* ── TECH STACK ── */
@@ -207,31 +207,31 @@
 
     /* ── CTA ── */
     .cta-section {
-      background: #111827;
+      background: #1C0F05;
       border-radius: 6px; padding: 48px 40px; text-align: center; color: #fff; position: relative; overflow: hidden;
     }
     .cta-section::before { display: none; }
     .cta-section .inner { position: relative; }
     .cta-section h2 { font-size: 26px; color: #fff; justify-content: center; margin-bottom: 14px; }
     .cta-section h2::before { display: none; }
-    .cta-section p { color: #cbd5e1; font-size: 16px; max-width: 480px; margin: 0 auto 30px; }
+    .cta-section p { color: #C4B49A; font-size: 16px; max-width: 480px; margin: 0 auto 30px; }
     .cta-btn {
       display: inline-block;
       background: var(--accent);
-      color: #fff; font-weight: 600; font-size: 14px; padding: 12px 28px;
+      color: #fff; font-weight: 600; font-size: 15px; padding: 12px 28px;
       border-radius: 6px; text-decoration: none; letter-spacing: .01em;
       transition: background .15s;
     }
-    .cta-btn:hover { background: #4338ca; }
+    .cta-btn:hover { background: #92400E; }
 
     footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--muted); }
 
     /* ── BACK NAV ── */
-    .cs-back-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 50px; background: rgba(249,250,251,.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .cs-back-link { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--accent); transition: opacity .15s; text-decoration: none; }
+    .cs-back-nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 50px; background: rgba(245,241,234,.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .cs-back-link { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: var(--accent); transition: opacity .15s; text-decoration: none; }
     .cs-back-link:hover { opacity: .72; }
     .cs-back-link svg { flex-shrink: 0; }
-    .cs-lang-btn { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--text); cursor: pointer; transition: border-color .15s, color .15s; font-family: 'Inter', sans-serif; }
+    .cs-lang-btn { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--text); cursor: pointer; transition: border-color .15s, color .15s; font-family: 'DM Sans', sans-serif; }
     .cs-lang-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     @media (max-width: 640px) {
@@ -347,7 +347,7 @@
     <!-- Architecture Diagram -->
     <div class="arch-diagram">
       <div class="arch-row">
-        <div class="arch-box" style="border-color: #a5b4fc; background: #eef2ff;">
+        <div class="arch-box" style="border-color: #D97706; background: #FEF3C7;">
           <h4>Semantic Encoder</h4>
           <p>IndoSBERT-Large</p>
         </div>
