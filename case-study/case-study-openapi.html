@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Case Study — SNAP-BI Open API Gateway</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Syne:wght@600;700;800&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --primary:  #111827;
-      --accent:   #4f46e5;
-      --accent2:  #4f46e5;
-      --green:    #16a34a;
-      --amber:    #d97706;
-      --red:      #dc2626;
-      --surface:  #f9fafb;
-      --card:     #ffffff;
-      --border:   #e5e7eb;
-      --text:     #111827;
-      --muted:    #6b7280;
+      --primary:  #1C1917;
+      --accent:   #B45309;
+      --accent2:  #B45309;
+      --green:    #15803D;
+      --amber:    #D97706;
+      --red:      #B91C1C;
+      --surface:  #F4EFE6;
+      --card:     #FAF6EF;
+      --border:   rgba(28,25,23,.15);
+      --text:     #1C1917;
+      --muted:    #78716C;
     }
 
-    body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--text); line-height: 1.7; }
+    body { font-family: 'Source Serif 4', Georgia, serif; background: var(--surface); color: var(--text); line-height: 1.75; }
 
     /* ── HEADER ── */
     header {
@@ -40,12 +40,12 @@
       text-transform: uppercase; padding: 5px 14px; border-radius: 4px; margin-bottom: 20px;
     }
     header h1 { font-size: clamp(28px, 5vw, 46px); font-weight: 800; line-height: 1.2; margin-bottom: 20px; letter-spacing: -.02em; }
-    header h1 span { color: #a5b4fc; }
+    header h1 span { color: #FBBF24; }
     header p { font-size: 17px; color: #cbd5e1; max-width: 600px; margin: 0 auto 36px; }
 
     .meta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 13px; color: #94a3b8; }
     .meta-row span { display: flex; align-items: center; gap: 6px; }
-    .meta-row i { color: #a5b4fc; }
+    .meta-row i { color: #D97706; }
 
     /* ── HERO STATS ── */
     .hero-stats {
@@ -59,7 +59,7 @@
     }
     .hero-stat:last-child { border-right: none; }
     .hero-stat .num {
-      font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #a5b4fc; display: block;
+      font-size: 38px; font-weight: 800; letter-spacing: -.03em; color: #D97706; display: block;
     }
     .hero-stat .lbl { font-size: 12px; color: #94a3b8; margin-top: 4px; line-height: 1.4; text-transform: uppercase; letter-spacing: 1px; }
 
@@ -82,10 +82,10 @@
     p:last-child { margin-bottom: 0; }
 
     .highlight {
-      background: #eef2ff;
+      background: rgba(180,83,9,.07);
       border-left: 3px solid var(--accent);
       border-radius: 0 4px 4px 0;
-      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #3730a3; font-style: italic;
+      padding: 18px 22px; margin: 24px 0; font-size: 15px; color: #7C2D12; font-style: italic;
     }
 
     .diagram-container {
@@ -120,7 +120,7 @@
     .step-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--primary); }
     .step-body p { font-size: 14px; color: var(--muted); margin: 0; }
 
-    .tag { display: inline-block; padding: 2px 8px; background: #e0e7ff; color: #3730a3; border-radius: 4px; font-size: 12px; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
+    .tag { display: inline-block; padding: 2px 8px; background: rgba(180,83,9,.1); color: #7C2D12; border-radius: 4px; font-size: 12px; font-weight: 600; margin-right: 6px; margin-bottom: 6px; }
 
     /* ── NAV ── */
     .nav-top { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
@@ -133,7 +133,7 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.4.0/dist/mermaid.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'Inter' });
+      mermaid.initialize({ startOnLoad: true, theme: 'default', fontFamily: 'IBM Plex Mono' });
     });
   </script>
 </head>
@@ -206,7 +206,7 @@
             Trx -->|Legacy Protocols| Core[(Legacy Core System)]
 
             style Client fill:#f9fafb,stroke:#cbd5e1,stroke-width:1px
-            style GW fill:#eef2ff,stroke:#4f46e5,stroke-width:2px,color:#3730a3
+            style GW fill:#FEF3C7,stroke:#B45309,stroke-width:2px,color:#7C2D12
             style Auth fill:#ffffff,stroke:#94a3b8,stroke-width:1px
             style RL fill:#ffffff,stroke:#94a3b8,stroke-width:1px
             style Idemp fill:#ffffff,stroke:#94a3b8,stroke-width:1px
